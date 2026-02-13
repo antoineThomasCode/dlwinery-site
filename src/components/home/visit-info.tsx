@@ -3,6 +3,7 @@
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { SectionDivider } from "@/components/shared/section-divider";
 import { FrenchText } from "@/components/shared/french-text";
+import { InkDraw } from "@/components/shared/ink-draw";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
 import { Clock, MapPin, Phone } from "lucide-react";
@@ -112,6 +113,22 @@ export function VisitInfo() {
             </ScrollReveal>
           ))}
         </div>
+
+        {/* Finger Lakes engraving map — draws on scroll */}
+        <ScrollReveal delay={0.2} className="mt-12 sm:mt-16">
+          <div className="text-center">
+            <InkDraw
+              src="/images/ink/finger-lakes-map.svg"
+              className="w-full max-w-[480px] mx-auto opacity-20"
+              delay={0.2}
+              duration={1.5}
+              stagger={0.1}
+            />
+            <p className="text-stone/30 text-[9px] tracking-[0.2em] uppercase font-body mt-3">
+              The Finger Lakes Region &middot; Keuka Lake
+            </p>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

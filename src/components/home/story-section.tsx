@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { InkDivider } from "@/components/shared/ink-divider";
+import { InkDraw } from "@/components/shared/ink-draw";
 import { FrenchText } from "@/components/shared/french-text";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
@@ -97,6 +98,15 @@ export function StorySection() {
                   — <span className="text-olive font-medium">Sébastien LeSeurre</span>, Winemaker
                 </cite>
               </blockquote>
+
+              {/* Vine ornament — ink draw on scroll */}
+              <InkDraw
+                src="/images/ink/vine-ornament.svg"
+                className="w-full max-w-[160px] opacity-15 mb-6"
+                delay={0.3}
+                duration={1.2}
+                stagger={0.12}
+              />
 
               <Link
                 href="/our-story"

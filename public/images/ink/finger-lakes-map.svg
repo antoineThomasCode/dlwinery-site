@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <!--
+    Finger Lakes Region — Engraving / Ink Wash Style
+    11 lakes oriented roughly N→S, west to east.
+    Keuka Lake (Y-shaped) is highlighted with heavier stroke.
+    DL Winery pin at Hammondsport (southern tip of Keuka).
+    All elements are stroke-only <path> for dashoffset animation.
+  -->
+
+  <!-- === LAKE PATHS (west to east) === -->
+
+  <!-- 1. Conesus Lake — westernmost, narrow -->
+  <path id="lake-conesus"
+    d="M62 95 C60 115, 58 145, 59 170 C60 195, 62 225, 63 250 C64 265, 63 280, 64 295"
+    stroke="#3D5A3E" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+  <!-- 2. Hemlock Lake — short, narrow -->
+  <path id="lake-hemlock"
+    d="M102 110 C101 130, 100 155, 100 180 C100 205, 101 230, 102 255"
+    stroke="#3D5A3E" stroke-width="1.6" stroke-linecap="round" fill="none" />
+
+  <!-- 3. Canadice Lake — shortest, thin -->
+  <path id="lake-canadice"
+    d="M130 125 C129 145, 128 170, 128 195 C128 215, 129 235, 130 250"
+    stroke="#3D5A3E" stroke-width="1.4" stroke-linecap="round" fill="none" />
+
+  <!-- 4. Honeoye Lake — small -->
+  <path id="lake-honeoye"
+    d="M158 115 C157 135, 155 160, 155 185 C155 205, 157 225, 158 245"
+    stroke="#3D5A3E" stroke-width="1.5" stroke-linecap="round" fill="none" />
+
+  <!-- 5. Canandaigua Lake — tall, elegant curve -->
+  <path id="lake-canandaigua"
+    d="M200 72 C198 100, 196 135, 195 170 C194 205, 195 245, 197 280 C198 300, 200 320, 202 340"
+    stroke="#3D5A3E" stroke-width="2" stroke-linecap="round" fill="none" />
+
+  <!-- 6. KEUKA LAKE — Y-shaped, the star. Heavier stroke, warm-black -->
+  <!-- Northwest branch -->
+  <path id="lake-keuka-nw"
+    d="M238 78 C240 100, 243 125, 248 150 C253 175, 260 195, 268 215"
+    stroke="#1C1A17" stroke-width="2.8" stroke-linecap="round" fill="none" />
+  <!-- Northeast branch -->
+  <path id="lake-keuka-ne"
+    d="M290 82 C288 105, 284 130, 280 155 C276 180, 272 200, 268 215"
+    stroke="#1C1A17" stroke-width="2.8" stroke-linecap="round" fill="none" />
+  <!-- Southern stem (merges at 268,215 → goes to Hammondsport) -->
+  <path id="lake-keuka-south"
+    d="M268 215 C266 240, 264 265, 262 290 C260 310, 258 325, 256 345"
+    stroke="#1C1A17" stroke-width="3" stroke-linecap="round" fill="none" />
+
+  <!-- 7. Seneca Lake — largest, widest -->
+  <path id="lake-seneca"
+    d="M340 55 C338 90, 336 130, 335 170 C334 210, 335 255, 337 295 C338 320, 340 340, 342 360"
+    stroke="#3D5A3E" stroke-width="2.2" stroke-linecap="round" fill="none" />
+
+  <!-- 8. Cayuga Lake — longest -->
+  <path id="lake-cayuga"
+    d="M400 45 C398 85, 396 130, 395 175 C394 220, 395 265, 397 310 C398 340, 400 360, 402 375"
+    stroke="#3D5A3E" stroke-width="2.2" stroke-linecap="round" fill="none" />
+
+  <!-- 9. Owasco Lake — medium -->
+  <path id="lake-owasco"
+    d="M455 90 C454 115, 453 145, 452 175 C451 205, 452 240, 453 270 C454 290, 455 305, 456 320"
+    stroke="#3D5A3E" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+  <!-- 10. Skaneateles Lake — elegant, narrow -->
+  <path id="lake-skaneateles"
+    d="M498 80 C497 105, 496 135, 495 165 C494 195, 495 230, 496 260 C497 280, 498 300, 499 315"
+    stroke="#3D5A3E" stroke-width="1.7" stroke-linecap="round" fill="none" />
+
+  <!-- 11. Otisco Lake — easternmost, small -->
+  <path id="lake-otisco"
+    d="M535 105 C534 125, 533 150, 533 175 C533 200, 534 220, 535 240"
+    stroke="#3D5A3E" stroke-width="1.4" stroke-linecap="round" fill="none" />
+
+  <!-- === CROSSHATCH TEXTURE (subtle land marks) === -->
+
+  <!-- Rolling hills / terrain lines — west -->
+  <path id="hatch-w1"
+    d="M30 160 C45 155, 70 162, 90 158"
+    stroke="#3D5A3E" stroke-width="0.4" stroke-linecap="round" fill="none" opacity="0.25" />
+  <path id="hatch-w2"
+    d="M40 200 C60 195, 80 202, 95 198"
+    stroke="#3D5A3E" stroke-width="0.35" stroke-linecap="round" fill="none" opacity="0.2" />
+
+  <!-- Rolling hills / terrain lines — central (around Keuka) -->
+  <path id="hatch-c1"
+    d="M210 160 C225 155, 245 162, 260 157"
+    stroke="#3D5A3E" stroke-width="0.4" stroke-linecap="round" fill="none" opacity="0.25" />
+  <path id="hatch-c2"
+    d="M215 280 C230 275, 250 282, 265 278"
+    stroke="#3D5A3E" stroke-width="0.35" stroke-linecap="round" fill="none" opacity="0.2" />
+  <path id="hatch-c3"
+    d="M295 160 C310 155, 325 162, 340 158"
+    stroke="#3D5A3E" stroke-width="0.4" stroke-linecap="round" fill="none" opacity="0.2" />
+
+  <!-- Rolling hills / terrain lines — east -->
+  <path id="hatch-e1"
+    d="M420 155 C440 150, 465 157, 485 153"
+    stroke="#3D5A3E" stroke-width="0.4" stroke-linecap="round" fill="none" opacity="0.25" />
+  <path id="hatch-e2"
+    d="M430 250 C450 245, 475 252, 495 248"
+    stroke="#3D5A3E" stroke-width="0.35" stroke-linecap="round" fill="none" opacity="0.2" />
+
+  <!-- Diagonal crosshatch strokes — engraving style, faint -->
+  <path id="xhatch-1"
+    d="M170 130 L185 145"
+    stroke="#3D5A3E" stroke-width="0.3" stroke-linecap="round" fill="none" opacity="0.15" />
+  <path id="xhatch-2"
+    d="M175 130 L190 145"
+    stroke="#3D5A3E" stroke-width="0.3" stroke-linecap="round" fill="none" opacity="0.12" />
+  <path id="xhatch-3"
+    d="M310 250 L325 265"
+    stroke="#3D5A3E" stroke-width="0.3" stroke-linecap="round" fill="none" opacity="0.15" />
+  <path id="xhatch-4"
+    d="M315 250 L330 265"
+    stroke="#3D5A3E" stroke-width="0.3" stroke-linecap="round" fill="none" opacity="0.12" />
+  <!-- === DL WINERY PIN (Hammondsport — southern tip of Keuka) === -->
+
+  <!-- Pin drop shape — teardrop pointing down to location -->
+  <path id="pin-marker"
+    d="M256 345 C256 338, 248 328, 248 322 C248 317, 251 313, 256 313 C261 313, 264 317, 264 322 C264 328, 256 338, 256 345 Z"
+    stroke="#1C1A17" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+  <!-- Small dot inside pin -->
+  <path id="pin-dot"
+    d="M256 321 C257.5 321, 258.5 322, 258.5 323.5 C258.5 325, 257.5 326, 256 326 C254.5 326, 253.5 325, 253.5 323.5 C253.5 322, 254.5 321, 256 321 Z"
+    stroke="#1C1A17" stroke-width="1" stroke-linecap="round" fill="none" />
+
+  <!-- Small radiating lines from pin — emphasis marks -->
+  <path id="pin-ray-l"
+    d="M244 322 L240 322"
+    stroke="#1C1A17" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.5" />
+  <path id="pin-ray-r"
+    d="M268 322 L272 322"
+    stroke="#1C1A17" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.5" />
+</svg>

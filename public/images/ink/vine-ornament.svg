@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" fill="none">
+  <!--
+    Vine Ornament — Engraving / Ink Wash Style
+    Decorative divider: curved vine with leaves and grape cluster.
+    Stroke-only, under 10 paths.
+  -->
+
+  <!-- Main vine stem — flowing S-curve -->
+  <path id="vine-stem"
+    d="M10 20 C20 20, 28 12, 40 14 C52 16, 55 24, 60 20 C65 16, 68 14, 80 16 C92 18, 100 20, 110 20"
+    stroke="#3D5A3E" stroke-width="1.2" stroke-linecap="round" fill="none" />
+
+  <!-- Leaf 1 — left, curving up -->
+  <path id="vine-leaf-1"
+    d="M32 14 C28 6, 36 2, 40 8 C42 12, 38 14, 36 14"
+    stroke="#3D5A3E" stroke-width="0.9" stroke-linecap="round" fill="none" />
+
+  <!-- Leaf 1 vein -->
+  <path id="vine-leaf-1-vein"
+    d="M34 13 C35 9, 37 6, 39 8"
+    stroke="#3D5A3E" stroke-width="0.4" stroke-linecap="round" fill="none" opacity="0.5" />
+
+  <!-- Leaf 2 — right, curving down -->
+  <path id="vine-leaf-2"
+    d="M82 16 C86 24, 78 30, 74 24 C72 20, 76 16, 78 16"
+    stroke="#3D5A3E" stroke-width="0.9" stroke-linecap="round" fill="none" />
+
+  <!-- Leaf 2 vein -->
+  <path id="vine-leaf-2-vein"
+    d="M80 17 C79 22, 77 26, 75 24"
+    stroke="#3D5A3E" stroke-width="0.4" stroke-linecap="round" fill="none" opacity="0.5" />
+
+  <!-- Grape cluster — 3 small circles rendered as paths, near center -->
+  <path id="grape-1"
+    d="M57 28 C58.5 28, 59.5 29, 59.5 30.5 C59.5 32, 58.5 33, 57 33 C55.5 33, 54.5 32, 54.5 30.5 C54.5 29, 55.5 28, 57 28 Z"
+    stroke="#3D5A3E" stroke-width="0.7" stroke-linecap="round" fill="none" />
+  <path id="grape-2"
+    d="M62 27 C63.5 27, 64.5 28, 64.5 29.5 C64.5 31, 63.5 32, 62 32 C60.5 32, 59.5 31, 59.5 29.5 C59.5 28, 60.5 27, 62 27 Z"
+    stroke="#3D5A3E" stroke-width="0.7" stroke-linecap="round" fill="none" />
+  <path id="grape-3"
+    d="M59.5 32 C61 32, 62 33, 62 34.5 C62 36, 61 37, 59.5 37 C58 37, 57 36, 57 34.5 C57 33, 58 32, 59.5 32 Z"
+    stroke="#3D5A3E" stroke-width="0.7" stroke-linecap="round" fill="none" />
+
+  <!-- Tendril — small spiral near grapes -->
+  <path id="vine-tendril"
+    d="M55 22 C53 24, 51 26, 52 28 C53 30, 55 29, 54 27"
+    stroke="#3D5A3E" stroke-width="0.6" stroke-linecap="round" fill="none" opacity="0.6" />
+</svg>
