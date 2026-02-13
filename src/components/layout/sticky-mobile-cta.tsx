@@ -30,7 +30,7 @@ export function StickyMobileCta() {
           <div className="px-4 pb-2">
             <Link
               href="/experiences"
-              className="flex items-center justify-center w-full h-12 btn-cta-primary rounded-none text-[11px] tracking-[0.15em] uppercase font-body font-medium shadow-lg"
+              className="flex items-center justify-center w-full h-12 btn-sticky-glass rounded-none text-[11px] tracking-[0.15em] uppercase font-body font-medium"
               data-track-event="cta_click"
               data-track-category="sticky_mobile"
               data-track-label="book_tasting"
