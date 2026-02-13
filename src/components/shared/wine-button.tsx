@@ -14,7 +14,6 @@ interface WineButtonProps {
   href?: string;
   onClick?: () => void;
   size?: "default" | "lg" | "full";
-  /** data-track attributes */
   trackEvent?: string;
   trackCategory?: string;
   trackLabel?: string;
@@ -39,14 +38,16 @@ export function WineButton({
   const springX = useSpring(cursorX, CURSOR_SPRING);
   const springY = useSpring(cursorY, CURSOR_SPRING);
 
-  // Template literal for CSS gradient position
-  const gradX = useTransform(springX, (v) => `${v}%`);
-  const gradY = useTransform(springY, (v) => `${v}%`);
+  // Always call hooks at top level — never inside conditionals
+  const cursorGradient = useTransform(
+    [springX, springY],
+    ([x, y]) => `radial-gradient(circle 80px at ${x}% ${y}%, #C41E3A 0%, transparent 100%)`
+  );
 
   useEffect(() => {
     const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setIsDesktop(hover.matches && !motion.matches);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setIsDesktop(hover.matches && !reducedMotion.matches);
   }, []);
 
   function handleMouseMove(e: MouseEvent) {
@@ -88,12 +89,7 @@ export function WineButton({
         <motion.span
           className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
-          style={{
-            background: useTransform(
-              [gradX, gradY],
-              ([x, y]) => `radial-gradient(circle 80px at ${x} ${y}, #C41E3A 0%, transparent 100%)`
-            ),
-          }}
+          style={{ background: cursorGradient }}
           animate={{ opacity: isHovered ? 0.55 : 0 }}
           transition={{ duration: 0.5, ease: EASE }}
         />
