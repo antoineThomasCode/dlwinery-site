@@ -710,7 +710,7 @@ html.lenis, html.lenis body {
   scroll-behavior: auto;
 }
 .lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+  overscroll-behavior-x: contain;
 }
 .lenis.lenis-stopped {
   overflow: hidden;
@@ -778,7 +778,14 @@ html.lenis, html.lenis body {
    Horizontal scroll containers — prevent Lenis hijacking
    ═══════════════════════════════════════════ */
 .scrollbar-hide {
-  overscroll-behavior: contain;
+  overscroll-behavior-x: contain;
+}
+/* On touch devices, allow vertical scroll to escape horizontal carousels */
+@media (pointer: coarse) {
+  .scrollbar-hide {
+    overscroll-behavior: auto;
+    touch-action: pan-x pan-y;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
