@@ -26,30 +26,30 @@ interface BlobConfig {
 
 const BLOBS: BlobConfig[] = [
   {
-    // Primary — follows cursor closely, darkest
-    size: 450,
-    color: "rgba(28, 26, 23, 0.4)",
+    // Primary — follows cursor closely, deep pourpre/wine
+    size: 480,
+    color: "rgba(74, 28, 40, 0.45)",
     spring: { damping: 25, stiffness: 200, mass: 0.8 },
     offset: { x: 0, y: 0 },
-    blur: 80,
+    blur: 90,
     idle: { x: [-40, 40], y: [-25, 25], duration: 18 },
   },
   {
-    // Secondary — lags behind, wine-tinted
-    size: 380,
-    color: "rgba(74, 28, 40, 0.3)",
+    // Secondary — lags behind, dark warm black
+    size: 400,
+    color: "rgba(40, 18, 25, 0.4)",
     spring: { damping: 35, stiffness: 120, mass: 1.2 },
     offset: { x: -100, y: 50 },
-    blur: 100,
+    blur: 110,
     idle: { x: [50, -50], y: [20, -35], duration: 24 },
   },
   {
-    // Tertiary — slowest drift, ambient tint
-    size: 550,
-    color: "rgba(28, 26, 23, 0.22)",
+    // Tertiary — slowest drift, wine-red glow
+    size: 580,
+    color: "rgba(107, 45, 62, 0.2)",
     spring: { damping: 45, stiffness: 80, mass: 1.8 },
     offset: { x: 80, y: -60 },
-    blur: 120,
+    blur: 130,
     idle: { x: [-30, 60], y: [40, -20], duration: 30 },
   },
 ];
