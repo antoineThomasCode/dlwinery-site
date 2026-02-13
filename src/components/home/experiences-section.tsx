@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { SectionDivider } from "@/components/shared/section-divider";
 import { FrenchText } from "@/components/shared/french-text";
@@ -172,19 +171,15 @@ function ExperienceCard({ exp }: { exp: typeof experiences[number] }) {
           </span>
         </div>
 
-        <Button
-          asChild
-          className="w-full btn-shimmer bg-olive hover:bg-olive-deep text-warm-white rounded-none h-11 text-[11px] tracking-[0.12em] uppercase font-medium transition-all duration-400"
+        <Link
+          href={`/experiences?select=${exp.id}`}
+          className="w-full flex items-center justify-center btn-shimmer-gold rounded-none h-11 text-[11px] tracking-[0.12em] uppercase font-heading font-normal"
+          data-track-event="cta_click"
+          data-track-category="experiences"
+          data-track-label={`book_${exp.id}`}
         >
-          <Link
-            href={`/experiences?select=${exp.id}`}
-            data-track-event="cta_click"
-            data-track-category="experiences"
-            data-track-label={`book_${exp.id}`}
-          >
-            Reserve This Experience
-          </Link>
-        </Button>
+          Reserve This Experience
+        </Link>
       </div>
     </div>
   );

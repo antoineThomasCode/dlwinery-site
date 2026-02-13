@@ -121,7 +121,7 @@ export function Footer() {
               />
               <button
                 type="submit"
-                className="btn-shimmer bg-gold hover:bg-gold-light text-olive-deep rounded-sm px-4 py-2.5 text-xs font-semibold tracking-[0.1em] uppercase transition-all duration-300 shadow-sm hover:shadow-md"
+                className="bg-gold/90 hover:bg-gold text-olive-deep rounded-none px-4 py-2.5 text-xs font-heading font-normal tracking-[0.1em] uppercase transition-all duration-400 cursor-pointer"
                 data-track-event="newsletter_signup"
                 data-track-category="footer"
                 data-track-label="email_capture"

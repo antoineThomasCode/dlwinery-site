@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, User, Wine, CalendarDays, Home, ShoppingBag } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
@@ -96,19 +95,15 @@ export function Header() {
             </Link>
 
             {/* Book CTA - desktop */}
-            <Button
-              asChild
-              className="hidden md:inline-flex btn-shimmer bg-olive hover:bg-olive-deep text-warm-white rounded-sm text-[11px] tracking-[0.1em] uppercase font-medium px-6 h-9 shadow-md hover:shadow-lg transition-all duration-300"
+            <Link
+              href="/experiences"
+              className="hidden md:inline-flex items-center justify-center btn-header-cta rounded-none text-[11px] tracking-[0.1em] uppercase font-heading font-normal px-6 h-9"
+              data-track-event="cta_click"
+              data-track-category="header"
+              data-track-label="book_tasting"
             >
-              <Link
-                href="/experiences"
-                data-track-event="cta_click"
-                data-track-category="header"
-                data-track-label="book_tasting"
-              >
-                Book a Tasting
-              </Link>
-            </Button>
+              Book a Tasting
+            </Link>
 
             {/* Mobile hamburger */}
             <Sheet open={open} onOpenChange={setOpen}>
@@ -163,14 +158,13 @@ export function Header() {
 
                   {/* Bottom CTA */}
                   <div className="p-6 border-t border-gold/10 bg-warm-white/50">
-                    <Button
-                      asChild
-                      className="w-full btn-shimmer bg-olive hover:bg-olive-deep text-warm-white rounded-sm h-12 text-sm tracking-[0.08em] uppercase font-medium shadow-md"
+                    <Link
+                      href="/experiences"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-center w-full btn-header-cta rounded-none h-12 text-sm tracking-[0.08em] uppercase font-heading font-normal"
                     >
-                      <Link href="/experiences" onClick={() => setOpen(false)}>
-                        Book a Tasting
-                      </Link>
-                    </Button>
+                      Book a Tasting
+                    </Link>
                     <p className="text-center text-gold/50 text-xs font-heading italic mt-3">
                       À votre santé
                     </p>
