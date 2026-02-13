@@ -38,7 +38,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative text-center px-5 sm:px-8 max-w-3xl mx-auto" style={{ perspective: "600px" }}>
+      <div className="relative text-center px-5 sm:px-8 max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,16 +53,17 @@ export function HeroSection() {
           </p>
         </motion.div>
 
-        {/* Split-text hero headline — word-by-word cinematic reveal */}
-        <h1 className="font-heading text-[2.75rem] leading-[1.05] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-normal mb-4 sm:mb-5">
-          <span className="shimmer-text-light">
-            <SplitTextHero delay={0.5} duration={1} stagger={0.1}>
+        {/* Split-text hero headline — word-by-word cinematic reveal
+             Mobile: 2.25rem fits "A French Accent" on one line (tested at 375px)
+             Scale: 2.25rem → 3.5rem → 4.5rem → 5.5rem */}
+        <h1 className="font-heading text-[2.25rem] leading-[1.08] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-normal mb-4 sm:mb-5">
+          <span className="shimmer-text-light block">
+            <SplitTextHero delay={0.5} duration={1.1} stagger={0.12}>
               A French Accent
             </SplitTextHero>
           </span>
-          <br />
-          <span className="shimmer-text-light italic">
-            <SplitTextHero delay={0.8} duration={1} stagger={0.1}>
+          <span className="shimmer-text-light italic block">
+            <SplitTextHero delay={0.9} duration={1.1} stagger={0.12}>
               on Keuka Lake
             </SplitTextHero>
           </span>

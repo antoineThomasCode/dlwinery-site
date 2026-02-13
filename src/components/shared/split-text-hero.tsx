@@ -1,9 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { type ReactNode } from "react";
-
-const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
 
 interface SplitTextHeroProps {
   children: string;
@@ -11,30 +8,23 @@ interface SplitTextHeroProps {
   delay?: number;
   duration?: number;
   stagger?: number;
-  /** Render wrapper for each word — receives the animated word as children */
-  wordWrapper?: (props: { children: ReactNode }) => ReactNode;
 }
 
 /**
  * Award-level hero text animation.
- * Splits text into individual words, each animated with:
- * - y translate from below (masked by overflow-hidden)
- * - opacity fade
- * - rotateX for a subtle 3D tilt
- * - Staggered timing for cinematic feel
+ * Splits text into individual words, each rising smoothly from below
+ * with a gentle opacity fade. No 3D transforms — pure y + opacity
+ * for maximum smoothness on mobile (avoids GPU compositing issues
+ * that cause micro-jank with rotateX on low-end devices).
  *
- * Usage:
- * <SplitTextHero className="..." delay={0.5}>
- *   A French Accent
- * </SplitTextHero>
+ * Easing: custom cubic-bezier with a long deceleration tail.
  */
 export function SplitTextHero({
   children,
   className = "",
   delay = 0,
-  duration = 0.9,
+  duration = 1.1,
   stagger = 0.08,
-  wordWrapper,
 }: SplitTextHeroProps) {
   const words = children.split(" ");
 
@@ -54,40 +44,30 @@ export function SplitTextHero({
       className={`inline ${className}`}
       aria-label={children}
     >
-      {words.map((word, i) => {
-        const content = (
-          <span key={i} className="inline-block overflow-hidden align-bottom">
-            <motion.span
-              className="inline-block"
-              variants={{
-                hidden: {
-                  y: "110%",
-                  rotateX: 45,
-                  opacity: 0,
+      {words.map((word, i) => (
+        <span key={i} className="inline-block overflow-hidden align-bottom pb-[0.08em]">
+          <motion.span
+            className="inline-block will-change-transform"
+            variants={{
+              hidden: {
+                y: "100%",
+                opacity: 0,
+              },
+              visible: {
+                y: "0%",
+                opacity: 1,
+                transition: {
+                  duration,
+                  ease: [0.25, 0.1, 0.25, 1], // smooth deceleration
                 },
-                visible: {
-                  y: "0%",
-                  rotateX: 0,
-                  opacity: 1,
-                  transition: {
-                    duration,
-                    ease: LUXURY_EASE,
-                  },
-                },
-              }}
-              style={{ transformOrigin: "bottom center" }}
-            >
-              {word}
-            </motion.span>
-            {i < words.length - 1 && "\u00A0"}
-          </span>
-        );
-
-        if (wordWrapper) {
-          return wordWrapper({ children: content });
-        }
-        return content;
-      })}
+              },
+            }}
+          >
+            {word}
+          </motion.span>
+          {i < words.length - 1 && "\u00A0"}
+        </span>
+      ))}
     </motion.span>
   );
 }

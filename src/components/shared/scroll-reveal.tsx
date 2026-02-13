@@ -36,7 +36,7 @@ export function ScrollReveal({
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ once: true, margin: "50px 0px 0px 0px" }}
         variants={{
           hidden: {},
           visible: {
@@ -57,7 +57,7 @@ export function ScrollReveal({
     <motion.div
       initial={{ opacity: 0, y: offset.y, x: offset.x }}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, margin: "50px 0px 0px 0px" }}
       transition={{ duration: 0.7, delay, ease: LUXURY_EASE }}
       className={className}
     >

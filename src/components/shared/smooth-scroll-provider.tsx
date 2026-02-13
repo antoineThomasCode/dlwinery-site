@@ -4,23 +4,28 @@ import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 
 /**
- * Lenis smooth scroll provider.
- * Wraps the page in a buttery-smooth scroll experience.
- * Respects prefers-reduced-motion and touch devices.
- * Syncs with Framer Motion's requestAnimationFrame loop.
+ * Lenis smooth scroll — desktop only.
+ *
+ * On mobile/touch devices, native scroll is already smooth (iOS momentum,
+ * Android fling). Lenis on touch causes micro-jumps and blocks scroll
+ * over horizontal carousels. Desktop wheel events benefit from the
+ * buttery inertial easing that Lenis provides.
  */
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // Skip on touch devices — native scroll is better on mobile
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouch) return;
+
     // Respect reduced motion preference
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (motionQuery.matches) return;
 
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo out
-      touchMultiplier: 1.5,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       infinite: false,
     });
     lenisRef.current = lenis;
@@ -31,7 +36,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     }
     requestAnimationFrame(raf);
 
-    // Handle anchor links — scroll smoothly to hash targets
+    // Handle anchor links
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a[href^='#']") as HTMLAnchorElement | null;

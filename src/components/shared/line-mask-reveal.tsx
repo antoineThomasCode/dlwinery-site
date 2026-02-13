@@ -30,7 +30,7 @@ export function LineMaskReveal({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, margin: "50px 0px 0px 0px" }}
       variants={{
         hidden: {},
         visible: {
