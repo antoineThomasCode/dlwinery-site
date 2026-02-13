@@ -40,9 +40,16 @@ export function TestimonialsSection() {
       {/* Scroll-triggered blobs */}
       <SectionBlobs
         isVisible={isVisible}
+        sectionRef={sectionRef}
         blobs={[
-          { type: "olive", size: "40%", position: { top: "-10%", left: "-10%" } },
-          { type: "gold", size: "30%", position: { bottom: "0", right: "-5%" } },
+          { type: "olive", size: "60%", position: { top: "-10%", left: "-15%" } },
+          { type: "gold", size: "45%", position: { bottom: "-5%", right: "-10%" } },
+          { type: "champagne", size: "35%", position: { top: "30%", right: "15%" } },
+        ]}
+        parallax={[
+          { speed: 0.4 },
+          { speed: 0.3 },
+          { speed: 0.5 },
         ]}
       />
 

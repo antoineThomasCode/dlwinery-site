@@ -40,12 +40,14 @@ export function WineClubSection() {
           isVisible={isVisible}
           sectionRef={sectionRef}
           blobs={[
-            { type: "pourpre", size: "45%", position: { bottom: "0", right: "-10%" } },
-            { type: "champagne", size: "40%", position: { top: "10%", left: "-5%" } },
+            { type: "pourpre", size: "60%", position: { bottom: "-5%", right: "-15%" } },
+            { type: "champagne", size: "50%", position: { top: "5%", left: "-10%" } },
+            { type: "gold", size: "35%", position: { top: "30%", right: "20%" } },
           ]}
           parallax={[
             { speed: -0.4 },
             { speed: -0.6 },
+            { speed: -0.3 },
           ]}
         />
       </div>

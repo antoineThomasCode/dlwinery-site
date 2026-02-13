@@ -49,13 +49,18 @@ export function VisitInfo() {
         blobs={[
           {
             type: "champagne",
-            size: "35%",
-            position: { top: "-10%", right: "-5%" },
+            size: "60%",
+            position: { top: "-10%", right: "-15%" },
           },
           {
             type: "gold",
-            size: "30%",
-            position: { bottom: "-5%", left: "10%" },
+            size: "45%",
+            position: { bottom: "-5%", left: "5%" },
+          },
+          {
+            type: "olive",
+            size: "35%",
+            position: { top: "25%", left: "-10%" },
           },
         ]}
       />

@@ -53,9 +53,16 @@ export function EventsSection() {
       {/* Scroll-triggered blobs */}
       <SectionBlobs
         isVisible={isVisible}
+        sectionRef={sectionRef}
         blobs={[
-          { type: "gold", size: "50%", position: { top: "-15%", right: "-10%" } },
-          { type: "champagne", size: "40%", position: { bottom: "-10%", left: "5%" } },
+          { type: "gold", size: "60%", position: { top: "-15%", right: "-15%" } },
+          { type: "champagne", size: "50%", position: { bottom: "-10%", left: "0%" } },
+          { type: "olive", size: "35%", position: { top: "25%", left: "-10%" } },
+        ]}
+        parallax={[
+          { speed: 0.4 },
+          { speed: 0.3 },
+          { speed: 0.5 },
         ]}
       />
 

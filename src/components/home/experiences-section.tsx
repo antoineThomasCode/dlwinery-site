@@ -58,12 +58,14 @@ export function ExperiencesSection() {
         isVisible={isVisible}
         sectionRef={sectionRef}
         blobs={[
-          { type: "olive", size: "50%", position: { top: "-10%", left: "-15%" } },
-          { type: "gold", size: "40%", position: { bottom: "-5%", right: "-10%" } },
+          { type: "olive", size: "65%", position: { top: "-10%", left: "-20%" } },
+          { type: "gold", size: "50%", position: { bottom: "-5%", right: "-15%" } },
+          { type: "pourpre", size: "35%", position: { top: "40%", right: "10%" } },
         ]}
         parallax={[
           { speed: 0.5 },
           { speed: 0.3 },
+          { speed: 0.4 },
         ]}
       />
 

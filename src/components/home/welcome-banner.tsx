@@ -18,12 +18,14 @@ export function WelcomeBanner() {
         isVisible={isVisible}
         sectionRef={sectionRef}
         blobs={[
-          { type: "champagne", size: "40%", position: { top: "-15%", right: "-10%" } },
-          { type: "gold", size: "35%", position: { bottom: "-10%", left: "5%" } },
+          { type: "champagne", size: "65%", position: { top: "-15%", right: "-15%" } },
+          { type: "gold", size: "50%", position: { bottom: "-10%", left: "5%" } },
+          { type: "olive", size: "40%", position: { top: "20%", left: "-20%" } },
         ]}
         parallax={[
           { speed: 0.3 },
           { speed: 0.5 },
+          { speed: 0.2 },
         ]}
       />
 

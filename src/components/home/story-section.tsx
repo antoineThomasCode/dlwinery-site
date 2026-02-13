@@ -23,12 +23,14 @@ export function StorySection() {
         isVisible={isVisible}
         sectionRef={sectionRef}
         blobs={[
-          { type: "pourpre", size: "50%", position: { top: "-10%", right: "-15%" } },
-          { type: "olive", size: "35%", position: { bottom: "5%", left: "-10%" } },
+          { type: "pourpre", size: "65%", position: { top: "-10%", right: "-20%" } },
+          { type: "olive", size: "50%", position: { bottom: "0%", left: "-15%" } },
+          { type: "champagne", size: "40%", position: { top: "30%", left: "50%" } },
         ]}
         parallax={[
           { speed: 0.5, rotation: 8 },
           { speed: 0.3, rotation: -5 },
+          { speed: 0.2 },
         ]}
       />
       <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">

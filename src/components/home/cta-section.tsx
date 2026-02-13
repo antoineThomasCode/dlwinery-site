@@ -23,7 +23,7 @@ export function CtaSection() {
           className="absolute inset-0"
           speed={0.08}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-pourpre-deep/50 to-olive-deep/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-pourpre-deep/50 to-black/85" />
         {/* Scroll-triggered blobs */}
         <SectionBlobs
           isVisible={isVisible}
@@ -89,8 +89,7 @@ export function CtaSection() {
         </ScrollReveal>
       </div>
 
-      {/* Bottom line */}
-      <div className="absolute bottom-0 left-[5%] right-[5%] gold-line" />
+      {/* Bottom line removed — fleur de lys divider is in Footer */}
     </section>
   );
 }

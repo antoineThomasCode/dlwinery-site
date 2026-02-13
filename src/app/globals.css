@@ -311,109 +311,119 @@
 }
 
 /* ═══════════════════════════════════════════
-   Organic Blobs — Moving color clouds with opacity breathing
-   Diluted with black, always moving, always subtle
+   Organic Blobs — Atmospheric color veils
+   Large, heavily blurred, barely conscious.
+   The user should never notice the blobs — only
+   feel that the section is "warm" or "alive".
    ═══════════════════════════════════════════ */
 
 @keyframes blob-drift-1 {
   0%, 100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.25;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.22;
   }
   20% {
-    transform: translate(4%, -6%) scale(1.08);
-    opacity: 0.4;
+    transform: translate(3%, -4%) scale(1.05) rotate(2deg);
+    opacity: 0.28;
   }
   40% {
-    transform: translate(-2%, 3%) scale(0.95);
-    opacity: 0.2;
+    transform: translate(-2%, 2%) scale(0.97) rotate(-1deg);
+    opacity: 0.18;
   }
   60% {
-    transform: translate(6%, 4%) scale(1.05);
-    opacity: 0.45;
+    transform: translate(4%, 3%) scale(1.03) rotate(1.5deg);
+    opacity: 0.30;
   }
   80% {
-    transform: translate(-3%, -2%) scale(0.98);
-    opacity: 0.15;
+    transform: translate(-2%, -2%) scale(0.98) rotate(-0.5deg);
+    opacity: 0.16;
   }
 }
 
 @keyframes blob-drift-2 {
   0%, 100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.2;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.20;
   }
-  30% {
-    transform: translate(-6%, 5%) scale(1.1);
-    opacity: 0.35;
+  25% {
+    transform: translate(-4%, 3%) scale(1.04) rotate(-1.5deg);
+    opacity: 0.26;
   }
-  60% {
-    transform: translate(5%, -3%) scale(0.92);
-    opacity: 0.12;
+  50% {
+    transform: translate(3%, -3%) scale(0.96) rotate(1deg);
+    opacity: 0.14;
+  }
+  75% {
+    transform: translate(-2%, 4%) scale(1.02) rotate(-0.5deg);
+    opacity: 0.24;
   }
 }
 
 @keyframes blob-drift-3 {
   0%, 100% {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1) rotate(0deg);
     opacity: 0.18;
   }
-  25% {
-    transform: translate(8%, 4%) scale(1.12);
-    opacity: 0.35;
+  30% {
+    transform: translate(3%, 2%) scale(1.06) rotate(1deg);
+    opacity: 0.26;
   }
-  50% {
-    transform: translate(-4%, -8%) scale(0.9);
-    opacity: 0.1;
+  60% {
+    transform: translate(-3%, -3%) scale(0.95) rotate(-2deg);
+    opacity: 0.12;
   }
-  75% {
-    transform: translate(-6%, 6%) scale(1.06);
-    opacity: 0.25;
+  85% {
+    transform: translate(2%, 4%) scale(1.02) rotate(0.5deg);
+    opacity: 0.22;
   }
 }
 
 .organic-overlay {
   position: absolute;
-  inset: 0;
+  inset: -5% 0;
   overflow: hidden;
   pointer-events: none;
 }
 
 .organic-blob {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
+  border-radius: 40% 60% 55% 45% / 55% 40% 60% 45%;
+  filter: blur(130px);
   mix-blend-mode: soft-light;
+  will-change: transform, opacity;
+  contain: layout style;
 }
 
 /* Burgundy blob — warm wine tones */
 .blob-pourpre {
-  background: radial-gradient(circle, rgba(107, 45, 62, 0.8) 0%, rgba(74, 28, 40, 0.4) 40%, transparent 70%);
+  background: radial-gradient(ellipse 110% 100%, rgba(107, 45, 62, 0.35) 0%, rgba(74, 28, 40, 0.12) 45%, transparent 75%);
   animation: blob-drift-1 35s ease-in-out infinite;
 }
 
 /* Gold blob — warm luminous gold */
 .blob-gold {
-  background: radial-gradient(circle, rgba(196, 154, 60, 0.7) 0%, rgba(163, 126, 40, 0.35) 40%, transparent 70%);
+  background: radial-gradient(ellipse 100% 110%, rgba(196, 154, 60, 0.25) 0%, rgba(163, 126, 40, 0.08) 45%, transparent 75%);
   animation: blob-drift-2 28s ease-in-out infinite;
 }
 
 /* Dark blob — adds depth/shadow movement */
 .blob-dark {
-  background: radial-gradient(circle, rgba(28, 26, 23, 0.5) 0%, rgba(28, 26, 23, 0.25) 40%, transparent 70%);
+  background: radial-gradient(ellipse 100% 105%, rgba(28, 26, 23, 0.20) 0%, rgba(28, 26, 23, 0.06) 45%, transparent 75%);
   animation: blob-drift-3 40s ease-in-out infinite;
+  animation-delay: -18s;
 }
 
 /* Olive blob — vineyard green warmth */
 .blob-olive {
-  background: radial-gradient(circle, rgba(85, 107, 47, 0.7) 0%, rgba(58, 74, 31, 0.35) 40%, transparent 70%);
-  animation: blob-drift-1 32s ease-in-out infinite;
+  background: radial-gradient(ellipse 115% 95%, rgba(85, 107, 47, 0.30) 0%, rgba(58, 74, 31, 0.10) 45%, transparent 75%);
+  animation: blob-drift-2 32s ease-in-out infinite;
 }
 
 /* Champagne blob — warm golden cream */
 .blob-champagne {
-  background: radial-gradient(circle, rgba(237, 217, 179, 0.6) 0%, rgba(212, 174, 84, 0.3) 40%, transparent 70%);
-  animation: blob-drift-3 30s ease-in-out infinite;
+  background: radial-gradient(ellipse 105% 100%, rgba(237, 217, 179, 0.35) 0%, rgba(212, 174, 84, 0.12) 45%, transparent 75%);
+  animation: blob-drift-1 30s ease-in-out infinite;
+  animation-delay: -12s;
 }
 
 /* ═══════════════════════════════════════════
@@ -757,6 +767,7 @@ html.lenis, html.lenis body {
 @media (max-width: 768px) {
   .organic-blob {
     filter: blur(60px);
+    border-radius: 50%;
   }
   .organic-blob:nth-child(n+3) {
     display: none;

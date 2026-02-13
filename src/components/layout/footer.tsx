@@ -5,9 +5,22 @@ import { FrenchText } from "@/components/shared/french-text";
 
 export function Footer() {
   return (
-    <footer className="bg-olive-deep text-warm-white/80 pb-20 md:pb-0">
-      {/* Top gold line */}
-      <div className="gold-line" />
+    <footer className="bg-[#E8E2D6] text-olive-deep pb-20 md:pb-0">
+      {/* Fleur de lys divider */}
+      <div className="relative flex items-center justify-center py-0">
+        <div className="flex-1 h-px bg-gold/30" />
+        <div className="px-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/ink/fleur-de-lys.svg"
+            alt=""
+            aria-hidden="true"
+            className="w-8 h-8 opacity-40"
+            style={{ filter: "sepia(1) saturate(2) hue-rotate(10deg) brightness(0.7)" }}
+          />
+        </div>
+        <div className="flex-1 h-px bg-gold/30" />
+      </div>
 
       {/* Main footer */}
       <div className="max-w-[var(--max-width)] mx-auto px-6 py-16">
@@ -19,13 +32,13 @@ export function Footer() {
               alt="Domaine LeSeurre"
               width={160}
               height={45}
-              className="h-10 w-auto mb-6 brightness-0 invert"
+              className="h-10 w-auto mb-6"
             />
-            <p className="text-sm leading-relaxed mb-4 text-warm-white/60">
+            <p className="text-sm leading-relaxed mb-4 text-olive-deep/60">
               Six generations of French winemaking tradition, one unforgettable
               lakeside experience in the heart of the Finger Lakes.
             </p>
-            <div className="gold-line-thin mb-4" />
+            <div className="h-px bg-gold/20 mb-4" />
             <p className="text-gold text-sm italic font-heading">
               <FrenchText>&ldquo;À votre santé&rdquo;</FrenchText>
             </p>
@@ -33,11 +46,11 @@ export function Footer() {
 
           {/* Column 2: Visit us */}
           <div>
-            <h3 className="!text-warm-white font-heading text-lg mb-5 flex items-center gap-2">
+            <h3 className="text-olive-deep font-heading text-lg mb-5 flex items-center gap-2">
               Visit Us
-              <span className="flex-1 h-px bg-gold/15 ml-2" />
+              <span className="flex-1 h-px bg-gold/20 ml-2" />
             </h3>
-            <ul className="space-y-3.5 text-sm">
+            <ul className="space-y-3.5 text-sm text-olive-deep/70">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 mt-0.5 text-gold/70 flex-shrink-0" />
                 <span>
@@ -50,7 +63,7 @@ export function Footer() {
                 <Phone className="w-4 h-4 text-gold/70 flex-shrink-0" />
                 <a
                   href="tel:+16072243552"
-                  className="hover:text-gold transition-colors"
+                  className="hover:text-pourpre transition-colors"
                 >
                   (607) 224-3552
                 </a>
@@ -59,7 +72,7 @@ export function Footer() {
                 <Mail className="w-4 h-4 text-gold/70 flex-shrink-0" />
                 <a
                   href="mailto:info@dlwinery.com"
-                  className="hover:text-gold transition-colors"
+                  className="hover:text-pourpre transition-colors"
                 >
                   info@dlwinery.com
                 </a>
@@ -69,7 +82,7 @@ export function Footer() {
                 <span>
                   Open daily 10:00 AM — 6:00 PM
                   <br />
-                  <span className="text-warm-white/40">7 days a week</span>
+                  <span className="text-olive-deep/40">7 days a week</span>
                 </span>
               </li>
             </ul>
@@ -77,11 +90,11 @@ export function Footer() {
 
           {/* Column 3: Explore */}
           <div>
-            <h3 className="!text-warm-white font-heading text-lg mb-5 flex items-center gap-2">
+            <h3 className="text-olive-deep font-heading text-lg mb-5 flex items-center gap-2">
               Explore
-              <span className="flex-1 h-px bg-gold/15 ml-2" />
+              <span className="flex-1 h-px bg-gold/20 ml-2" />
             </h3>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2.5 text-sm text-olive-deep/70">
               {[
                 { href: "/experiences", label: "Tasting Experiences" },
                 { href: "/wines", label: "Our Wines" },
@@ -95,7 +108,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="hover:text-gold transition-colors hover:pl-1 duration-200"
+                    className="hover:text-pourpre transition-colors hover:pl-1 duration-200"
                   >
                     {link.label}
                   </Link>
@@ -106,22 +119,22 @@ export function Footer() {
 
           {/* Column 4: Newsletter */}
           <div>
-            <h3 className="!text-warm-white font-heading text-lg mb-5 flex items-center gap-2">
+            <h3 className="text-olive-deep font-heading text-lg mb-5 flex items-center gap-2">
               Stay Connected
-              <span className="flex-1 h-px bg-gold/15 ml-2" />
+              <span className="flex-1 h-px bg-gold/20 ml-2" />
             </h3>
-            <p className="text-sm mb-4 text-warm-white/60">
+            <p className="text-sm mb-4 text-olive-deep/60">
               Get updates on new releases, events, and exclusive offers.
             </p>
             <form className="flex flex-col gap-2.5">
               <input
                 type="email"
                 placeholder="Your email"
-                className="bg-warm-white/5 border border-gold/15 rounded-sm px-4 py-2.5 text-sm placeholder:text-warm-white/30 focus:outline-none focus:border-gold/40 transition-colors"
+                className="bg-warm-white/60 border border-gold/20 rounded-sm px-4 py-2.5 text-sm text-olive-deep placeholder:text-olive-deep/30 focus:outline-none focus:border-gold/40 transition-colors"
               />
               <button
                 type="submit"
-                className="bg-gold/90 hover:bg-gold text-olive-deep rounded-none px-4 py-2.5 text-xs font-heading font-normal tracking-[0.1em] uppercase transition-all duration-400 cursor-pointer"
+                className="bg-olive-deep hover:bg-olive text-warm-white rounded-none px-4 py-2.5 text-xs font-heading font-normal tracking-[0.1em] uppercase transition-all duration-400 cursor-pointer"
                 data-track-event="newsletter_signup"
                 data-track-category="footer"
                 data-track-label="email_capture"
@@ -135,7 +148,7 @@ export function Footer() {
                 href="https://www.facebook.com/DomaineLeSeurre/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-gold/15 flex items-center justify-center text-warm-white/50 hover:text-gold hover:border-gold/30 transition-all"
+                className="w-9 h-9 rounded-full border border-olive-deep/15 flex items-center justify-center text-olive-deep/50 hover:text-pourpre hover:border-pourpre/30 transition-all"
                 aria-label="Facebook"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
@@ -144,7 +157,7 @@ export function Footer() {
                 href="https://www.instagram.com/domaine_leseurre/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-gold/15 flex items-center justify-center text-warm-white/50 hover:text-gold hover:border-gold/30 transition-all"
+                className="w-9 h-9 rounded-full border border-olive-deep/15 flex items-center justify-center text-olive-deep/50 hover:text-pourpre hover:border-pourpre/30 transition-all"
                 aria-label="Instagram"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
@@ -155,15 +168,15 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-warm-white/8">
-        <div className="max-w-[var(--max-width)] mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-[11px] text-warm-white/30">
+      <div className="border-t border-olive-deep/8">
+        <div className="max-w-[var(--max-width)] mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-[11px] text-olive-deep/35">
           <p>&copy; {new Date().getFullYear()} Domaine LeSeurre Winery. All rights reserved.</p>
           <div className="flex gap-4">
-            <Link href="/legal/terms" className="hover:text-warm-white/50 transition-colors">Terms</Link>
-            <Link href="/legal/returns" className="hover:text-warm-white/50 transition-colors">Returns</Link>
-            <Link href="/legal/accessibility" className="hover:text-warm-white/50 transition-colors">Accessibility</Link>
+            <Link href="/legal/terms" className="hover:text-olive-deep/60 transition-colors">Terms</Link>
+            <Link href="/legal/returns" className="hover:text-olive-deep/60 transition-colors">Returns</Link>
+            <Link href="/legal/accessibility" className="hover:text-olive-deep/60 transition-colors">Accessibility</Link>
           </div>
-          <p>Shipped by <a href="https://www.vinoshipper.com/" target="_blank" rel="noopener noreferrer" className="hover:text-warm-white/50 transition-colors">VinoShipper</a></p>
+          <p>Shipped by <a href="https://www.vinoshipper.com/" target="_blank" rel="noopener noreferrer" className="hover:text-olive-deep/60 transition-colors">VinoShipper</a></p>
         </div>
       </div>
     </footer>
