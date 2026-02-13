@@ -107,12 +107,6 @@
   --color-copper: #A8653C;
   --color-ember: #C4713B;
 
-  /* Wine Button — living wine-red on dark surface */
-  --color-wine-base: #1A0A10;
-  --color-wine-deep: #4A0E1B;
-  --color-wine-living: #8B1A2B;
-  --color-wine-luminous: #C41E3A;
-
   /* Neutrals */
   --color-black-warm: #1C1A17;
   --color-stone: #6B6560;
@@ -794,68 +788,6 @@ html.lenis, html.lenis body {
   }
 }
 
-/* ═══════════════════════════════════════════
-   Wine Button — Organic wine flowing through
-   a dark surface. Visible movement, living depth.
-   Like watching wine swirl in a glass from above.
-   ═══════════════════════════════════════════ */
-
-@keyframes wine-flow {
-  0% {
-    background-position: 0% 50%, 100% 0%, 50% 100%;
-  }
-  25% {
-    background-position: 100% 25%, 0% 75%, 75% 0%;
-  }
-  50% {
-    background-position: 50% 0%, 75% 100%, 0% 50%;
-  }
-  75% {
-    background-position: 25% 100%, 50% 25%, 100% 75%;
-  }
-  100% {
-    background-position: 0% 50%, 100% 0%, 50% 100%;
-  }
-}
-
-.wine-button {
-  background-color: #0D0508;
-}
-
-/* The main effect: 3 radial gradients drifting independently —
-   creates organic interference patterns like wine swirling */
-.wine-flow {
-  background:
-    radial-gradient(ellipse 120% 80% at 30% 50%, #8B1A2B 0%, #4A0E1B 30%, transparent 60%),
-    radial-gradient(ellipse 100% 120% at 70% 30%, #6B1525 0%, #3A0C16 25%, transparent 55%),
-    radial-gradient(ellipse 90% 100% at 50% 80%, #C41E3A 0%, #6B1525 20%, transparent 50%);
-  background-size: 300% 300%, 250% 280%, 280% 250%;
-  animation: wine-flow 12s ease-in-out infinite;
-  opacity: 0.7;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: background-position;
-}
-
-/* Subtle inner border glow — wine-red edge light */
-.wine-border {
-  box-shadow: inset 0 0 12px rgba(139, 26, 43, 0.25), inset 0 0 3px rgba(196, 30, 58, 0.15);
-  transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.wine-button:hover .wine-flow {
-  opacity: 0.9;
-}
-.wine-button:hover .wine-border {
-  box-shadow: inset 0 0 20px rgba(139, 26, 43, 0.35), inset 0 0 6px rgba(196, 30, 58, 0.25);
-}
-
-@media (pointer: coarse) {
-  .wine-button:active {
-    transform: scale(0.97);
-    transition: transform 0.1s ease;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .shimmer-text,
   .shimmer-text-light,
@@ -885,11 +817,6 @@ html.lenis, html.lenis body {
   .btn-text-link::after,
   .link-underline::after {
     transition: none;
-  }
-  .wine-flow {
-    animation: none !important;
-    background-position: 50% 50% !important;
-    opacity: 0.5 !important;
   }
   /* Disable Lenis smooth scroll */
   .lenis.lenis-smooth {

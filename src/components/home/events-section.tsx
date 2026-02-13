@@ -10,7 +10,6 @@ import { useSectionBlobs } from "@/hooks/use-section-blobs";
 import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
 import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { Calendar, ArrowRight } from "lucide-react";
-import { WineButton } from "@/components/shared/wine-button";
 
 const events = [
   {
@@ -152,15 +151,15 @@ function EventCard({ event }: { event: typeof events[number] }) {
         </div>
         <h3 className="font-heading text-xl text-pourpre-deep mb-2 leading-tight">{event.title}</h3>
         <p className="text-stone text-[13px] sm:text-sm leading-relaxed mb-5 flex-1">{event.description}</p>
-        <WineButton
+        <Link
           href={`/events/${event.id}`}
-          size="full"
-          trackEvent="cta_click"
-          trackCategory="events"
-          trackLabel={event.id}
+          className="w-full flex items-center justify-center btn-cta-primary rounded-none h-11 text-[11px] tracking-[0.15em] uppercase font-body font-medium"
+          data-track-event="cta_click"
+          data-track-category="events"
+          data-track-label={event.id}
         >
           Reserve My Spot
-        </WineButton>
+        </Link>
       </div>
     </div>
   );

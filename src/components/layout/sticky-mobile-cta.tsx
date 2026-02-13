@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { WineButton } from "@/components/shared/wine-button";
 
 export function StickyMobileCta() {
   const [visible, setVisible] = useState(false);
@@ -28,15 +28,15 @@ export function StickyMobileCta() {
           style={{ bottom: "calc(64px + env(safe-area-inset-bottom, 0px))" }}
         >
           <div className="px-4 pb-2">
-            <WineButton
+            <Link
               href="/experiences"
-              size="full"
-              trackEvent="cta_click"
-              trackCategory="sticky_mobile"
-              trackLabel="book_tasting"
+              className="flex items-center justify-center w-full h-12 btn-cta-primary rounded-none text-[11px] tracking-[0.15em] uppercase font-body font-medium shadow-lg"
+              data-track-event="cta_click"
+              data-track-category="sticky_mobile"
+              data-track-label="book_tasting"
             >
               Book a Tasting
-            </WineButton>
+            </Link>
           </div>
         </motion.div>
       )}
