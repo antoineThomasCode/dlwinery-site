@@ -2,6 +2,27 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* ═══════════════════════════════════════════
+   Custom Fonts — Diaspora + Sweet Sans Pro
+   ═══════════════════════════════════════════ */
+
+@font-face {
+  font-family: 'Diaspora';
+  src: url('./fonts/Diaspora-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sweet Sans Pro';
+  src: url('./fonts/SweetSansPro-Regular.woff2') format('woff2'),
+       url('./fonts/SweetSansPro-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -45,6 +66,56 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* ═══════════════════════════════════════════
+     DL Winery — Swiss Design · Pourpre & Olive
+     Precision · Restraint · Quiet Luxury
+     ═══════════════════════════════════════════ */
+
+  /* Backgrounds */
+  --color-cream: #F7F4EE;
+  --color-warm-white: #FEFCF7;
+  --color-parchment: #EDE8DB;
+
+  /* Primary — Deep Olive */
+  --color-olive: #3D5A3E;
+  --color-olive-deep: #2A3F2B;
+  --color-olive-light: #4E6E4F;
+
+  /* Accent — Muted Gold */
+  --color-gold: #C49A3C;
+  --color-gold-light: #D4AE54;
+  --color-gold-dark: #A37E28;
+
+  /* Wine — Burgundy (shifted from pourpre for US luxury/wine association) */
+  --color-pourpre: #6B2D3E;
+  --color-pourpre-deep: #4A1C28;
+  --color-pourpre-light: #8B3D4E;
+
+  /* Legacy compat */
+  --color-bordeaux: var(--color-pourpre);
+  --color-bordeaux-deep: var(--color-pourpre-deep);
+  --color-bordeaux-light: var(--color-pourpre-light);
+  --color-burgundy: var(--color-pourpre);
+  --color-burgundy-deep: var(--color-pourpre-deep);
+  --color-burgundy-light: var(--color-pourpre-light);
+  --color-navy: var(--color-olive);
+  --color-navy-deep: var(--color-olive-deep);
+  --color-sage: var(--color-olive-light);
+  --color-champagne: #EDD9B3;
+  --color-amber: #B8763A;
+  --color-copper: #8B5E3C;
+
+  /* Neutrals */
+  --color-black-warm: #1C1A17;
+  --color-stone: #6B6560;
+  --color-stone-light: #9A9490;
+
+  --font-heading: 'Diaspora', sans-serif;
+  --font-body: 'Sweet Sans Pro', sans-serif;
+
+  --section-gap: clamp(80px, 12vw, 140px);
+  --max-width: 1200px;
 }
 
 :root {
@@ -119,10 +190,489 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
-    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    background-color: var(--color-cream);
+    color: var(--color-black-warm);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+    font-weight: 400;
+    color: var(--color-olive);
+    -webkit-text-stroke-width: 0.45px;
+    -webkit-text-stroke-color: currentColor;
+    paint-order: stroke fill;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   Swiss Design System — Precision & Restraint
+   ═══════════════════════════════════════════ */
+
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(196, 154, 60, 0.5) 30%, rgba(196, 154, 60, 0.7) 50%, rgba(196, 154, 60, 0.5) 70%, transparent 100%);
+}
+
+.gold-line-thin {
+  height: 0.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(196, 154, 60, 0.3) 30%, rgba(196, 154, 60, 0.45) 50%, rgba(196, 154, 60, 0.3) 70%, transparent 100%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════════
+   Shimmer — Ambient Light Drift
+   Multi-directional background-position animation
+   with oversized radial gradients. Organic, slow.
+   ═══════════════════════════════════════════ */
+
+/* Dark text shimmer — olive with burgundy/gold glow drifting through */
+.shimmer-text {
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 50%, rgba(107, 45, 62, 0.7) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 50% 50%, rgba(196, 154, 60, 0.55) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 50% 50%, rgba(212, 174, 84, 0.45) 0%, transparent 55%),
+    linear-gradient(135deg, #3D5A3E 0%, #2A3F2B 100%);
+  background-size: 300% 300%, 250% 250%, 200% 200%, 100% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: #3D5A3E;
+  paint-order: stroke fill;
+  animation: shimmer-organic 25s ease-in-out infinite;
+}
+
+/* Light text shimmer — warm white with gold/champagne glow on dark bg */
+.shimmer-text-light {
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 50%, rgba(245, 230, 200, 0.7) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 50% 50%, rgba(212, 174, 84, 0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 50% 50%, rgba(237, 217, 179, 0.45) 0%, transparent 55%),
+    linear-gradient(135deg, #FEFCF7 0%, #EDE8DB 50%, #FEFCF7 100%);
+  background-size: 300% 300%, 250% 250%, 200% 200%, 100% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-stroke-width: 0.6px;
+  -webkit-text-stroke-color: rgba(254, 252, 247, 0.8);
+  paint-order: stroke fill;
+  animation: shimmer-organic 30s ease-in-out infinite;
+}
+
+/* Multi-directional drift — NOT left-to-right.
+   Each background layer has different size so they move at different speeds,
+   creating organic interference. The path traces a slow figure-8. */
+@keyframes shimmer-organic {
+  0%   { background-position: 20% 30%,  70% 60%,  40% 50%, center; }
+  15%  { background-position: 60% 20%,  30% 40%,  70% 30%, center; }
+  30%  { background-position: 80% 60%,  50% 20%,  20% 70%, center; }
+  45%  { background-position: 40% 80%,  80% 50%,  60% 20%, center; }
+  60%  { background-position: 20% 50%,  40% 80%,  80% 60%, center; }
+  75%  { background-position: 60% 30%,  20% 60%,  50% 40%, center; }
+  100% { background-position: 20% 30%,  70% 60%,  40% 50%, center; }
+}
+
+/* ═══════════════════════════════════════════
+   Organic Blobs — Moving color clouds with opacity breathing
+   Diluted with black, always moving, always subtle
+   ═══════════════════════════════════════════ */
+
+@keyframes blob-drift-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.12;
+  }
+  20% {
+    transform: translate(4%, -6%) scale(1.08);
+    opacity: 0.18;
+  }
+  40% {
+    transform: translate(-2%, 3%) scale(0.95);
+    opacity: 0.1;
+  }
+  60% {
+    transform: translate(6%, 4%) scale(1.05);
+    opacity: 0.2;
+  }
+  80% {
+    transform: translate(-3%, -2%) scale(0.98);
+    opacity: 0.08;
+  }
+}
+
+@keyframes blob-drift-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  30% {
+    transform: translate(-6%, 5%) scale(1.1);
+    opacity: 0.16;
+  }
+  60% {
+    transform: translate(5%, -3%) scale(0.92);
+    opacity: 0.06;
+  }
+}
+
+@keyframes blob-drift-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.08;
+  }
+  25% {
+    transform: translate(8%, 4%) scale(1.12);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(-4%, -8%) scale(0.9);
+    opacity: 0.05;
+  }
+  75% {
+    transform: translate(-6%, 6%) scale(1.06);
+    opacity: 0.12;
+  }
+}
+
+.organic-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.organic-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  mix-blend-mode: soft-light;
+}
+
+/* Burgundy blob — warm wine tones diluted with black */
+.blob-pourpre {
+  background: radial-gradient(circle, rgba(107, 45, 62, 0.6) 0%, rgba(74, 28, 40, 0.3) 40%, transparent 70%);
+  animation: blob-drift-1 35s ease-in-out infinite;
+}
+
+/* Gold blob — diluted with black */
+.blob-gold {
+  background: radial-gradient(circle, rgba(196, 154, 60, 0.4) 0%, rgba(163, 126, 40, 0.2) 40%, transparent 70%);
+  animation: blob-drift-2 28s ease-in-out infinite;
+}
+
+/* Dark blob — adds depth/shadow movement */
+.blob-dark {
+  background: radial-gradient(circle, rgba(28, 26, 23, 0.3) 0%, rgba(28, 26, 23, 0.15) 40%, transparent 70%);
+  animation: blob-drift-3 40s ease-in-out infinite;
+}
+
+/* Olive blob — forest green warmth */
+.blob-olive {
+  background: radial-gradient(circle, rgba(61, 90, 62, 0.5) 0%, rgba(42, 63, 43, 0.25) 40%, transparent 70%);
+  animation: blob-drift-1 32s ease-in-out infinite;
+}
+
+/* Champagne blob — warm golden cream */
+.blob-champagne {
+  background: radial-gradient(circle, rgba(237, 217, 179, 0.4) 0%, rgba(212, 174, 84, 0.2) 40%, transparent 70%);
+  animation: blob-drift-3 30s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════
+   Buttons — Krug / Dom Pérignon luxury pattern
+   Thin borders, fill sweep, restrained elegance
+   ═══════════════════════════════════════════ */
+
+/* Primary CTA — gold border, fill sweep on hover */
+.btn-cta-primary {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-gold) !important;
+  background: transparent !important;
+  color: var(--color-gold) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em !important;
+  transition: color 0.4s ease, border-color 0.4s ease;
+  z-index: 1;
+}
+.btn-cta-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  z-index: -1;
+}
+.btn-cta-primary:hover {
+  color: var(--color-cream) !important;
+}
+.btn-cta-primary:hover::before {
+  transform: scaleX(1);
+}
+.btn-cta-primary:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Secondary CTA — cream/white border on dark bg, fill sweep */
+.btn-cta-secondary {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(254, 252, 247, 0.5) !important;
+  background: transparent !important;
+  color: var(--color-warm-white) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em !important;
+  transition: color 0.4s ease;
+  z-index: 1;
+}
+.btn-cta-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-warm-white);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  z-index: -1;
+}
+.btn-cta-secondary:hover {
+  color: var(--color-olive-deep) !important;
+}
+.btn-cta-secondary:hover::before {
+  transform: scaleX(1);
+}
+.btn-cta-secondary:focus-visible {
+  outline: 2px solid var(--color-warm-white);
+  outline-offset: 3px;
+}
+
+/* Section buttons — olive, fill sweep */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.btn-shimmer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-olive-deep);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  z-index: -1;
+}
+.btn-shimmer:hover::before {
+  transform: scaleX(1);
+}
+
+/* Outline buttons with gold border — terroir style */
+.btn-shimmer-gold {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-olive);
+  background: transparent;
+  color: var(--color-olive);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  transition: color 0.4s ease;
+  z-index: 1;
+}
+.btn-shimmer-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-olive);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  z-index: -1;
+}
+.btn-shimmer-gold:hover {
+  color: var(--color-warm-white);
+}
+.btn-shimmer-gold:hover::before {
+  transform: scaleX(1);
+}
+.btn-shimmer-gold:focus-visible {
+  outline: 2px solid var(--color-olive);
+  outline-offset: 3px;
+}
+
+/* Text link button — underline reveal from left */
+.btn-text-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border: none;
+  background: none;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn-text-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s ease;
+}
+.btn-text-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ═══════════════════════════════════════════
+   Parchment texture — replaces fleur de lys bg
+   Subtle, warm, like aged paper
+   ═══════════════════════════════════════════ */
+
+.bg-parchment-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
+
+/* ═══════════════════════════════════════════
+   Cards — Swiss precision, sharp edges
+   ═══════════════════════════════════════════ */
+
+.card-heritage {
+  position: relative;
+  border: 0.5px solid rgba(196, 154, 60, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-heritage:hover {
+  border-color: rgba(196, 154, 60, 0.2);
+  box-shadow: 0 8px 30px rgba(28, 26, 23, 0.06);
+}
+
+/* ═══════════════════════════════════════════
+   Layout utilities
+   ═══════════════════════════════════════════ */
+
+.bottom-nav-glass {
+  background: rgba(254, 252, 247, 0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 0.5px solid rgba(196, 154, 60, 0.15);
+}
+
+::selection {
+  background-color: rgba(107, 45, 62, 0.15);
+  color: var(--color-olive);
+}
+
+/* ═══════════════════════════════════════════
+   Link underline animation — scaleX reveal
+   with transform-origin switch on hover
+   ═══════════════════════════════════════════ */
+
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(154, 148, 144, 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 101, 96, 0.4);
+}
+
+/* ═══════════════════════════════════════════
+   Reduced motion
+   ═══════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   Mobile performance — limit blob rendering
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .organic-blob {
+    filter: blur(60px);
+  }
+  .organic-blob:nth-child(n+3) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-text,
+  .shimmer-text-light {
+    animation: none;
+  }
+  .blob-pourpre,
+  .blob-gold,
+  .blob-dark,
+  .blob-olive,
+  .blob-champagne {
+    animation: none;
+  }
+  .btn-cta-primary::before,
+  .btn-cta-secondary::before,
+  .btn-shimmer::before,
+  .btn-shimmer-gold::before,
+  .btn-text-link::after,
+  .link-underline::after {
+    transition: none;
   }
 }

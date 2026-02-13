@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Share with US A French Heritage Unlike Any Other SHARE A MOMENT VISIT THE FINGER LAKES WINERY With a French AccentVisit our Keuka Lake Winery Overlooking beautiful Keuka Lake Relax with Your Friends & Family on our TerraceVISIT US Living as a member of our family Enjoy a Memorable Experienceliving the experience COME & EXPERIENCE">
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/diaspora" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/sweet-sans-pro" rel="stylesheet">
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
+
+
+    <title>Page not found &#8211; Domaine LeSeurre Winery</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Domaine LeSeurre Winery &raquo; Feed" href="https://shop.dlwinery.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Domaine LeSeurre Winery &raquo; Comments Feed" href="https://shop.dlwinery.com/comments/feed/" />
+<style id='wp-img-auto-sizes-contain-inline-css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id='classic-theme-styles-inline-css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<link rel='stylesheet' id='storefront-gutenberg-blocks-css' href='https://shop.dlwinery.com/wp-content/themes/storefront/assets/css/base/gutenberg-blocks.css?ver=4.6.2' media='all' />
+<style id='storefront-gutenberg-blocks-inline-css'>
+
+				.wp-block-button__link:not(.has-text-color) {
+					color: #333333;
+				}
+
+				.wp-block-button__link:not(.has-text-color):hover,
+				.wp-block-button__link:not(.has-text-color):focus,
+				.wp-block-button__link:not(.has-text-color):active {
+					color: #333333;
+				}
+
+				.wp-block-button__link:not(.has-background) {
+					background-color: #eeeeee;
+				}
+
+				.wp-block-button__link:not(.has-background):hover,
+				.wp-block-button__link:not(.has-background):focus,
+				.wp-block-button__link:not(.has-background):active {
+					border-color: #d5d5d5;
+					background-color: #d5d5d5;
+				}
+
+				.wc-block-grid__products .wc-block-grid__product .wp-block-button__link {
+					background-color: #eeeeee;
+					border-color: #eeeeee;
+					color: #333333;
+				}
+
+				.wp-block-quote footer,
+				.wp-block-quote cite,
+				.wp-block-quote__citation {
+					color: #6d6d6d;
+				}
+
+				.wp-block-pullquote cite,
+				.wp-block-pullquote footer,
+				.wp-block-pullquote__citation {
+					color: #6d6d6d;
+				}
+
+				.wp-block-image figcaption {
+					color: #6d6d6d;
+				}
+
+				.wp-block-separator.is-style-dots::before {
+					color: #333333;
+				}
+
+				.wp-block-file a.wp-block-file__button {
+					color: #333333;
+					background-color: #eeeeee;
+					border-color: #eeeeee;
+				}
+
+				.wp-block-file a.wp-block-file__button:hover,
+				.wp-block-file a.wp-block-file__button:focus,
+				.wp-block-file a.wp-block-file__button:active {
+					color: #333333;
+					background-color: #d5d5d5;
+				}
+
+				.wp-block-code,
+				.wp-block-preformatted pre {
+					color: #6d6d6d;
+				}
+
+				.wp-block-table:not( .has-background ):not( .is-style-stripes ) tbody tr:nth-child(2n) td {
+					background-color: #fdfdfd;
+				}
+
+				.wp-block-cover .wp-block-cover__inner-container h1:not(.has-text-color),
+				.wp-block-cover .wp-block-cover__inner-container h2:not(.has-text-color),
+				.wp-block-cover .wp-block-cover__inner-container h3:not(.has-text-color),
+				.wp-block-cover .wp-block-cover__inner-container h4:not(.has-text-color),
+				.wp-block-cover .wp-block-cover__inner-container h5:not(.has-text-color),
+				.wp-block-cover .wp-block-cover__inner-container h6:not(.has-text-color) {
+					color: #000000;
+				}
+
+				div.wc-block-components-price-slider__range-input-progress,
+				.rtl .wc-block-components-price-slider__range-input-progress {
+					--range-color: #7f54b3;
+				}
+
+				/* Target only IE11 */
+				@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+					.wc-block-components-price-slider__range-input-progress {
+						background: #7f54b3;
+					}
+				}
+
+				.wc-block-components-button:not(.is-link) {
+					background-color: #333333;
+					color: #ffffff;
+				}
+
+				.wc-block-components-button:not(.is-link):hover,
+				.wc-block-components-button:not(.is-link):focus,
+				.wc-block-components-button:not(.is-link):active {
+					background-color: #1a1a1a;
+					color: #ffffff;
+				}
+
+				.wc-block-components-button:not(.is-link):disabled {
+					background-color: #333333;
+					color: #ffffff;
+				}
+
+				.wc-block-cart__submit-container {
+					background-color: #ffffff;
+				}
+
+				.wc-block-cart__submit-container::before {
+					color: rgba(220,220,220,0.5);
+				}
+
+				.wc-block-components-order-summary-item__quantity {
+					background-color: #ffffff;
+					border-color: #6d6d6d;
+					box-shadow: 0 0 0 2px #ffffff;
+					color: #6d6d6d;
+				}
+			
+/*# sourceURL=storefront-gutenberg-blocks-inline-css */
+</style>
+<style id='global-styles-inline-css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 14px;--wp--preset--font-size--medium: 23px;--wp--preset--font-size--large: 26px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--huge: 37px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 24px;}:root :where(.is-layout-grid){gap: 24px;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='contact-form-7-css' href='https://shop.dlwinery.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.4' media='all' />
+<link rel='stylesheet' id='spam-protect-for-contact-form7-css' href='https://shop.dlwinery.com/wp-content/plugins/wp-contact-form-7-spam-blocker/frontend/css/spam-protect-for-contact-form7.css?ver=1.0.0' media='all' />
+<link rel='stylesheet' id='reset-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/css/bases/reset.css?ver=1769432666' media='all' />
+<link rel='stylesheet' id='variables-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/css/abstracts/variables.css?ver=1769432666' media='all' />
+<link rel='stylesheet' id='bases-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/css/bases/bases.css?ver=1769432666' media='all' />
+<link rel='stylesheet' id='tools-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/css/bases/tools.css?ver=1769432666' media='all' />
+<link rel='stylesheet' id='header-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/css/header.css?ver=1769432666' media='all' />
+<link rel='stylesheet' id='footer-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/css/footer.css?ver=1769432666' media='all' />
+<link rel='stylesheet' id='pages-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/css/pages/pages.css?ver=1769432666' media='all' />
+<link rel='stylesheet' id='legals-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/css/pages/legals-template.css?ver=1769432666' media='all' />
+<link rel='stylesheet' id='animations-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/css/animations.css?ver=1769432666' media='all' />
+<link rel='stylesheet' id='notFoundStyle-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/css/404.css?ver=1769432666' media='all' />
+<link rel='stylesheet' id='storefront-style-css' href='https://shop.dlwinery.com/wp-content/themes/storefront/style.css?ver=4.6.2' media='all' />
+<style id='storefront-style-inline-css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			button.menu-toggle,
+			button.menu-toggle:hover,
+			.handheld-navigation .dropdown-toggle {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #747474;
+			}
+
+			table:not( .has-background ) th {
+				background-color: #f8f8f8;
+			}
+
+			table:not( .has-background ) tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table:not( .has-background ) tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #404040;
+			}
+
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			h1, h2, h3, h4, h5, h6, .wc-block-grid__product-title {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .post-author a,
+			.hentry .entry-header .post-comments a,
+			.hentry .entry-header .byline a {
+				color: #727272;
+			}
+
+			a {
+				color: #7f54b3;
+			}
+
+			a:focus,
+			button:focus,
+			.button.alt:focus,
+			input:focus,
+			textarea:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus,
+			input[type="email"]:focus,
+			input[type="tel"]:focus,
+			input[type="url"]:focus,
+			input[type="password"]:focus,
+			input[type="search"]:focus {
+				outline-color: #7f54b3;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .widget a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .widget a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .widget-area .widget a.button.alt {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .widget-area .widget a.button.alt:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #636363;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button):not(.components-button) {
+				color: #333333;
+			}
+
+			.site-footer .storefront-handheld-footer-bar a:not(.button):not(.components-button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6, .site-footer .widget .widget-title, .site-footer .widget .widgettitle {
+				color: #333333;
+			}
+
+			.page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-title {
+				color: #000000;
+			}
+
+			.page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-content {
+				color: #000000;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #595959;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #404040;
+				}
+
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+/*# sourceURL=storefront-style-inline-css */
+</style>
+<link rel='stylesheet' id='storefront-icons-css' href='https://shop.dlwinery.com/wp-content/themes/storefront/assets/css/base/icons.css?ver=4.6.2' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C300%2C300italic%2C400italic%2C600%2C700%2C900&#038;subset=latin%2Clatin-ext&#038;ver=4.6.2' media='all' />
+<link rel='stylesheet' id='storefront-child-style-css' href='https://shop.dlwinery.com/wp-content/themes/dlwinery/style.css?ver=1.0.0' media='all' />
+<script src="https://shop.dlwinery.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://shop.dlwinery.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script src="https://shop.dlwinery.com/wp-content/plugins/wp-contact-form-7-spam-blocker/frontend/js/spam-protect-for-contact-form7.js?ver=1.0.0" id="spam-protect-for-contact-form7-js"></script>
+
+<!-- Google tag (gtag.js) snippet added by Site Kit -->
+<!-- Google Analytics snippet added by Site Kit -->
+<!-- Google Ads snippet added by Site Kit -->
+<script src="https://www.googletagmanager.com/gtag/js?id=GT-55BQ8PF" id="google_gtagjs-js" async></script>
+<script id="google_gtagjs-js-after">
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("set","linker",{"domains":["shop.dlwinery.com"]});
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "GT-55BQ8PF");
+gtag("config", "AW-373050382");
+ window._googlesitekit = window._googlesitekit || {}; window._googlesitekit.throttledEvents = []; window._googlesitekit.gtagEvent = (name, data) => { var key = JSON.stringify( { name, data } ); if ( !! window._googlesitekit.throttledEvents[ key ] ) { return; } window._googlesitekit.throttledEvents[ key ] = true; setTimeout( () => { delete window._googlesitekit.throttledEvents[ key ]; }, 5 ); gtag( "event", name, { ...data, event_source: "site-kit" } ); }; 
+//# sourceURL=google_gtagjs-js-after
+</script>
+<link rel="https://api.w.org/" href="https://shop.dlwinery.com/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://shop.dlwinery.com/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.9.1" />
+<meta name="generator" content="Site Kit by Google 1.170.0" />
+<!-- Google AdSense meta tags added by Site Kit -->
+<meta name="google-adsense-platform-account" content="ca-host-pub-2644536267352236">
+<meta name="google-adsense-platform-domain" content="sitekit.withgoogle.com">
+<!-- End Google AdSense meta tags added by Site Kit -->
+
+<!-- Google Tag Manager snippet added by Site Kit -->
+<script>
+			( function( w, d, s, l, i ) {
+				w[l] = w[l] || [];
+				w[l].push( {'gtm.start': new Date().getTime(), event: 'gtm.js'} );
+				var f = d.getElementsByTagName( s )[0],
+					j = d.createElement( s ), dl = l != 'dataLayer' ? '&l=' + l : '';
+				j.async = true;
+				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+				f.parentNode.insertBefore( j, f );
+			} )( window, document, 'script', 'dataLayer', 'GTM-PQ6GWV47' );
+			
+</script>
+
+<!-- End Google Tag Manager snippet added by Site Kit -->
+<link rel="icon" href="https://shop.dlwinery.com/wp-content/uploads/2025/08/LeSeurre-S.svg" sizes="32x32" />
+<link rel="icon" href="https://shop.dlwinery.com/wp-content/uploads/2025/08/LeSeurre-S.svg" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://shop.dlwinery.com/wp-content/uploads/2025/08/LeSeurre-S.svg" />
+<meta name="msapplication-TileImage" content="https://shop.dlwinery.com/wp-content/uploads/2025/08/LeSeurre-S.svg" />
+
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYFBWHDW71">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYFBWHDW71');
+    </script>
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <div class="mainBar">
+            <button id="navMenuBtn" aria-label="Open navigation menu">
+                <span></span>
+                Menu
+            </button>
+            <a class="logo" href="https://shop.dlwinery.com/">
+                <img width="135" height="55"
+                     src="https://shop.dlwinery.com/wp-content/uploads/2023/01/leseurre-logo.svg"
+                     alt="Logo Of Domaine LeSeurre Winery">
+            </a>
+        </div>
+        <div id="blurBcg"></div>
+        <div id="navMenuContainer">
+            <div>
+                <nav class="desktop-menu">
+                    <span data-menu="shop">Shop</span>
+                    <span data-menu="visit">Visit Us</span>
+                    <span data-menu="blog">News</span>
+                    <span data-menu="about">About Us</span>
+                    <span data-menu="club">Wine Club</span>
+                </nav>
+                <div class="menu-part" data-menu="shop">
+                    <span class="mobile-title">Shop<i class="ph ph-caret-down"></i></span>
+                    <div class="tab-content">
+                        <div>
+                            <span class="nav-title">Shop Our Wines</span>
+                            <nav>
+                                <a href="https://shop.dlwinery.com/shop-our-wine/">
+                                    See Our Products<i class="ph ph-arrow-right"></i>
+                                </a>
+                            </nav>
+                        </div>
+                        <div>
+                            <span class="nav-title">Current Promotions</span>
+                            <div class="informations">
+                                <p>Exclusive Online Discounts:<br data-start="446" data-end="449" />5% Off when you buy 6–11 bottles<br data-start="487" data-end="490" />10% Off on 12–23 bottles<br data-start="520" data-end="523" />15% Off on 24 bottles or more</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-part" data-menu="visit">
+                    <span class="mobile-title">Visit Us<i class="ph ph-caret-down"></i></span>
+                    <div class="tab-content">
+                        <div>
+                            <span class="nav-title">Visting Us</span>
+                            <nav>
+                                <a href="https://shop.dlwinery.com/our-winery/">
+                                    Visit Our Winery<i class="ph ph-arrow-right"></i>
+                                </a>
+                                <a href="https://shop.dlwinery.com/events/">
+                                    Winery Events<i class="ph ph-arrow-right"></i>
+                                </a>
+                                <a href="https://shop.dlwinery.com/our-wine-experience/#book-experience">
+                                    Book a Tasting<i class="ph ph-arrow-right"></i>
+                                </a>
+                            </nav>
+                        </div>
+                        <div>
+                            <span class="nav-title">Current Updates</span>
+                            <div class="informations">
+                                <p data-start="172" data-end="270">Open 7 Days a Week for Tastings<br data-start="207" data-end="210" />Reservations Recommended for a Seated Tasting Experience</p>
+                            </div>
+                        </div>
+                        <div class="contact">
+                            <span class="nav-title">Get In Touch</span>
+                            <nav>
+                                <a href="https://shop.dlwinery.com/contact-us/">
+                                    Contact Us<i class="ph ph-arrow-right"></i>
+                                </a>
+                            </nav>
+                            <div class="informations">
+                                <p>Open Daily 10AM &#8211; 6PM<br />
+Last tasting 5:45 PM</p>
+                            </div>
+                            <nav class="nav-btns">
+                                <a target="_blank" class="borderedBtn" href="https://www.google.com/maps/place/Domaine+Leseurre+Winery/@42.4842075,-77.1389885,17.87z/data=!4m6!3m5!1s0x89d0ff0308d6cd15:0xece22c5570092046!8m2!3d42.4840183!4d-77.1384432!16s%2Fg%2F1yfjjzc26?authuser=0&entry=tts&g_ep=EgoyMDI1MDUyMS4wIPu8ASoASAFQAw%3D%3D&skid=d552a8f9-c5f5-41c7-8909-9f470db19623"><i class="ph ph-compass"></i>Directions</a>
+                                <a class="borderedBtn" href="tel:1-607-292-3920"><i class="ph ph-phone"></i>1-607-292-3920</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-part" data-menu="blog">
+                    <span class="mobile-title">News<i class="ph ph-caret-down"></i></span>
+                    <div class="tab-content">
+                        <div>
+                            <span class="nav-title">Latest News</span>
+                            <nav>
+                                <a href="https://shop.dlwinery.com/our-blog/">
+                                    Our Blog<i class="ph ph-arrow-right"></i>
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-part" data-menu="about">
+                    <span class="mobile-title">About Us<i class="ph ph-caret-down"></i></span>
+                    <div class="tab-content">
+                        <div>
+                            <span class="nav-title">About Us</span>
+                            <nav>
+                                <a href="https://shop.dlwinery.com/our-story/">
+                                    Our Story<i class="ph ph-arrow-right"></i>
+                                </a>
+                                <a href="https://shop.dlwinery.com/our-wine-experience/">
+                                    Our Wine Experience<i class="ph ph-arrow-right"></i>
+                                </a>
+                            </nav>
+                        </div>
+                        <div class="social-media">
+                            <span class="nav-title">Our Social Media</span>
+                            <nav>
+                                <a target="_blank" href="https://www.facebook.com/DLWinery/" aria-label="Facebook"><i class="ph ph-facebook-logo"></i>Facebook</a>
+                                <a target="_blank" href="https://www.instagram.com/domaineleseurre/" aria-label="Instagram"><i class="ph ph-instagram-logo"></i>Instagram</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-part" data-menu="club">
+                    <span class="mobile-title">Wine Club<i class="ph ph-caret-down"></i></span>
+                    <div class="tab-content">
+                        <div>
+                            <span class="nav-title">New Member</span>
+                            <nav>
+                                <a href="https://shop.dlwinery.com/join-the-club/">
+                                    Become a member<i class="ph ph-arrow-right"></i>
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <div id="ageVerification">
+        <div>
+            <figure>
+                <img src="https://shop.dlwinery.com/wp-content/uploads/2023/01/leseurre-logo.svg" alt="Logo Of Domaine LeSeurre Winery">
+            </figure>
+            <h2>Age Verification</h2>
+            <p>Are you over 21 years of age ?</p>
+            <div class="btns-container">
+                <button id="exitBtn" class="borderedBtn">No</button>
+                <button id="enterBtn" class="borderedBtn">Yes</button>
+            </div>
+        </div>
+    </div>
+    <div id="newsletterModal">
+        <div>
+            <button id="closeBtn" aria-label="Close">
+                <i class="ph ph-x"></i>
+            </button>
+            <h2>Stay in the loop !</h2>
+            <p>Join our email list to stay up to date on new releases, upcoming events, important updates, promotions, and more.</p>
+                <form id="newsLetterForm">
+        <input type="email" name="email" placeholder="Email address" required>
+        <input type="hidden" name="nonce" value="15c0b7bf2b">
+        <button type="submit">Join now</button>
+        <div id="formResponse"></div>
+    </form>
+
+    <script>
+        document.getElementById('newsLetterForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const email = form.email.value.trim();
+            const nonce = form.nonce.value;
+            const responseBox = document.getElementById('formResponse');
+            const submitButton = form.querySelector('button');
+
+            // Expression régulière basique pour validation email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Vérification email
+            if (!emailRegex.test(email)) {
+                responseBox.innerText = 'Please enter a valid email address.';
+                return;
+            }
+
+            // Désactiver le bouton pour éviter les clics multiples
+            submitButton.disabled = true;
+            responseBox.innerText = 'Submitting...';
+
+            try {
+                const res = await fetch('https://shop.dlwinery.com/wp-admin/admin-post.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        action: 'ajax_square_form',
+                        email: email,
+                        nonce: nonce
+                    })
+                });
+
+                const text = await res.text();
+                responseBox.innerText = text;
+            } catch (err) {
+                responseBox.innerText = 'An unexpected error occurred.';
+            }
+
+            submitButton.disabled = false;
+        });
+    </script>
+            </div>
+    </div>
+    <main id="notFoundPage">
+        <section>
+            <div class="section-container">
+                <h1>404</h1>
+                <h2>Oops !</h2>
+                <p>Something went wrong.</p>
+                <a class="borderedBtn" href="https://shop.dlwinery.com/"><i class="ph ph-arrow-left"></i>Back to home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="legals">
+                <a id="newsletterBtn" href="#">Join Our Mailing List</a>
+                <a href="https://shop.dlwinery.com/terms-of-use/">Terms of Use</a>
+                <a href="https://shop.dlwinery.com/returns-cancellations/">Returns & Cancellations</a>
+                <a href="https://shop.dlwinery.com/accessibility-statement/">Accessibility Statement</a>
+            </div>
+            <div class="address">
+                <p>Domaine LeSeurre Winery</p>
+                <p>13920 State Route 54</p>
+                <p>Hammondsport, NY 14840, USA</p>
+                <p>(607) 292-3920</p>
+            </div>
+            <div class="social-networks">
+                <p class="social-networks_title">Find us on: </p>
+                <div>
+                    <a href="https://www.facebook.com/DLWinery/" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="https://www.instagram.com/domaineleseurre/" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Domaine LeSeurre Winery</p>            </div>
+        </div> 
+    </footer>
+    <script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/dlwinery/*","/wp-content/themes/storefront/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+		<!-- Google Tag Manager (noscript) snippet added by Site Kit -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ6GWV47" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) snippet added by Site Kit -->
+		
+<!-- Sign in with Google button added by Site Kit -->
+		<style>
+		.googlesitekit-sign-in-with-google__frontend-output-button{max-width:320px}
+		</style>
+		<script src="https://accounts.google.com/gsi/client"></script>
+<script>
+(()=>{async function handleCredentialResponse(response){try{const res=await fetch('https://shop.dlwinery.com/wp-login.php?action=googlesitekit_auth',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(response)});/* Preserve comment text in case of redirect after login on a page with a Sign in with Google button in the WordPress comments. */ const commentText=document.querySelector('#comment')?.value;const postId=document.querySelectorAll('.googlesitekit-sign-in-with-google__comments-form-button')?.[0]?.className?.match(/googlesitekit-sign-in-with-google__comments-form-button-postid-(\d+)/)?.[1];if(!! commentText?.length){sessionStorage.setItem(`siwg-comment-text-${postId}`,commentText);}location.reload();}catch(error){console.error(error);}}if(typeof google !=='undefined'){google.accounts.id.initialize({client_id:'872278043773-fupcqsmo7q3t2ohgioeq7e86vknos5bd.apps.googleusercontent.com',callback:handleCredentialResponse,library_name:'Site-Kit'});}const defaultButtonOptions={"theme":"outline","text":"signin_with","shape":"rectangular"};document.querySelectorAll('.googlesitekit-sign-in-with-google__frontend-output-button').forEach((siwgButtonDiv)=>{const buttonOptions={shape:siwgButtonDiv.getAttribute('data-googlesitekit-siwg-shape')|| defaultButtonOptions.shape,text:siwgButtonDiv.getAttribute('data-googlesitekit-siwg-text')|| defaultButtonOptions.text,theme:siwgButtonDiv.getAttribute('data-googlesitekit-siwg-theme')|| defaultButtonOptions.theme,};if(typeof google !=='undefined'){google.accounts.id.renderButton(siwgButtonDiv,buttonOptions);}});/* If there is a matching saved comment text in sessionStorage,restore it to the comment field and remove it from sessionStorage. */ const postId=document.body.className.match(/postid-(\d+)/)?.[1];const commentField=document.querySelector('#comment');const commentText=sessionStorage.getItem(`siwg-comment-text-${postId}`);if(commentText?.length && commentField && !! postId){commentField.value=commentText;sessionStorage.removeItem(`siwg-comment-text-${postId}`);}})();
+</script>
+
+<!-- End Sign in with Google button added by Site Kit -->
+<script src="https://shop.dlwinery.com/wp-includes/js/dist/hooks.min.js?ver=dd5603f07f9220ed27f1" id="wp-hooks-js"></script>
+<script src="https://shop.dlwinery.com/wp-includes/js/dist/i18n.min.js?ver=c26c3dc7bed366793375" id="wp-i18n-js"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script src="https://shop.dlwinery.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.4" id="swv-js"></script>
+<script id="contact-form-7-js-before">
+var wpcf7 = {
+    "api": {
+        "root": "https:\/\/shop.dlwinery.com\/wp-json\/",
+        "namespace": "contact-form-7\/v1"
+    },
+    "cached": 1
+};
+//# sourceURL=contact-form-7-js-before
+</script>
+<script src="https://shop.dlwinery.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.4" id="contact-form-7-js"></script>
+<script src="https://shop.dlwinery.com/wp-content/themes/dlwinery/js/header-nav.js?ver=1769432666" id="header-nav-js"></script>
+<script src="https://shop.dlwinery.com/wp-content/themes/storefront/assets/js/navigation.min.js?ver=4.6.2" id="storefront-navigation-js"></script>
+<script src="https://shop.dlwinery.com/wp-content/plugins/google-site-kit/dist/assets/js/googlesitekit-events-provider-contact-form-7-40476021fb6e59177033.js" id="googlesitekit-events-provider-contact-form-7-js" defer></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://shop.dlwinery.com/wp-includes/js/wp-emoji-release.min.js?ver=6.9.1"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
+//# sourceURL=https://shop.dlwinery.com/wp-includes/js/wp-emoji-loader.min.js
+</script>
+    
+</body>
+</html>
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/?utm_source=w3tc&utm_medium=footer_comment&utm_campaign=free_plugin
+
+Page Caching using Disk (Page is 404) 
+
+Served from: shop.dlwinery.com @ 2026-02-11 22:51:44 by W3 Total Cache
+-->
