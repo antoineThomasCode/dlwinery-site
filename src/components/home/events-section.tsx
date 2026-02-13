@@ -124,6 +124,8 @@ function EventCard({ event }: { event: typeof events[number] }) {
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 768px) 78vw, 33vw"
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+e9fPQAJoQN4oGLsFwAAAABJRU5ErkJggg=="
         />
         {event.price > 0 ? (
           <div className="absolute top-0 right-0 bg-olive-deep/90 text-gold text-sm font-heading font-semibold px-4 py-2">

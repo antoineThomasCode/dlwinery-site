@@ -16,9 +16,14 @@ export function WelcomeBanner() {
       {/* Scroll-triggered blobs */}
       <SectionBlobs
         isVisible={isVisible}
+        sectionRef={sectionRef}
         blobs={[
           { type: "champagne", size: "40%", position: { top: "-15%", right: "-10%" } },
           { type: "gold", size: "35%", position: { bottom: "-10%", left: "5%" } },
+        ]}
+        parallax={[
+          { speed: 0.3 },
+          { speed: 0.5 },
         ]}
       />
 

@@ -38,9 +38,14 @@ export function WineClubSection() {
         {/* Scroll-triggered blobs */}
         <SectionBlobs
           isVisible={isVisible}
+          sectionRef={sectionRef}
           blobs={[
             { type: "pourpre", size: "45%", position: { bottom: "0", right: "-10%" } },
             { type: "champagne", size: "40%", position: { top: "10%", left: "-5%" } },
+          ]}
+          parallax={[
+            { speed: -0.4 },
+            { speed: -0.6 },
           ]}
         />
       </div>
@@ -119,6 +124,8 @@ export function WineClubSection() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+e9fPQAJoQN4oGLsFwAAAABJRU5ErkJggg=="
                 />
               </ClipPathReveal>
               {/* Floating card */}

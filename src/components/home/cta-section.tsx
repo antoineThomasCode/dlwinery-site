@@ -27,10 +27,16 @@ export function CtaSection() {
         {/* Scroll-triggered blobs */}
         <SectionBlobs
           isVisible={isVisible}
+          sectionRef={sectionRef}
           blobs={[
             { type: "pourpre", size: "55%", position: { top: "-10%", right: "0" } },
             { type: "gold", size: "50%", position: { bottom: "-5%", left: "10%" } },
             { type: "dark", size: "40%", position: { top: "20%", left: "-10%" } },
+          ]}
+          parallax={[
+            { speed: 0.7 },
+            { speed: 0.5 },
+            { speed: 0.3 },
           ]}
         />
       </div>

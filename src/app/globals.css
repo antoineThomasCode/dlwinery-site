@@ -755,6 +755,30 @@ html.lenis, html.lenis body {
 }
 
 /* ═══════════════════════════════════════════
+   Micro-interactions — Mobile Touch Feedback
+   ═══════════════════════════════════════════ */
+
+@media (pointer: coarse) {
+  .btn-cta-primary:active,
+  .btn-cta-secondary:active,
+  .btn-shimmer-gold:active {
+    transform: scale(0.98);
+  }
+  .card-heritage:active {
+    opacity: 0.92;
+    transition: opacity 0.15s ease;
+  }
+}
+
+/* Smooth color transitions on links */
+.link-underline {
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-text-link {
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════════
    Reduced motion
    ═══════════════════════════════════════════ */
 

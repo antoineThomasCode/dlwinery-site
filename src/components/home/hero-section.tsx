@@ -1,15 +1,26 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/shared/magnetic-button";
 import { SplitTextHero } from "@/components/shared/split-text-hero";
+import { useScrollBlobs } from "@/hooks/use-scroll-blobs";
 
 const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Hero blobs: slow breathing parallax (pourpre 0.3, gold 0.5, dark 0.7)
+  useScrollBlobs(sectionRef, [
+    { speed: 0.3 },
+    { speed: 0.5 },
+    { speed: 0.7 },
+  ]);
+
   return (
-    <section className="relative min-h-[100svh] flex items-end justify-center overflow-hidden pb-28 md:pb-20 md:items-center">
+    <section ref={sectionRef} className="relative min-h-[100svh] flex items-end justify-center overflow-hidden pb-28 md:pb-20 md:items-center">
       {/* Background Video */}
       <div className="absolute inset-0 -z-10">
         <video

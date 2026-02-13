@@ -20,9 +20,14 @@ export function StorySection() {
       {/* Scroll-triggered blobs */}
       <SectionBlobs
         isVisible={isVisible}
+        sectionRef={sectionRef}
         blobs={[
           { type: "pourpre", size: "50%", position: { top: "-10%", right: "-15%" } },
           { type: "olive", size: "35%", position: { bottom: "5%", left: "-10%" } },
+        ]}
+        parallax={[
+          { speed: 0.5, rotation: 8 },
+          { speed: 0.3, rotation: -5 },
         ]}
       />
       <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
@@ -46,6 +51,8 @@ export function StorySection() {
                 fill
                 className="object-cover sepia-[0.15]"
                 sizes="200px"
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+e9fPQAJoQN4oGLsFwAAAABJRU5ErkJggg=="
               />
               {/* Heritage badge */}
               <div className="absolute bottom-0 left-0 right-0 bg-olive-deep/90 py-1.5 px-2 text-center">

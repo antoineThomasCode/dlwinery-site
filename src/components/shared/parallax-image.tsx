@@ -44,6 +44,8 @@ export function ParallaxImage({
           className="object-cover"
           sizes={sizes}
           priority={priority}
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+e9fPQAJoQN4oGLsFwAAAABJRU5ErkJggg=="
         />
       </motion.div>
     </div>

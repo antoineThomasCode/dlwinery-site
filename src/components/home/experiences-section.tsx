@@ -57,9 +57,14 @@ export function ExperiencesSection() {
       {/* Scroll-triggered blobs */}
       <SectionBlobs
         isVisible={isVisible}
+        sectionRef={sectionRef}
         blobs={[
           { type: "olive", size: "50%", position: { top: "-10%", left: "-15%" } },
           { type: "gold", size: "40%", position: { bottom: "-5%", right: "-10%" } },
+        ]}
+        parallax={[
+          { speed: 0.5 },
+          { speed: 0.3 },
         ]}
       />
 
@@ -133,6 +138,8 @@ function ExperienceCard({ exp }: { exp: typeof experiences[number] }) {
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 768px) 82vw, 33vw"
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+e9fPQAJoQN4oGLsFwAAAABJRU5ErkJggg=="
         />
         {/* Price badge */}
         <div className="absolute top-0 right-0 bg-olive-deep/90 text-gold text-sm font-heading font-semibold px-4 py-2">

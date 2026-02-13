@@ -1,5 +1,7 @@
 "use client";
 
+import { useScrollBlobs, type ScrollBlobConfig } from "@/hooks/use-scroll-blobs";
+
 interface BlobConfig {
   type: "pourpre" | "gold" | "dark" | "olive" | "champagne";
   size: string;
@@ -10,10 +12,22 @@ interface BlobConfig {
 export function SectionBlobs({
   blobs,
   isVisible,
+  sectionRef,
+  parallax,
 }: {
   blobs: BlobConfig[];
   isVisible: boolean;
+  /** Required for GSAP scroll parallax — pass the section's ref */
+  sectionRef?: React.RefObject<HTMLElement | null>;
+  /** Per-blob parallax config. Length must match blobs array. */
+  parallax?: ScrollBlobConfig[];
 }) {
+  // Activate GSAP scroll-linked parallax when both sectionRef and parallax are provided
+  useScrollBlobs(
+    sectionRef ?? { current: null },
+    parallax ?? []
+  );
+
   return (
     <div className="organic-overlay" aria-hidden="true">
       {blobs.map((blob, i) => (
