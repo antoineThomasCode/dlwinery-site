@@ -68,13 +68,13 @@ export function HeroSection() {
              Mobile: 2.25rem fits "A French Accent" on one line (tested at 375px)
              Scale: 2.25rem → 3.5rem → 4.5rem → 5.5rem */}
         <h1 className="font-heading text-[2.25rem] leading-[1.08] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-normal mb-4 sm:mb-5">
-          <span className="shimmer-text-light block">
-            <SplitTextHero delay={0.5} duration={1.1} stagger={0.12}>
+          <span className="block">
+            <SplitTextHero delay={0.5} duration={1.1} stagger={0.12} wordClassName="shimmer-hero">
               A French Accent
             </SplitTextHero>
           </span>
-          <span className="shimmer-text-light italic block">
-            <SplitTextHero delay={0.9} duration={1.1} stagger={0.12}>
+          <span className="italic block">
+            <SplitTextHero delay={0.9} duration={1.1} stagger={0.12} wordClassName="shimmer-hero">
               on Keuka Lake
             </SplitTextHero>
           </span>

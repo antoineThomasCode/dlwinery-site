@@ -228,9 +228,6 @@
 
 /* ═══════════════════════════════════════════
    Shimmer — Light Sweep Through Typography
-   A band of warm light sweeps horizontally across
-   the text in a continuous loop. Like the antoine.works
-   hero but with wine/gold colors instead of blue.
    ═══════════════════════════════════════════ */
 
 @keyframes shimmer-sweep {
@@ -257,8 +254,7 @@
   animation: shimmer-sweep 6s ease-in-out infinite;
 }
 
-/* Light text shimmer — solid white, warm gold/rose light sweeps through.
-   Text reads as fully WHITE with a subtle warm glow passing over it. */
+/* Light text shimmer — white + gold sweep (for H2/H3 on light backgrounds) */
 .shimmer-text-light {
   background: linear-gradient(
     105deg,
@@ -275,6 +271,42 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: shimmer-sweep 6s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════
+   Hero Shimmer — Organic Light Veils
+   Like caustic light reflections on a lake surface.
+   White text with slow-drifting warm light patches
+   moving through the letters. Applied per-word on
+   SplitTextHero to work with background-clip:text.
+   ═══════════════════════════════════════════ */
+
+@keyframes hero-veil {
+  0% {
+    background-position: 0% 50%, 100% 0%, 50% 100%;
+  }
+  33% {
+    background-position: 100% 0%, 50% 100%, 0% 50%;
+  }
+  66% {
+    background-position: 50% 100%, 0% 50%, 100% 0%;
+  }
+  100% {
+    background-position: 0% 50%, 100% 0%, 50% 100%;
+  }
+}
+
+.shimmer-hero {
+  background:
+    radial-gradient(ellipse 120% 80% at 30% 50%, rgba(212, 174, 84, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 90% at 70% 30%, rgba(196, 154, 60, 0.25) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 110% at 50% 70%, rgba(237, 217, 179, 0.3) 0%, transparent 50%),
+    linear-gradient(to right, #FFFFFF, #FFFFFF);
+  background-size: 300% 300%, 250% 250%, 280% 280%, 100% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: hero-veil 10s ease-in-out infinite;
 }
 
 /* ═══════════════════════════════════════════
@@ -773,7 +805,8 @@ html.lenis, html.lenis body {
 
 @media (prefers-reduced-motion: reduce) {
   .shimmer-text,
-  .shimmer-text-light {
+  .shimmer-text-light,
+  .shimmer-hero {
     animation: none !important;
     -webkit-text-fill-color: unset;
     background: none;
@@ -781,7 +814,8 @@ html.lenis, html.lenis body {
   .shimmer-text {
     color: var(--color-olive);
   }
-  .shimmer-text-light {
+  .shimmer-text-light,
+  .shimmer-hero {
     color: #FFFFFF;
   }
   .blob-pourpre,

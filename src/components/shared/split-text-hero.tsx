@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 interface SplitTextHeroProps {
   children: string;
   className?: string;
+  /** Class applied to each individual word span (useful for shimmer effects that need background-clip:text on the text node itself) */
+  wordClassName?: string;
   delay?: number;
   duration?: number;
   stagger?: number;
@@ -22,6 +24,7 @@ interface SplitTextHeroProps {
 export function SplitTextHero({
   children,
   className = "",
+  wordClassName = "",
   delay = 0,
   duration = 1.1,
   stagger = 0.08,
@@ -47,7 +50,7 @@ export function SplitTextHero({
       {words.map((word, i) => (
         <span key={i} className="inline-block overflow-hidden align-bottom pb-[0.08em]">
           <motion.span
-            className="inline-block will-change-transform"
+            className={`inline-block will-change-transform ${wordClassName}`}
             variants={{
               hidden: {
                 y: "100%",
