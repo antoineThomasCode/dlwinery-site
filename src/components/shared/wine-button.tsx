@@ -1,12 +1,8 @@
 "use client";
 
-import { useRef, useState, useEffect, type ReactNode, type MouseEvent } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { type ReactNode } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-
-const CURSOR_SPRING = { damping: 25, stiffness: 200, mass: 0.5 };
-const EASE = [0.16, 1, 0.3, 1] as const;
 
 interface WineButtonProps {
   children: ReactNode;
@@ -29,45 +25,10 @@ export function WineButton({
   trackCategory,
   trackLabel,
 }: WineButtonProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const cursorX = useMotionValue(50);
-  const cursorY = useMotionValue(50);
-  const springX = useSpring(cursorX, CURSOR_SPRING);
-  const springY = useSpring(cursorY, CURSOR_SPRING);
-
-  // Always call hooks at top level — never inside conditionals
-  const cursorGradient = useTransform(
-    [springX, springY],
-    ([x, y]) => `radial-gradient(circle 80px at ${x}% ${y}%, #C41E3A 0%, transparent 100%)`
-  );
-
-  useEffect(() => {
-    const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setIsDesktop(hover.matches && !reducedMotion.matches);
-  }, []);
-
-  function handleMouseMove(e: MouseEvent) {
-    if (!isDesktop || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    cursorX.set(((e.clientX - rect.left) / rect.width) * 100);
-    cursorY.set(((e.clientY - rect.top) / rect.height) * 100);
-  }
-
-  function handleMouseEnter() { setIsHovered(true); }
-  function handleMouseLeave() {
-    setIsHovered(false);
-    cursorX.set(50);
-    cursorY.set(50);
-  }
-
   const sizeClasses = {
     default: "px-7 py-3 text-[11px]",
     lg: "min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px]",
-    full: "w-full h-11 text-[11px]",
+    full: "w-full h-12 text-[11px]",
   }[size];
 
   const trackProps = {
@@ -76,74 +37,37 @@ export function WineButton({
     ...(trackLabel && { "data-track-label": trackLabel }),
   };
 
-  const innerContent = (
-    <>
-      {/* Layer 1: Deep ambient drift */}
-      <span className="wine-gradient-deep absolute inset-0 pointer-events-none" aria-hidden="true" />
-
-      {/* Layer 2: Living wine mid-glow */}
-      <span className="wine-gradient-living absolute inset-0 pointer-events-none" aria-hidden="true" />
-
-      {/* Layer 3: Cursor highlight (desktop) or ambient pulse (mobile) */}
-      {isDesktop ? (
-        <motion.span
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style={{ background: cursorGradient }}
-          animate={{ opacity: isHovered ? 0.55 : 0 }}
-          transition={{ duration: 0.5, ease: EASE }}
-        />
-      ) : (
-        <span className="wine-gradient-mobile absolute inset-0 pointer-events-none" aria-hidden="true" />
-      )}
-
-      {/* Text */}
-      <span className="relative z-10 transition-colors duration-500">
-        {children}
-      </span>
-    </>
-  );
-
-  const sharedClasses = cn(
+  const classes = cn(
     "wine-button relative overflow-hidden inline-flex items-center justify-center",
-    "font-heading uppercase tracking-[0.2em] font-normal",
-    "rounded-none border border-white/[0.08]",
-    "text-white/90 hover:text-white",
-    "transition-[border-color] duration-500",
-    "hover:border-white/20",
+    "font-heading uppercase tracking-[0.2em] font-medium",
+    "rounded-none text-white/95",
     "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#8B1A2B]",
     sizeClasses,
     className,
   );
 
-  return (
-    <motion.div
-      ref={ref}
-      className="relative inline-flex"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onMouseMove={handleMouseMove}
-    >
-      {/* Outer glow */}
-      <motion.div
-        className="absolute inset-0 rounded-none pointer-events-none"
-        animate={{
-          boxShadow: isHovered
-            ? "0 0 40px rgba(139,26,43,0.3), 0 0 80px rgba(74,14,27,0.15)"
-            : "0 0 0px rgba(139,26,43,0), 0 0 0px rgba(74,14,27,0)",
-        }}
-        transition={{ duration: 0.6, ease: EASE }}
-      />
+  const inner = (
+    <>
+      {/* Wine flow animation — pure CSS, 3 organic layers */}
+      <span className="wine-flow absolute inset-0 pointer-events-none" aria-hidden="true" />
+      {/* Subtle border glow */}
+      <span className="wine-border absolute inset-0 pointer-events-none rounded-none" aria-hidden="true" />
+      {/* Text */}
+      <span className="relative z-10">{children}</span>
+    </>
+  );
 
-      {href ? (
-        <Link href={href} className={sharedClasses} {...trackProps}>
-          {innerContent}
-        </Link>
-      ) : (
-        <button type="button" onClick={onClick} className={sharedClasses} {...trackProps}>
-          {innerContent}
-        </button>
-      )}
-    </motion.div>
+  if (href) {
+    return (
+      <Link href={href} className={classes} {...trackProps}>
+        {inner}
+      </Link>
+    );
+  }
+
+  return (
+    <button type="button" onClick={onClick} className={classes} {...trackProps}>
+      {inner}
+    </button>
   );
 }

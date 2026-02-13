@@ -795,62 +795,58 @@ html.lenis, html.lenis body {
 }
 
 /* ═══════════════════════════════════════════
-   Wine Button — Living wine-red reflections
-   on a dark surface, like light on wine.
+   Wine Button — Organic wine flowing through
+   a dark surface. Visible movement, living depth.
+   Like watching wine swirl in a glass from above.
    ═══════════════════════════════════════════ */
 
-@keyframes wine-drift-1 {
-  0%, 100% { background-position: 30% 40%; }
-  25%      { background-position: 55% 30%; }
-  50%      { background-position: 70% 60%; }
-  75%      { background-position: 40% 65%; }
-}
-
-@keyframes wine-drift-2 {
-  0%, 100% { background-position: 65% 55%; }
-  33%      { background-position: 35% 70%; }
-  66%      { background-position: 50% 35%; }
-}
-
-@keyframes wine-pulse-mobile {
-  0%, 100% { opacity: 0.18; background-position: 40% 50%; }
-  50%      { opacity: 0.3; background-position: 60% 50%; }
+@keyframes wine-flow {
+  0% {
+    background-position: 0% 50%, 100% 0%, 50% 100%;
+  }
+  25% {
+    background-position: 100% 25%, 0% 75%, 75% 0%;
+  }
+  50% {
+    background-position: 50% 0%, 75% 100%, 0% 50%;
+  }
+  75% {
+    background-position: 25% 100%, 50% 25%, 100% 75%;
+  }
+  100% {
+    background-position: 0% 50%, 100% 0%, 50% 100%;
+  }
 }
 
 .wine-button {
-  background-color: var(--color-wine-base);
+  background-color: #0D0508;
 }
 
-.wine-gradient-deep {
-  background: radial-gradient(ellipse 80% 70% at 30% 40%, var(--color-wine-deep) 0%, transparent 70%);
-  background-size: 200% 200%;
-  animation: wine-drift-1 20s ease-in-out infinite;
-  opacity: 0.35;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+/* The main effect: 3 radial gradients drifting independently —
+   creates organic interference patterns like wine swirling */
+.wine-flow {
+  background:
+    radial-gradient(ellipse 120% 80% at 30% 50%, #8B1A2B 0%, #4A0E1B 30%, transparent 60%),
+    radial-gradient(ellipse 100% 120% at 70% 30%, #6B1525 0%, #3A0C16 25%, transparent 55%),
+    radial-gradient(ellipse 90% 100% at 50% 80%, #C41E3A 0%, #6B1525 20%, transparent 50%);
+  background-size: 300% 300%, 250% 280%, 280% 250%;
+  animation: wine-flow 12s ease-in-out infinite;
+  opacity: 0.7;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: background-position;
 }
 
-.wine-gradient-living {
-  background: radial-gradient(ellipse 60% 55% at 65% 55%, var(--color-wine-living) 0%, transparent 65%);
-  background-size: 200% 200%;
-  animation: wine-drift-2 14s ease-in-out infinite;
-  opacity: 0.25;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: background-position;
+/* Subtle inner border glow — wine-red edge light */
+.wine-border {
+  box-shadow: inset 0 0 12px rgba(139, 26, 43, 0.25), inset 0 0 3px rgba(196, 30, 58, 0.15);
+  transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.wine-gradient-mobile {
-  background: radial-gradient(ellipse 50% 45% at 50% 50%, var(--color-wine-living) 0%, transparent 70%);
-  background-size: 200% 200%;
-  animation: wine-pulse-mobile 8s ease-in-out infinite;
-  will-change: background-position, opacity;
+.wine-button:hover .wine-flow {
+  opacity: 0.9;
 }
-
-.wine-button:hover .wine-gradient-deep {
-  opacity: 0.55;
-}
-.wine-button:hover .wine-gradient-living {
-  opacity: 0.45;
+.wine-button:hover .wine-border {
+  box-shadow: inset 0 0 20px rgba(139, 26, 43, 0.35), inset 0 0 6px rgba(196, 30, 58, 0.25);
 }
 
 @media (pointer: coarse) {
@@ -890,11 +886,10 @@ html.lenis, html.lenis body {
   .link-underline::after {
     transition: none;
   }
-  .wine-gradient-deep,
-  .wine-gradient-living,
-  .wine-gradient-mobile {
+  .wine-flow {
     animation: none !important;
     background-position: 50% 50% !important;
+    opacity: 0.5 !important;
   }
   /* Disable Lenis smooth scroll */
   .lenis.lenis-smooth {
