@@ -134,7 +134,7 @@ export function Footer() {
               />
               <button
                 type="submit"
-                className="bg-pourpre-deep hover:bg-pourpre text-warm-white rounded-none px-4 py-2.5 text-xs font-heading font-normal tracking-[0.1em] uppercase transition-all duration-400 cursor-pointer"
+                className="bg-pourpre-deep hover:bg-pourpre text-warm-white rounded-none px-4 py-2.5 text-xs font-body font-medium tracking-[0.1em] uppercase transition-all duration-400 cursor-pointer"
                 data-track-event="newsletter_signup"
                 data-track-category="footer"
                 data-track-label="email_capture"

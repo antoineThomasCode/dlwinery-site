@@ -97,7 +97,7 @@ export function Header() {
             {/* Book CTA - desktop */}
             <Link
               href="/experiences"
-              className="hidden md:inline-flex items-center justify-center btn-header-cta rounded-none text-[11px] tracking-[0.1em] uppercase font-heading font-normal px-6 h-9"
+              className="hidden md:inline-flex items-center justify-center btn-header-cta rounded-none text-[11px] tracking-[0.1em] uppercase font-body font-medium px-6 h-9"
               data-track-event="cta_click"
               data-track-category="header"
               data-track-label="book_tasting"
@@ -161,7 +161,7 @@ export function Header() {
                     <Link
                       href="/experiences"
                       onClick={() => setOpen(false)}
-                      className="flex items-center justify-center w-full btn-header-cta rounded-none h-12 text-sm tracking-[0.08em] uppercase font-heading font-normal"
+                      className="flex items-center justify-center w-full btn-header-cta rounded-none h-12 text-sm tracking-[0.08em] uppercase font-body font-medium"
                     >
                       Book a Tasting
                     </Link>

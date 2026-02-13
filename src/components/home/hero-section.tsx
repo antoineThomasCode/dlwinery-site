@@ -118,7 +118,7 @@ export function HeroSection() {
           <MagneticButton>
             <Link
               href="/experiences"
-              className="btn-cta-primary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.2em] uppercase font-heading rounded-none"
+              className="btn-cta-primary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.15em] uppercase font-body font-medium rounded-none"
               data-track-event="cta_click"
               data-track-category="hero"
               data-track-label="book_tasting"
@@ -129,7 +129,7 @@ export function HeroSection() {
           <MagneticButton>
             <Link
               href="/wines"
-              className="btn-cta-secondary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.2em] uppercase font-heading rounded-none"
+              className="btn-cta-secondary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.15em] uppercase font-body font-medium rounded-none"
               data-track-event="cta_click"
               data-track-category="hero"
               data-track-label="explore_wines"
