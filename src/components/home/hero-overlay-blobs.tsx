@@ -9,48 +9,57 @@ import {
 } from "framer-motion";
 
 /* ──────────────────────────────────────────
-   Blob configuration
-   Each blob has different spring physics so they
-   separate and rejoin as the cursor moves — this
-   creates the "liquid" quality.
+   Blob configuration — Triptique: Noir · Pourpre · Or
+   3 very stretched ellipses that intermingle when the
+   cursor moves. Each blob has different spring physics
+   so they separate, overlap, and blend as they rejoin.
+   The intermingling is where the magic happens.
    ────────────────────────────────────────── */
 
 interface BlobConfig {
-  size: number;
-  color: string;
+  width: number;
+  height: number;
+  gradient: string;
   spring: { damping: number; stiffness: number; mass: number };
   offset: { x: number; y: number };
   blur: number;
-  idle: { x: [number, number]; y: [number, number]; duration: number };
+  rotation: number;
+  idle: { x: [number, number]; y: [number, number]; rotate: [number, number]; duration: number };
 }
 
 const BLOBS: BlobConfig[] = [
   {
-    // Primary — follows cursor closely, deep pourpre/wine
-    size: 480,
-    color: "rgba(74, 28, 40, 0.45)",
-    spring: { damping: 25, stiffness: 200, mass: 0.8 },
+    // NOIR — the deepest, largest, anchors the composition
+    width: 900,
+    height: 450,
+    gradient: "radial-gradient(ellipse 100% 100%, rgba(20, 16, 16, 0.5) 0%, rgba(28, 22, 22, 0.25) 40%, transparent 70%)",
+    spring: { damping: 30, stiffness: 150, mass: 1.0 },
     offset: { x: 0, y: 0 },
-    blur: 90,
-    idle: { x: [-40, 40], y: [-25, 25], duration: 18 },
+    blur: 100,
+    rotation: -8,
+    idle: { x: [-60, 60], y: [-30, 30], rotate: [-12, -4], duration: 20 },
   },
   {
-    // Secondary — lags behind, dark warm black
-    size: 400,
-    color: "rgba(40, 18, 25, 0.4)",
-    spring: { damping: 35, stiffness: 120, mass: 1.2 },
-    offset: { x: -100, y: 50 },
-    blur: 110,
-    idle: { x: [50, -50], y: [20, -35], duration: 24 },
+    // POURPRE — wine-red accent, bleeds through the noir
+    width: 750,
+    height: 380,
+    gradient: "radial-gradient(ellipse 100% 100%, rgba(74, 28, 40, 0.35) 0%, rgba(107, 45, 62, 0.15) 40%, transparent 70%)",
+    spring: { damping: 40, stiffness: 100, mass: 1.5 },
+    offset: { x: -120, y: 60 },
+    blur: 120,
+    rotation: 12,
+    idle: { x: [70, -70], y: [25, -40], rotate: [8, 16], duration: 26 },
   },
   {
-    // Tertiary — slowest drift, wine-red glow
-    size: 580,
-    color: "rgba(107, 45, 62, 0.2)",
-    spring: { damping: 45, stiffness: 80, mass: 1.8 },
-    offset: { x: 80, y: -60 },
-    blur: 130,
-    idle: { x: [-30, 60], y: [40, -20], duration: 30 },
+    // OR — luminous gold glow, smallest but most visible
+    width: 650,
+    height: 320,
+    gradient: "radial-gradient(ellipse 100% 100%, rgba(212, 174, 84, 0.18) 0%, rgba(184, 146, 46, 0.08) 40%, transparent 70%)",
+    spring: { damping: 50, stiffness: 70, mass: 2.0 },
+    offset: { x: 100, y: -70 },
+    blur: 140,
+    rotation: -5,
+    idle: { x: [-40, 80], y: [50, -25], rotate: [-8, 2], duration: 32 },
   },
 ];
 
@@ -60,6 +69,8 @@ const LUXURY_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number];
    HeroOverlayBlobs — sits between video and text
    Desktop: cursor-following with spring physics
    Mobile: slow idle drift animation
+   mix-blend-mode: screen makes colors ADD together
+   where blobs overlap — noir + pourpre + or intermingle
    ────────────────────────────────────────── */
 
 export function HeroOverlayBlobs() {
@@ -120,6 +131,7 @@ export function HeroOverlayBlobs() {
 
 /* ──────────────────────────────────────────
    Individual blob — spring-tracked or idle
+   Elliptical shape with rotation for organic feel
    ────────────────────────────────────────── */
 
 function CursorBlob({
@@ -143,11 +155,11 @@ function CursorBlob({
 
   const x = useTransform(
     springX,
-    (v) => v - config.size / 2 + config.offset.x
+    (v) => v - config.width / 2 + config.offset.x
   );
   const y = useTransform(
     springY,
-    (v) => v - config.size / 2 + config.offset.y
+    (v) => v - config.height / 2 + config.offset.y
   );
 
   useEffect(() => {
@@ -165,19 +177,24 @@ function CursorBlob({
     return () => window.removeEventListener("mousemove", onMove);
   }, [hasPointer, mouseX, mouseY, containerRef]);
 
-  const blobGradient = `radial-gradient(circle, ${config.color} 0%, transparent 70%)`;
-
   // Desktop: cursor-following with spring physics
   if (hasPointer) {
     return (
       <motion.div
-        style={{ x, y, width: config.size, height: config.size }}
-        className="absolute top-0 left-0 rounded-full will-change-transform"
+        style={{
+          x,
+          y,
+          width: config.width,
+          height: config.height,
+          rotate: config.rotation,
+        }}
+        className="absolute top-0 left-0 will-change-transform"
       >
         <div
-          className="w-full h-full rounded-full"
+          className="w-full h-full"
           style={{
-            background: blobGradient,
+            borderRadius: "45% 55% 50% 50% / 55% 45% 55% 45%",
+            background: config.gradient,
             filter: `blur(${config.blur}px)`,
           }}
         />
@@ -185,12 +202,13 @@ function CursorBlob({
     );
   }
 
-  // Mobile: slow idle drift
+  // Mobile: slow idle drift with rotation
   return (
     <motion.div
       animate={{
         x: config.idle.x,
         y: config.idle.y,
+        rotate: config.idle.rotate,
       }}
       transition={{
         duration: config.idle.duration,
@@ -198,20 +216,22 @@ function CursorBlob({
         repeatType: "reverse",
         ease: "easeInOut",
       }}
-      className="absolute rounded-full"
+      className="absolute"
       style={{
         top: "50%",
         left: "50%",
-        marginTop: -config.size / 2 + config.offset.y,
-        marginLeft: -config.size / 2 + config.offset.x,
-        width: config.size,
-        height: config.size,
+        marginTop: -config.height / 2 + config.offset.y,
+        marginLeft: -config.width / 2 + config.offset.x,
+        width: config.width,
+        height: config.height,
+        rotate: config.rotation,
       }}
     >
       <div
-        className="w-full h-full rounded-full"
+        className="w-full h-full"
         style={{
-          background: blobGradient,
+          borderRadius: "45% 55% 50% 50% / 55% 45% 55% 45%",
+          background: config.gradient,
           filter: `blur(${config.blur}px)`,
         }}
       />

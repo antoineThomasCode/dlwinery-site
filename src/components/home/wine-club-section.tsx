@@ -34,7 +34,7 @@ export function WineClubSection() {
           className="absolute inset-0"
           speed={0.08}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-pourpre-deep/60 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/75 via-[rgba(42,20,24,0.3)] to-black/80" />
         {/* Scroll-triggered blobs */}
         <SectionBlobs
           isVisible={isVisible}

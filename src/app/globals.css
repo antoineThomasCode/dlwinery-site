@@ -77,10 +77,10 @@
   --color-warm-white: #FEFCF7;
   --color-parchment: #EDE8DB;
 
-  /* Primary — Pourpre Profond (deep wine, Burgundy heritage) */
-  --color-olive: #4A1C28;
+  /* Primary — Noir Profond with wine warmth (headings, body text) */
+  --color-olive: #2A1F1F;
   --color-olive-deep: #1C1A17;
-  --color-olive-light: #6B2D3E;
+  --color-olive-light: #4A1C28;
 
   /* Accent — Or Royal (luminous, warm, regal) */
   --color-gold: #D4AE54;
@@ -236,17 +236,17 @@
   50%      { background-position: 0% 0; }
 }
 
-/* Dark text shimmer — pourpre-deep base, gold light sweeps through */
+/* Dark text shimmer — warm black base, pourpre + gold sweep accents */
 .shimmer-text {
   background: linear-gradient(
     105deg,
-    #4A1C28 0%,
-    #4A1C28 35%,
-    #8B3D4E 42%,
+    #2A1F1F 0%,
+    #2A1F1F 35%,
+    #4A1C28 42%,
     #D4AE54 50%,
-    #8B3D4E 58%,
-    #4A1C28 65%,
-    #4A1C28 100%
+    #4A1C28 58%,
+    #2A1F1F 65%,
+    #2A1F1F 100%
   );
   background-size: 250% 100%;
   -webkit-background-clip: text;
@@ -790,7 +790,7 @@ html.lenis, html.lenis body {
     background: none;
   }
   .shimmer-text {
-    color: var(--color-pourpre-deep);
+    color: var(--color-olive);
   }
   .shimmer-text-light,
   .shimmer-hero {

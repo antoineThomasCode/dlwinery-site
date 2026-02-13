@@ -23,7 +23,7 @@ export function CtaSection() {
           className="absolute inset-0"
           speed={0.08}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-pourpre-deep/50 to-black/85" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-[rgba(42,20,24,0.25)] to-black/85" />
         {/* Scroll-triggered blobs */}
         <SectionBlobs
           isVisible={isVisible}

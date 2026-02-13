@@ -26,17 +26,17 @@ export function HeroSection() {
         </video>
       </div>
 
-      {/* ── Layer 1: Static gradient — black + pourpre deep tones ── */}
+      {/* ── Layer 1: Static gradient — black dominant, pourpre breathes through ── */}
       <div className="absolute inset-0" style={{ zIndex: 1 }}>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-[rgba(74,28,40,0.35)] to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-[rgba(42,20,24,0.25)] to-black/75" />
       </div>
 
-      {/* ── Layer 2: Multiply blend tint — wine-dark mood ── */}
+      {/* ── Layer 2: Multiply blend tint — noir profond ── */}
       <div
         className="absolute inset-0"
         style={{
           zIndex: 2,
-          backgroundColor: "rgba(50, 20, 30, 0.35)",
+          backgroundColor: "rgba(28, 22, 22, 0.35)",
           mixBlendMode: "multiply",
         }}
       />
@@ -44,9 +44,9 @@ export function HeroSection() {
       {/* ── Layer 3: Interactive cursor blobs — organic darkening that follows mouse ── */}
       <HeroOverlayBlobs />
 
-      {/* ── Layer 4: Vignette — wine-dark edges ── */}
+      {/* ── Layer 4: Vignette — deep black edges, hint of wine ── */}
       <div className="absolute inset-0" style={{ zIndex: 4 }}>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,rgba(40,18,25,0.55)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(20,16,16,0.6)_100%)]" />
       </div>
 
       {/* ── Layer 10: Content — always on top ── */}
