@@ -34,7 +34,7 @@ export function WelcomeBanner() {
           <p className="font-heading italic text-gold/60 text-sm sm:text-base mb-3 tracking-wide">
             Bienvenue
           </p>
-          <p className="text-olive/60 text-[13px] sm:text-sm md:text-base leading-relaxed max-w-lg mx-auto">
+          <p className="text-pourpre-deep/60 text-[13px] sm:text-sm md:text-base leading-relaxed max-w-lg mx-auto">
             Nestled on the west shore of Keuka Lake, Domaine LeSeurre brings the
             art of French winemaking to the heart of the Finger Lakes. Come for the
             wine, stay for the view.

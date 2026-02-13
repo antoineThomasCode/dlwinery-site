@@ -68,8 +68,8 @@
   --radius-4xl: calc(var(--radius) + 16px);
 
   /* ═══════════════════════════════════════════
-     DL Winery — Swiss Design · Pourpre & Olive
-     Precision · Restraint · Quiet Luxury
+     DL Winery — Pourpre Profond · Noir · Or Royal
+     Triptych: deep wine red, warm black, luminous gold
      ═══════════════════════════════════════════ */
 
   /* Backgrounds */
@@ -77,17 +77,17 @@
   --color-warm-white: #FEFCF7;
   --color-parchment: #EDE8DB;
 
-  /* Primary — Vineyard Olive (warm yellow-green, like vine leaves in sunlight) */
-  --color-olive: #556B2F;
-  --color-olive-deep: #3A4A1F;
-  --color-olive-light: #6B8243;
+  /* Primary — Pourpre Profond (deep wine, Burgundy heritage) */
+  --color-olive: #4A1C28;
+  --color-olive-deep: #1C1A17;
+  --color-olive-light: #6B2D3E;
 
-  /* Accent — Muted Gold */
-  --color-gold: #C49A3C;
-  --color-gold-light: #D4AE54;
-  --color-gold-dark: #A37E28;
+  /* Accent — Or Royal (luminous, warm, regal) */
+  --color-gold: #D4AE54;
+  --color-gold-light: #E2C06A;
+  --color-gold-dark: #B8922E;
 
-  /* Wine — Burgundy (shifted from pourpre for US luxury/wine association) */
+  /* Wine — Pourpre (mid-tone accent) */
   --color-pourpre: #6B2D3E;
   --color-pourpre-deep: #4A1C28;
   --color-pourpre-light: #8B3D4E;
@@ -236,17 +236,17 @@
   50%      { background-position: 0% 0; }
 }
 
-/* Dark text shimmer — olive base, gold/wine light sweeps through */
+/* Dark text shimmer — pourpre-deep base, gold light sweeps through */
 .shimmer-text {
   background: linear-gradient(
     105deg,
-    #556B2F 0%,
-    #556B2F 35%,
-    #6B2D3E 42%,
-    #C49A3C 50%,
-    #6B2D3E 58%,
-    #556B2F 65%,
-    #556B2F 100%
+    #4A1C28 0%,
+    #4A1C28 35%,
+    #8B3D4E 42%,
+    #D4AE54 50%,
+    #8B3D4E 58%,
+    #4A1C28 65%,
+    #4A1C28 100%
   );
   background-size: 250% 100%;
   -webkit-background-clip: text;
@@ -413,9 +413,9 @@
   animation-delay: -18s;
 }
 
-/* Olive blob — vineyard green warmth */
+/* Olive blob — now pourpre-tinted (mapped from olive to deep wine) */
 .blob-olive {
-  background: radial-gradient(ellipse 115% 95%, rgba(85, 107, 47, 0.30) 0%, rgba(58, 74, 31, 0.10) 45%, transparent 75%);
+  background: radial-gradient(ellipse 115% 95%, rgba(74, 28, 40, 0.28) 0%, rgba(107, 45, 62, 0.10) 45%, transparent 75%);
   animation: blob-drift-2 32s ease-in-out infinite;
 }
 
@@ -458,8 +458,8 @@
   z-index: -1;
 }
 .btn-cta-primary:hover {
-  color: var(--color-olive-deep) !important;
-  box-shadow: 0 8px 30px rgba(196, 154, 60, 0.15);
+  color: var(--color-pourpre-deep) !important;
+  box-shadow: 0 8px 30px rgba(212, 174, 84, 0.2);
 }
 .btn-cta-primary:hover::before {
   transform: scaleX(1);
@@ -494,7 +494,7 @@
   z-index: -1;
 }
 .btn-cta-secondary:hover {
-  color: var(--color-olive-deep) !important;
+  color: var(--color-pourpre-deep) !important;
   border-color: var(--color-warm-white) !important;
   box-shadow: 0 8px 30px rgba(254, 252, 247, 0.1);
 }
@@ -531,20 +531,20 @@
   z-index: -1;
 }
 .btn-header-cta:hover {
-  color: var(--color-olive-deep) !important;
-  box-shadow: 0 4px 16px rgba(196, 154, 60, 0.15);
+  color: var(--color-pourpre-deep) !important;
+  box-shadow: 0 4px 16px rgba(212, 174, 84, 0.2);
 }
 .btn-header-cta:hover::before {
   transform: scaleX(1);
 }
 
-/* Section buttons — olive outline, fill sweep */
+/* Section buttons — pourpre-deep outline, fill sweep */
 .btn-shimmer-gold {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--color-olive);
+  border: 1px solid var(--color-pourpre-deep);
   background: transparent;
-  color: var(--color-olive);
+  color: var(--color-pourpre-deep);
   font-weight: 400;
   letter-spacing: 0.2em;
   transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -555,7 +555,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-color: var(--color-olive);
+  background-color: var(--color-pourpre-deep);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -563,13 +563,13 @@
 }
 .btn-shimmer-gold:hover {
   color: var(--color-warm-white);
-  box-shadow: 0 8px 24px rgba(85, 107, 47, 0.12);
+  box-shadow: 0 8px 24px rgba(74, 28, 40, 0.15);
 }
 .btn-shimmer-gold:hover::before {
   transform: scaleX(1);
 }
 .btn-shimmer-gold:focus-visible {
-  outline: 2px solid var(--color-olive);
+  outline: 2px solid var(--color-pourpre-deep);
   outline-offset: 3px;
 }
 
@@ -662,7 +662,7 @@
 
 ::selection {
   background-color: rgba(107, 45, 62, 0.15);
-  color: var(--color-olive);
+  color: var(--color-pourpre-deep);
 }
 
 /* ═══════════════════════════════════════════
@@ -790,7 +790,7 @@ html.lenis, html.lenis body {
     background: none;
   }
   .shimmer-text {
-    color: var(--color-olive);
+    color: var(--color-pourpre-deep);
   }
   .shimmer-text-light,
   .shimmer-hero {

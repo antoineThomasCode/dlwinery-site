@@ -59,7 +59,7 @@ export function TestimonialsSection() {
             <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
               <FrenchText>Santé</FrenchText>
             </p>
-            <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-4 sm:mb-5 leading-tight">
+            <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-pourpre-deep font-light mb-4 sm:mb-5 leading-tight">
               <LineMaskLine><span className="shimmer-text">What Our Guests Say</span></LineMaskLine>
             </LineMaskReveal>
             <SectionDivider />
@@ -107,18 +107,18 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
       </div>
 
       {/* Quote */}
-      <blockquote className="text-olive/70 text-[13px] sm:text-sm md:text-base leading-relaxed mb-6 font-body flex-1">
+      <blockquote className="text-pourpre-deep/70 text-[13px] sm:text-sm md:text-base leading-relaxed mb-6 font-body flex-1">
         &ldquo;{t.text}&rdquo;
       </blockquote>
 
       {/* Author */}
       <div className="flex items-center justify-between pt-4 border-t border-gold/8">
         <div>
-          <p className="text-olive font-medium text-[13px] sm:text-sm">{t.name}</p>
+          <p className="text-pourpre-deep font-medium text-[13px] sm:text-sm">{t.name}</p>
           <p className="text-stone/50 text-[11px] sm:text-xs">{t.source}</p>
         </div>
-        <div className="w-8 h-8 rounded-none bg-olive/6 flex items-center justify-center">
-          <span className="text-olive/60 text-xs font-heading font-semibold">
+        <div className="w-8 h-8 rounded-none bg-pourpre-deep/6 flex items-center justify-center">
+          <span className="text-pourpre-deep/60 text-xs font-heading font-semibold">
             {t.name.charAt(0)}
           </span>
         </div>

@@ -75,7 +75,7 @@ export function ExperiencesSection() {
             <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
               <FrenchText>Dégustation</FrenchText>
             </p>
-            <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-4 sm:mb-5 leading-tight">
+            <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-pourpre-deep font-light mb-4 sm:mb-5 leading-tight">
               <LineMaskLine><span className="shimmer-text">Your Tasting Awaits</span></LineMaskLine>
             </LineMaskReveal>
             <p className="text-stone text-[13px] sm:text-sm md:text-base max-w-lg mx-auto leading-relaxed">
@@ -113,7 +113,7 @@ export function ExperiencesSection() {
           <div className="text-center mt-12 sm:mt-14 px-6">
             <Link
               href="/experiences"
-              className="inline-flex items-center gap-2.5 text-olive text-[11px] font-body font-medium tracking-[0.15em] uppercase hover:text-pourpre transition-colors group"
+              className="inline-flex items-center gap-2.5 text-pourpre-deep text-[11px] font-body font-medium tracking-[0.15em] uppercase hover:text-pourpre transition-colors group"
               data-track-event="cta_click"
               data-track-category="experiences"
               data-track-label="view_all"
@@ -143,7 +143,7 @@ function ExperienceCard({ exp }: { exp: typeof experiences[number] }) {
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+e9fPQAJoQN4oGLsFwAAAABJRU5ErkJggg=="
         />
         {/* Price badge */}
-        <div className="absolute top-0 right-0 bg-olive-deep/90 text-gold text-sm font-heading font-semibold px-4 py-2">
+        <div className="absolute top-0 right-0 bg-pourpre-deep/90 text-gold text-sm font-heading font-semibold px-4 py-2">
           ${exp.price}
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
@@ -154,7 +154,7 @@ function ExperienceCard({ exp }: { exp: typeof experiences[number] }) {
         <p className="text-gold/60 text-[10px] tracking-[0.2em] uppercase font-medium mb-1.5">
           {exp.subtitle}
         </p>
-        <h3 className="font-heading text-xl sm:text-2xl text-olive mb-2.5 leading-tight">
+        <h3 className="font-heading text-xl sm:text-2xl text-pourpre-deep mb-2.5 leading-tight">
           {exp.name}
         </h3>
         <p className="text-stone text-[13px] sm:text-sm leading-relaxed mb-4 flex-1">

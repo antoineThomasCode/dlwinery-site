@@ -71,7 +71,7 @@ export function VisitInfo() {
             <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
               <FrenchText>Rendez-Vous</FrenchText>
             </p>
-            <h2 className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-4 sm:mb-5 leading-tight">
+            <h2 className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-pourpre-deep font-light mb-4 sm:mb-5 leading-tight">
               <span className="shimmer-text">Plan Your Visit</span>
             </h2>
             <SectionDivider />
@@ -85,7 +85,7 @@ export function VisitInfo() {
                 <div className="w-10 h-10 mx-auto mb-5 flex items-center justify-center">
                   <item.icon className="w-5 h-5 text-gold/70" />
                 </div>
-                <h3 className="font-heading text-olive text-base sm:text-lg mb-3 tracking-wide">
+                <h3 className="font-heading text-pourpre-deep text-base sm:text-lg mb-3 tracking-wide">
                   {item.title}
                 </h3>
                 <div className="space-y-1 mb-3">
@@ -101,7 +101,7 @@ export function VisitInfo() {
                       <p key={j}>
                         <a
                           href={line.href}
-                          className="text-olive text-[13px] sm:text-sm font-body font-medium hover:text-pourpre transition-colors link-underline"
+                          className="text-pourpre-deep text-[13px] sm:text-sm font-body font-medium hover:text-pourpre transition-colors link-underline"
                         >
                           {line.text}
                         </a>

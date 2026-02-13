@@ -71,7 +71,7 @@ export function Header() {
                 href={link.href}
                 className={`text-[11px] font-body font-medium tracking-[0.1em] uppercase transition-colors relative group ${
                   scrolled
-                    ? "text-olive/70 hover:text-olive"
+                    ? "text-pourpre-deep/70 hover:text-pourpre-deep"
                     : "text-warm-white/80 hover:text-warm-white"
                 }`}
               >
@@ -87,7 +87,7 @@ export function Header() {
             <Link
               href="/member"
               className={`hidden md:flex items-center justify-center w-9 h-9 rounded-full transition-colors ${
-                scrolled ? "hover:bg-olive/5 text-olive" : "hover:bg-warm-white/10 text-warm-white"
+                scrolled ? "hover:bg-pourpre-deep/5 text-pourpre-deep" : "hover:bg-warm-white/10 text-warm-white"
               }`}
               aria-label="Member area"
             >
@@ -110,7 +110,7 @@ export function Header() {
               <SheetTrigger asChild>
                 <button
                   className={`lg:hidden flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
-                    scrolled ? "text-olive hover:bg-olive/5" : "text-warm-white hover:bg-warm-white/10"
+                    scrolled ? "text-pourpre-deep hover:bg-pourpre-deep/5" : "text-warm-white hover:bg-warm-white/10"
                   }`}
                   aria-label="Open menu"
                 >
@@ -140,7 +140,7 @@ export function Header() {
                         key={link.href}
                         href={link.href}
                         onClick={() => setOpen(false)}
-                        className="flex items-center px-6 py-3.5 text-sm font-body font-medium tracking-[0.06em] uppercase text-olive hover:bg-gold/5 hover:text-bordeaux transition-all border-l-2 border-transparent hover:border-gold"
+                        className="flex items-center px-6 py-3.5 text-sm font-body font-medium tracking-[0.06em] uppercase text-pourpre-deep hover:bg-gold/5 hover:text-bordeaux transition-all border-l-2 border-transparent hover:border-gold"
                       >
                         {link.label}
                       </Link>
@@ -149,7 +149,7 @@ export function Header() {
                     <Link
                       href="/member"
                       onClick={() => setOpen(false)}
-                      className="flex items-center gap-3 px-6 py-3.5 text-sm font-body font-medium tracking-[0.06em] uppercase text-olive hover:bg-gold/5 transition-colors"
+                      className="flex items-center gap-3 px-6 py-3.5 text-sm font-body font-medium tracking-[0.06em] uppercase text-pourpre-deep hover:bg-gold/5 transition-colors"
                     >
                       <User className="w-4 h-4 text-gold" />
                       Member Area
@@ -186,7 +186,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-olive/60 hover:text-bordeaux transition-colors"
+              className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-pourpre-deep/60 hover:text-bordeaux transition-colors"
             >
               <item.icon className="w-5 h-5" />
               <span className="text-[10px] font-medium tracking-wide">{item.label}</span>

@@ -72,7 +72,7 @@ export function EventsSection() {
             <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
               <FrenchText>Nos Événements</FrenchText>
             </p>
-            <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-4 sm:mb-5 leading-tight">
+            <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-pourpre-deep font-light mb-4 sm:mb-5 leading-tight">
               <LineMaskLine><span className="shimmer-text">Gather. Taste. Celebrate.</span></LineMaskLine>
             </LineMaskReveal>
             <p className="text-stone text-[13px] sm:text-sm md:text-base max-w-lg mx-auto leading-relaxed">
@@ -109,7 +109,7 @@ export function EventsSection() {
           <div className="text-center mt-12 sm:mt-14 px-6">
             <Link
               href="/events"
-              className="inline-flex items-center gap-2.5 text-olive text-[11px] font-body font-medium tracking-[0.15em] uppercase hover:text-pourpre transition-colors group"
+              className="inline-flex items-center gap-2.5 text-pourpre-deep text-[11px] font-body font-medium tracking-[0.15em] uppercase hover:text-pourpre transition-colors group"
             >
               View All Events
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -135,11 +135,11 @@ function EventCard({ event }: { event: typeof events[number] }) {
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+e9fPQAJoQN4oGLsFwAAAABJRU5ErkJggg=="
         />
         {event.price > 0 ? (
-          <div className="absolute top-0 right-0 bg-olive-deep/90 text-gold text-sm font-heading font-semibold px-4 py-2">
+          <div className="absolute top-0 right-0 bg-pourpre-deep/90 text-gold text-sm font-heading font-semibold px-4 py-2">
             ${event.price}
           </div>
         ) : (
-          <div className="absolute top-0 right-0 bg-olive/90 text-warm-white text-[13px] font-body font-medium px-4 py-2">
+          <div className="absolute top-0 right-0 bg-pourpre/90 text-warm-white text-[13px] font-body font-medium px-4 py-2">
             Free
           </div>
         )}
@@ -150,12 +150,12 @@ function EventCard({ event }: { event: typeof events[number] }) {
           <Calendar className="w-3.5 h-3.5 text-gold/50" />
           <span>{event.date} &middot; {event.time}</span>
         </div>
-        <h3 className="font-heading text-xl text-olive mb-2 leading-tight">{event.title}</h3>
+        <h3 className="font-heading text-xl text-pourpre-deep mb-2 leading-tight">{event.title}</h3>
         <p className="text-stone text-[13px] sm:text-sm leading-relaxed mb-5 flex-1">{event.description}</p>
         <Button
           asChild
           variant="outline"
-          className="w-full btn-shimmer-gold border-olive/10 text-olive hover:bg-olive hover:text-warm-white hover:border-olive rounded-none h-11 sm:h-10 text-[11px] tracking-[0.12em] uppercase font-medium transition-all duration-400"
+          className="w-full btn-shimmer-gold border-pourpre-deep/10 text-pourpre-deep hover:bg-pourpre-deep hover:text-warm-white hover:border-pourpre-deep rounded-none h-11 sm:h-10 text-[11px] tracking-[0.12em] uppercase font-medium transition-all duration-400"
         >
           <Link
             href={`/events/${event.id}`}

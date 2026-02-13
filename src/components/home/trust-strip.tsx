@@ -20,7 +20,7 @@ export function TrustStrip() {
               <div className="flex items-center justify-center gap-3 py-2 md:py-0 md:border-r md:border-gold/10">
                 <Star className="w-4 h-4 text-gold/60 flex-shrink-0" />
                 <div className="text-center md:text-left">
-                  <p className="text-olive text-[11px] sm:text-xs font-body font-medium tracking-[0.08em] uppercase leading-tight">
+                  <p className="text-pourpre-deep text-[11px] sm:text-xs font-body font-medium tracking-[0.08em] uppercase leading-tight">
                     <AnimatedCounter value={4.8} decimals={1} duration={2} />/5
                   </p>
                   <p className="text-stone/50 text-[9px] sm:text-[10px] tracking-[0.06em] uppercase leading-tight">
@@ -35,7 +35,7 @@ export function TrustStrip() {
               <div className="flex items-center justify-center gap-3 py-2 md:py-0 md:border-r md:border-gold/10">
                 <Award className="w-4 h-4 text-gold/60 flex-shrink-0" />
                 <div className="text-center md:text-left">
-                  <p className="text-olive text-[11px] sm:text-xs font-body font-medium tracking-[0.08em] uppercase leading-tight">
+                  <p className="text-pourpre-deep text-[11px] sm:text-xs font-body font-medium tracking-[0.08em] uppercase leading-tight">
                     Award-Winning
                   </p>
                   <p className="text-stone/50 text-[9px] sm:text-[10px] tracking-[0.06em] uppercase leading-tight">
@@ -50,7 +50,7 @@ export function TrustStrip() {
               <div className="flex items-center justify-center gap-3 py-2 md:py-0 md:border-r md:border-gold/10">
                 <Calendar className="w-4 h-4 text-gold/60 flex-shrink-0" />
                 <div className="text-center md:text-left">
-                  <p className="text-olive text-[11px] sm:text-xs font-body font-medium tracking-[0.08em] uppercase leading-tight">
+                  <p className="text-pourpre-deep text-[11px] sm:text-xs font-body font-medium tracking-[0.08em] uppercase leading-tight">
                     Est. <AnimatedCounter value={2012} decimals={0} duration={2.5} />
                   </p>
                   <p className="text-stone/50 text-[9px] sm:text-[10px] tracking-[0.06em] uppercase leading-tight">
@@ -65,7 +65,7 @@ export function TrustStrip() {
               <div className="flex items-center justify-center gap-3 py-2 md:py-0">
                 <Users className="w-4 h-4 text-gold/60 flex-shrink-0" />
                 <div className="text-center md:text-left">
-                  <p className="text-olive text-[11px] sm:text-xs font-body font-medium tracking-[0.08em] uppercase leading-tight">
+                  <p className="text-pourpre-deep text-[11px] sm:text-xs font-body font-medium tracking-[0.08em] uppercase leading-tight">
                     <AnimatedCounter value={6} decimals={0} duration={1.5} suffix="th" /> Generation
                   </p>
                   <p className="text-stone/50 text-[9px] sm:text-[10px] tracking-[0.06em] uppercase leading-tight">

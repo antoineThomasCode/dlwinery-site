@@ -58,7 +58,7 @@ export function StorySection() {
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+e9fPQAJoQN4oGLsFwAAAABJRU5ErkJggg=="
               />
               {/* Heritage badge */}
-              <div className="absolute bottom-0 left-0 right-0 bg-olive-deep/90 py-1.5 px-2 text-center">
+              <div className="absolute bottom-0 left-0 right-0 bg-pourpre-deep/90 py-1.5 px-2 text-center">
                 <p className="text-gold/70 text-[8px] sm:text-[9px] tracking-[0.15em] uppercase font-medium">Champagne &middot; 1947</p>
               </div>
             </ClipPathReveal>
@@ -70,7 +70,7 @@ export function StorySection() {
               <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
                 <FrenchText>Notre Histoire</FrenchText>
               </p>
-              <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-2 leading-tight">
+              <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-pourpre-deep font-light mb-2 leading-tight">
                 <LineMaskLine><span className="shimmer-text">From Champagne</span></LineMaskLine>
                 <LineMaskLine><span className="shimmer-text italic">to Keuka Lake</span></LineMaskLine>
               </LineMaskReveal>
@@ -93,11 +93,11 @@ export function StorySection() {
 
               {/* Quote */}
               <blockquote className="relative border-l-2 border-pourpre/20 pl-5 mb-8 py-1">
-                <p className="font-heading italic text-olive/80 text-base sm:text-lg md:text-xl leading-relaxed">
+                <p className="font-heading italic text-pourpre-deep/80 text-base sm:text-lg md:text-xl leading-relaxed">
                   We taste regularly — every two or three days — relying on taste over Brix measurements.
                 </p>
                 <cite className="text-stone text-[13px] sm:text-sm not-italic mt-3 block">
-                  — <span className="text-olive font-medium">Sébastien LeSeurre</span>, Winemaker
+                  — <span className="text-pourpre-deep font-medium">Sébastien LeSeurre</span>, Winemaker
                 </cite>
               </blockquote>
 
@@ -112,7 +112,7 @@ export function StorySection() {
 
               <Link
                 href="/our-story"
-                className="inline-flex items-center gap-2.5 text-olive text-[11px] font-body font-medium tracking-[0.15em] uppercase hover:text-pourpre transition-colors group"
+                className="inline-flex items-center gap-2.5 text-pourpre-deep text-[11px] font-body font-medium tracking-[0.15em] uppercase hover:text-pourpre transition-colors group"
                 data-track-event="cta_click"
                 data-track-category="story"
                 data-track-label="read_our_story"

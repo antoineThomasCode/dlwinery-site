@@ -31,7 +31,7 @@ export function StickyMobileCta() {
           <div className="px-4 pb-2">
             <Link
               href="/experiences"
-              className="flex items-center justify-center w-full py-3 bg-olive text-warm-white text-[11px] tracking-[0.15em] uppercase font-body font-medium shadow-lg hover:bg-olive-deep transition-colors"
+              className="flex items-center justify-center w-full py-3 bg-pourpre-deep text-warm-white text-[11px] tracking-[0.15em] uppercase font-body font-medium shadow-lg hover:bg-pourpre transition-colors"
               data-track-event="cta_click"
               data-track-category="sticky_mobile"
               data-track-label="book_tasting"

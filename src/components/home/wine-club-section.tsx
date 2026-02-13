@@ -34,7 +34,7 @@ export function WineClubSection() {
           className="absolute inset-0"
           speed={0.08}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-olive-deep/90 via-black/60 to-pourpre-deep/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-pourpre-deep/60 to-black/80" />
         {/* Scroll-triggered blobs */}
         <SectionBlobs
           isVisible={isVisible}
@@ -90,7 +90,7 @@ export function WineClubSection() {
                 <Button
                   asChild
                   size="lg"
-                  className="btn-cta-primary bg-gold hover:bg-gold-light text-olive-deep text-[13px] sm:text-sm px-8 sm:px-10 py-6 sm:py-5 rounded-none tracking-[0.12em] uppercase font-semibold transition-all duration-500"
+                  className="btn-cta-primary bg-gold hover:bg-gold-light text-pourpre-deep text-[13px] sm:text-sm px-8 sm:px-10 py-6 sm:py-5 rounded-none tracking-[0.12em] uppercase font-semibold transition-all duration-500"
                 >
                   <Link
                     href="/wine-club"
@@ -132,7 +132,7 @@ export function WineClubSection() {
               </ClipPathReveal>
               {/* Floating card */}
               <div className="absolute -bottom-6 -left-4 sm:-left-8 bg-warm-white rounded-none p-5 shadow-xl border-l-2 border-gold/30">
-                <p className="text-olive font-heading text-3xl font-semibold">$0</p>
+                <p className="text-pourpre-deep font-heading text-3xl font-semibold">$0</p>
                 <p className="text-stone text-xs">Membership fee</p>
                 <div className="w-8 h-px bg-gold/20 my-2.5" />
                 <p className="text-gold/70 text-xs font-medium tracking-[0.1em] uppercase">Classic Tier</p>
