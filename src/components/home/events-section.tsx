@@ -77,7 +77,7 @@ export function EventsSection() {
 
         {/* Mobile: Horizontal scroll */}
         <div className="md:hidden">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-5 scrollbar-hide">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-5 scrollbar-hide" data-lenis-prevent>
             {events.map((event) => (
               <div
                 key={event.id}

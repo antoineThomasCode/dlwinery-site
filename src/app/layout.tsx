@@ -3,6 +3,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { StickyMobileCta } from "@/components/layout/sticky-mobile-cta";
 import { CursorGlow } from "@/components/shared/cursor-glow";
+import { SmoothScrollProvider } from "@/components/shared/smooth-scroll-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -27,11 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-cream text-black-warm antialiased">
-        <CursorGlow variant="gold" />
-        <Header />
-        {children}
-        <Footer />
-        <StickyMobileCta />
+        <SmoothScrollProvider>
+          <CursorGlow variant="gold" />
+          <Header />
+          {children}
+          <Footer />
+          <StickyMobileCta />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

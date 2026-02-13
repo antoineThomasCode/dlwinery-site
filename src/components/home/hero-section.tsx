@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/shared/magnetic-button";
+import { SplitTextHero } from "@/components/shared/split-text-hero";
+
+const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function HeroSection() {
   return (
@@ -35,11 +38,11 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative text-center px-5 sm:px-8 max-w-3xl mx-auto">
+      <div className="relative text-center px-5 sm:px-8 max-w-3xl mx-auto" style={{ perspective: "600px" }}>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: LUXURY_EASE }}
           className="mb-6 sm:mb-8"
         >
           <p className="text-gold/80 text-[10px] sm:text-[11px] tracking-[0.4em] uppercase font-body font-medium mb-1.5">
@@ -50,22 +53,26 @@ export function HeroSection() {
           </p>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="font-heading text-[2.75rem] leading-[1.05] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-normal mb-4 sm:mb-5"
-        >
-          <span className="shimmer-text-light">A French Accent</span>
+        {/* Split-text hero headline — word-by-word cinematic reveal */}
+        <h1 className="font-heading text-[2.75rem] leading-[1.05] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-normal mb-4 sm:mb-5">
+          <span className="shimmer-text-light">
+            <SplitTextHero delay={0.5} duration={1} stagger={0.1}>
+              A French Accent
+            </SplitTextHero>
+          </span>
           <br />
-          <span className="shimmer-text-light italic">on Keuka Lake</span>
-        </motion.h1>
+          <span className="shimmer-text-light italic">
+            <SplitTextHero delay={0.8} duration={1} stagger={0.1}>
+              on Keuka Lake
+            </SplitTextHero>
+          </span>
+        </h1>
 
         {/* Minimal Swiss divider */}
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 1.3, ease: LUXURY_EASE }}
           className="flex justify-center mb-5 sm:mb-6"
         >
           <div className="w-12 h-px bg-gold/40" />
@@ -74,16 +81,16 @@ export function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
+          transition={{ duration: 0.8, delay: 1.4, ease: LUXURY_EASE }}
           className="font-heading italic text-gold/60 text-base sm:text-lg md:text-xl mb-2"
         >
-          Où la France rencontre les Finger Lakes
+          Ou la France rencontre les Finger Lakes
         </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
+          transition={{ duration: 0.8, delay: 1.5, ease: LUXURY_EASE }}
           className="text-warm-white/50 text-[13px] sm:text-sm md:text-base mb-10 sm:mb-12 font-body max-w-md mx-auto leading-relaxed"
         >
           Six generations of French winemaking tradition.
@@ -92,9 +99,9 @@ export function HeroSection() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 0.8, delay: 1.7, ease: LUXURY_EASE }}
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0"
         >
           <MagneticButton>
@@ -122,14 +129,20 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator — desktop only */}
+      {/* Scroll indicator — mouse icon that pulses */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.2, duration: 1 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block"
+        transition={{ delay: 2.5, duration: 1 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
       >
-        <div className="w-px h-8 bg-gradient-to-b from-gold/40 to-transparent" />
+        <div className="w-[22px] h-[34px] rounded-full border border-gold/30 flex justify-center pt-2">
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="w-[3px] h-[6px] rounded-full bg-gold/50"
+          />
+        </div>
       </motion.div>
     </section>
   );

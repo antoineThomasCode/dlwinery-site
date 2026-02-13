@@ -81,7 +81,7 @@ export function ExperiencesSection() {
 
         {/* Mobile: Horizontal scroll */}
         <div className="md:hidden">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-5 scrollbar-hide">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-5 scrollbar-hide" data-lenis-prevent>
             {experiences.map((exp) => (
               <div
                 key={exp.id}

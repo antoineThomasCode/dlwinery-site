@@ -633,8 +633,18 @@
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-html {
-  scroll-behavior: smooth;
+/* Lenis smooth scroll handles scrolling — disable native smooth to avoid conflicts */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -668,6 +678,13 @@ html {
   }
 }
 
+/* ═══════════════════════════════════════════
+   Horizontal scroll containers — prevent Lenis hijacking
+   ═══════════════════════════════════════════ */
+.scrollbar-hide {
+  overscroll-behavior: contain;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .shimmer-text,
   .shimmer-text-light {
@@ -687,5 +704,9 @@ html {
   .btn-text-link::after,
   .link-underline::after {
     transition: none;
+  }
+  /* Disable Lenis smooth scroll */
+  .lenis.lenis-smooth {
+    scroll-behavior: smooth;
   }
 }
