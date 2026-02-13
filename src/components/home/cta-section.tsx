@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { InkFlourish } from "@/components/shared/ink-flourish";
+import { WineIcon } from "@/components/ui/wine-icon";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
 import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
@@ -62,11 +63,12 @@ export function CtaSection() {
             <MagneticButton>
               <Link
                 href="/experiences"
-                className="btn-cta-primary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.15em] uppercase font-body font-medium rounded-none"
+                className="btn-cta-primary inline-flex items-center justify-center gap-2 min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.15em] uppercase font-body font-medium rounded-none"
                 data-track-event="cta_click"
                 data-track-category="final_cta"
                 data-track-label="book_tasting"
               >
+                <WineIcon className="w-4 h-4" />
                 Book a Tasting
               </Link>
             </MagneticButton>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { WineIcon } from "@/components/ui/wine-icon";
 
 export function BlogCta() {
   return (
@@ -20,7 +21,7 @@ export function BlogCta() {
             asChild
             className="bg-bordeaux hover:bg-bordeaux-deep text-warm-white rounded-sm text-[12px] tracking-[0.1em] uppercase font-medium px-8 h-11 shadow-md hover:shadow-lg transition-all"
           >
-            <Link href="/experiences">Book a Tasting</Link>
+            <Link href="/experiences" className="inline-flex items-center gap-2"><WineIcon className="w-4 h-4" /> Book a Tasting</Link>
           </Button>
           <Button
             asChild

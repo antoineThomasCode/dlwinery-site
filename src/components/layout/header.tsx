@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, User, Wine, CalendarDays, Home, ShoppingBag } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { WineIcon } from "@/components/ui/wine-icon";
 
 const navLinks = [
   { href: "/experiences", label: "Experiences" },
@@ -114,11 +115,12 @@ export function Header() {
             {/* Book CTA - desktop */}
             <Link
               href="/experiences"
-              className="hidden md:inline-flex items-center justify-center btn-header-cta rounded-none text-[11px] tracking-[0.1em] uppercase font-body font-medium px-6 h-9"
+              className="hidden md:inline-flex items-center justify-center gap-2 btn-header-cta rounded-none text-[11px] tracking-[0.1em] uppercase font-body font-medium px-6 h-9"
               data-track-event="cta_click"
               data-track-category="header"
               data-track-label="book_tasting"
             >
+              <WineIcon className="w-3.5 h-3.5" />
               Book a Tasting
             </Link>
 
@@ -178,8 +180,9 @@ export function Header() {
                     <Link
                       href="/experiences"
                       onClick={() => setOpen(false)}
-                      className="flex items-center justify-center w-full btn-header-cta rounded-none h-12 text-sm tracking-[0.08em] uppercase font-body font-medium"
+                      className="flex items-center justify-center gap-2 w-full btn-header-cta rounded-none h-12 text-sm tracking-[0.08em] uppercase font-body font-medium"
                     >
+                      <WineIcon className="w-4 h-4" />
                       Book a Tasting
                     </Link>
                     <p className="text-center text-gold/50 text-xs font-heading italic mt-3">

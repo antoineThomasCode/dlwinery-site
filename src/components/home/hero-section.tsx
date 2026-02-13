@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/shared/magnetic-button";
 import { SplitTextHero } from "@/components/shared/split-text-hero";
 import { HeroOverlayBlobs } from "./hero-overlay-blobs";
+import { WineIcon } from "@/components/ui/wine-icon";
 
 const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -107,11 +108,12 @@ export function HeroSection() {
           <MagneticButton>
             <Link
               href="/experiences"
-              className="btn-cta-primary inline-flex items-center justify-center px-5 sm:px-12 py-3.5 sm:py-4 text-[10px] sm:text-[13px] tracking-[0.12em] sm:tracking-[0.15em] uppercase font-body font-medium rounded-none whitespace-nowrap"
+              className="btn-cta-primary inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 sm:px-12 py-3.5 sm:py-4 text-[10px] sm:text-[13px] tracking-[0.12em] sm:tracking-[0.15em] uppercase font-body font-medium rounded-none whitespace-nowrap"
               data-track-event="cta_click"
               data-track-category="hero"
               data-track-label="book_tasting"
             >
+              <WineIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               Book a Tasting
             </Link>
           </MagneticButton>
