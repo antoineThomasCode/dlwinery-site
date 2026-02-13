@@ -49,8 +49,25 @@ export function Header() {
         <div className={`gold-line-thin transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`} />
 
         <div className="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 h-16 sm:h-18 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0 relative">
+          {/* Left side — Book button on mobile, empty on desktop (nav takes over) */}
+          <div className="flex items-center gap-2 lg:hidden w-[72px]">
+            <Link
+              href="/experiences"
+              className={`inline-flex items-center justify-center rounded-none h-8 px-3.5 text-[10px] tracking-[0.1em] uppercase font-body font-medium border transition-all duration-400 ${
+                scrolled
+                  ? "border-gold/60 text-gold-dark hover:bg-gold/10"
+                  : "border-warm-white/30 text-warm-white/90 hover:bg-warm-white/10"
+              }`}
+              data-track-event="cta_click"
+              data-track-category="header_mobile"
+              data-track-label="book"
+            >
+              Book
+            </Link>
+          </div>
+
+          {/* Logo — centered on mobile, left on desktop */}
+          <Link href="/" className="flex-shrink-0 relative lg:order-first">
             <Image
               src="/images/leseurre-logo.svg"
               alt="Domaine LeSeurre"
@@ -82,7 +99,7 @@ export function Header() {
           </nav>
 
           {/* Right side */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 w-[72px] lg:w-auto justify-end">
             {/* Member icon - desktop */}
             <Link
               href="/member"

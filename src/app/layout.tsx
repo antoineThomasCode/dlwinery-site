@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { StickyMobileCta } from "@/components/layout/sticky-mobile-cta";
 import { CursorGlow } from "@/components/shared/cursor-glow";
 import { SmoothScrollProvider } from "@/components/shared/smooth-scroll-provider";
 import "./globals.css";
@@ -33,7 +32,6 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
-          <StickyMobileCta />
         </SmoothScrollProvider>
       </body>
     </html>
