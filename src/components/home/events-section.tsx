@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { SectionDivider } from "@/components/shared/section-divider";
 import { FrenchText } from "@/components/shared/french-text";
@@ -11,6 +10,7 @@ import { useSectionBlobs } from "@/hooks/use-section-blobs";
 import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
 import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { Calendar, ArrowRight } from "lucide-react";
+import { WineButton } from "@/components/shared/wine-button";
 
 const events = [
   {
@@ -152,20 +152,15 @@ function EventCard({ event }: { event: typeof events[number] }) {
         </div>
         <h3 className="font-heading text-xl text-pourpre-deep mb-2 leading-tight">{event.title}</h3>
         <p className="text-stone text-[13px] sm:text-sm leading-relaxed mb-5 flex-1">{event.description}</p>
-        <Button
-          asChild
-          variant="outline"
-          className="w-full btn-shimmer-gold border-pourpre-deep/10 text-pourpre-deep hover:bg-pourpre-deep hover:text-warm-white hover:border-pourpre-deep rounded-none h-11 sm:h-10 text-[11px] tracking-[0.12em] uppercase font-medium transition-all duration-400"
+        <WineButton
+          href={`/events/${event.id}`}
+          size="full"
+          trackEvent="cta_click"
+          trackCategory="events"
+          trackLabel={event.id}
         >
-          <Link
-            href={`/events/${event.id}`}
-            data-track-event="cta_click"
-            data-track-category="events"
-            data-track-label={event.id}
-          >
-            Reserve My Spot
-          </Link>
-        </Button>
+          Reserve My Spot
+        </WineButton>
       </div>
     </div>
   );

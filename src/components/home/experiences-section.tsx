@@ -10,6 +10,7 @@ import { useSectionBlobs } from "@/hooks/use-section-blobs";
 import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
 import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { Clock, Users, ArrowRight } from "lucide-react";
+import { WineButton } from "@/components/shared/wine-button";
 
 const experiences = [
   {
@@ -173,15 +174,15 @@ function ExperienceCard({ exp }: { exp: typeof experiences[number] }) {
           </span>
         </div>
 
-        <Link
+        <WineButton
           href={`/experiences?select=${exp.id}`}
-          className="w-full flex items-center justify-center btn-shimmer-gold rounded-none h-11 text-[11px] tracking-[0.12em] uppercase font-heading font-normal"
-          data-track-event="cta_click"
-          data-track-category="experiences"
-          data-track-label={`book_${exp.id}`}
+          size="full"
+          trackEvent="cta_click"
+          trackCategory="experiences"
+          trackLabel={`book_${exp.id}`}
         >
           Reserve This Experience
-        </Link>
+        </WineButton>
       </div>
     </div>
   );

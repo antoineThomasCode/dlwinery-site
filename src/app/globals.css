@@ -107,6 +107,12 @@
   --color-copper: #A8653C;
   --color-ember: #C4713B;
 
+  /* Wine Button — living wine-red on dark surface */
+  --color-wine-base: #1A0A10;
+  --color-wine-deep: #4A0E1B;
+  --color-wine-living: #8B1A2B;
+  --color-wine-luminous: #C41E3A;
+
   /* Neutrals */
   --color-black-warm: #1C1A17;
   --color-stone: #6B6560;
@@ -788,6 +794,72 @@ html.lenis, html.lenis body {
   }
 }
 
+/* ═══════════════════════════════════════════
+   Wine Button — Living wine-red reflections
+   on a dark surface, like light on wine.
+   ═══════════════════════════════════════════ */
+
+@keyframes wine-drift-1 {
+  0%, 100% { background-position: 30% 40%; }
+  25%      { background-position: 55% 30%; }
+  50%      { background-position: 70% 60%; }
+  75%      { background-position: 40% 65%; }
+}
+
+@keyframes wine-drift-2 {
+  0%, 100% { background-position: 65% 55%; }
+  33%      { background-position: 35% 70%; }
+  66%      { background-position: 50% 35%; }
+}
+
+@keyframes wine-pulse-mobile {
+  0%, 100% { opacity: 0.18; background-position: 40% 50%; }
+  50%      { opacity: 0.3; background-position: 60% 50%; }
+}
+
+.wine-button {
+  background-color: var(--color-wine-base);
+}
+
+.wine-gradient-deep {
+  background: radial-gradient(ellipse 80% 70% at 30% 40%, var(--color-wine-deep) 0%, transparent 70%);
+  background-size: 200% 200%;
+  animation: wine-drift-1 20s ease-in-out infinite;
+  opacity: 0.35;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: background-position;
+}
+
+.wine-gradient-living {
+  background: radial-gradient(ellipse 60% 55% at 65% 55%, var(--color-wine-living) 0%, transparent 65%);
+  background-size: 200% 200%;
+  animation: wine-drift-2 14s ease-in-out infinite;
+  opacity: 0.25;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: background-position;
+}
+
+.wine-gradient-mobile {
+  background: radial-gradient(ellipse 50% 45% at 50% 50%, var(--color-wine-living) 0%, transparent 70%);
+  background-size: 200% 200%;
+  animation: wine-pulse-mobile 8s ease-in-out infinite;
+  will-change: background-position, opacity;
+}
+
+.wine-button:hover .wine-gradient-deep {
+  opacity: 0.55;
+}
+.wine-button:hover .wine-gradient-living {
+  opacity: 0.45;
+}
+
+@media (pointer: coarse) {
+  .wine-button:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .shimmer-text,
   .shimmer-text-light,
@@ -817,6 +889,12 @@ html.lenis, html.lenis body {
   .btn-text-link::after,
   .link-underline::after {
     transition: none;
+  }
+  .wine-gradient-deep,
+  .wine-gradient-living,
+  .wine-gradient-mobile {
+    animation: none !important;
+    background-position: 50% 50% !important;
   }
   /* Disable Lenis smooth scroll */
   .lenis.lenis-smooth {

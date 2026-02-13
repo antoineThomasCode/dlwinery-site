@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { WineButton } from "@/components/shared/wine-button";
 
 export function StickyMobileCta() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Show after scrolling past the hero (100vh)
     const handleScroll = () => {
       setVisible(window.scrollY > window.innerHeight * 0.8);
     };
@@ -29,15 +28,15 @@ export function StickyMobileCta() {
           style={{ bottom: "calc(64px + env(safe-area-inset-bottom, 0px))" }}
         >
           <div className="px-4 pb-2">
-            <Link
+            <WineButton
               href="/experiences"
-              className="flex items-center justify-center w-full py-3 bg-pourpre-deep text-warm-white text-[11px] tracking-[0.15em] uppercase font-body font-medium shadow-lg hover:bg-pourpre transition-colors"
-              data-track-event="cta_click"
-              data-track-category="sticky_mobile"
-              data-track-label="book_tasting"
+              size="full"
+              trackEvent="cta_click"
+              trackCategory="sticky_mobile"
+              trackLabel="book_tasting"
             >
               Book a Tasting
-            </Link>
+            </WineButton>
           </div>
         </motion.div>
       )}
