@@ -5,6 +5,7 @@ import { SectionDivider } from "@/components/shared/section-divider";
 import { FrenchText } from "@/components/shared/french-text";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
+import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
 import { Star } from "lucide-react";
 
 const testimonials = [
@@ -51,9 +52,9 @@ export function TestimonialsSection() {
             <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
               <FrenchText>Santé</FrenchText>
             </p>
-            <h2 className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-4 sm:mb-5 leading-tight">
-              <span className="shimmer-text">What Our Guests Say</span>
-            </h2>
+            <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-4 sm:mb-5 leading-tight">
+              <LineMaskLine><span className="shimmer-text">What Our Guests Say</span></LineMaskLine>
+            </LineMaskReveal>
             <SectionDivider />
           </div>
         </ScrollReveal>

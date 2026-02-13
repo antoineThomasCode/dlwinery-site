@@ -8,6 +8,8 @@ import { SectionDivider } from "@/components/shared/section-divider";
 import { FrenchText } from "@/components/shared/french-text";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
+import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
+import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { Clock, Users, ArrowRight } from "lucide-react";
 
 const experiences = [
@@ -67,9 +69,9 @@ export function ExperiencesSection() {
             <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
               <FrenchText>Dégustation</FrenchText>
             </p>
-            <h2 className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-4 sm:mb-5 leading-tight">
-              <span className="shimmer-text">Your Tasting Awaits</span>
-            </h2>
+            <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-4 sm:mb-5 leading-tight">
+              <LineMaskLine><span className="shimmer-text">Your Tasting Awaits</span></LineMaskLine>
+            </LineMaskReveal>
             <p className="text-stone text-[13px] sm:text-sm md:text-base max-w-lg mx-auto leading-relaxed">
               Choose your experience and let us take care of the rest.
             </p>
@@ -123,8 +125,8 @@ export function ExperiencesSection() {
 function ExperienceCard({ exp }: { exp: typeof experiences[number] }) {
   return (
     <div className={`card-heritage group overflow-hidden bg-warm-white rounded-none h-full flex flex-col ${"featured" in exp && exp.featured ? "md:-mt-2 md:mb-2 md:shadow-lg" : ""}`}>
-      {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden">
+      {/* Image — clip-path reveal */}
+      <ClipPathReveal direction="up" duration={1.1} className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={exp.image}
           alt={exp.name}
@@ -137,7 +139,7 @@ function ExperienceCard({ exp }: { exp: typeof experiences[number] }) {
           ${exp.price}
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
-      </div>
+      </ClipPathReveal>
 
       {/* Content */}
       <div className="p-5 sm:p-6 flex flex-col flex-1">

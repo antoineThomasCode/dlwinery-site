@@ -8,6 +8,8 @@ import { SectionDivider } from "@/components/shared/section-divider";
 import { FrenchText } from "@/components/shared/french-text";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
+import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
+import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { Calendar, ArrowRight } from "lucide-react";
 
 const events = [
@@ -63,9 +65,9 @@ export function EventsSection() {
             <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
               <FrenchText>Nos Événements</FrenchText>
             </p>
-            <h2 className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-4 sm:mb-5 leading-tight">
-              <span className="shimmer-text">Gather. Taste. Celebrate.</span>
-            </h2>
+            <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-olive font-light mb-4 sm:mb-5 leading-tight">
+              <LineMaskLine><span className="shimmer-text">Gather. Taste. Celebrate.</span></LineMaskLine>
+            </LineMaskReveal>
             <p className="text-stone text-[13px] sm:text-sm md:text-base max-w-lg mx-auto leading-relaxed">
               From intimate tastings to lively festivals, there&apos;s always something happening at Domaine LeSeurre.
             </p>
@@ -115,7 +117,7 @@ export function EventsSection() {
 function EventCard({ event }: { event: typeof events[number] }) {
   return (
     <div className="card-heritage group overflow-hidden bg-cream rounded-none h-full flex flex-col">
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <ClipPathReveal direction="up" duration={1.1} className="relative aspect-[16/10] overflow-hidden">
         <Image
           src={event.image}
           alt={event.title}
@@ -133,7 +135,7 @@ function EventCard({ event }: { event: typeof events[number] }) {
           </div>
         )}
         <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/15 to-transparent" />
-      </div>
+      </ClipPathReveal>
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-center gap-2 text-[11px] text-stone/60 mb-3">
           <Calendar className="w-3.5 h-3.5 text-gold/50" />

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { MagneticButton } from "@/components/shared/magnetic-button";
 
 export function HeroSection() {
   return (
@@ -96,24 +97,28 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0"
         >
-          <Link
-            href="/experiences"
-            className="btn-cta-primary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.2em] uppercase font-heading rounded-none"
-            data-track-event="cta_click"
-            data-track-category="hero"
-            data-track-label="book_tasting"
-          >
-            Book a Tasting
-          </Link>
-          <Link
-            href="/wines"
-            className="btn-cta-secondary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.2em] uppercase font-heading rounded-none"
-            data-track-event="cta_click"
-            data-track-category="hero"
-            data-track-label="explore_wines"
-          >
-            Explore Our Wines
-          </Link>
+          <MagneticButton>
+            <Link
+              href="/experiences"
+              className="btn-cta-primary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.2em] uppercase font-heading rounded-none"
+              data-track-event="cta_click"
+              data-track-category="hero"
+              data-track-label="book_tasting"
+            >
+              Book a Tasting
+            </Link>
+          </MagneticButton>
+          <MagneticButton>
+            <Link
+              href="/wines"
+              className="btn-cta-secondary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.2em] uppercase font-heading rounded-none"
+              data-track-event="cta_click"
+              data-track-category="hero"
+              data-track-label="explore_wines"
+            >
+              Explore Our Wines
+            </Link>
+          </MagneticButton>
         </motion.div>
       </div>
 

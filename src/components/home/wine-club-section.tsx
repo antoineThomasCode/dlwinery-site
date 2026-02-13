@@ -8,6 +8,9 @@ import { SectionDivider } from "@/components/shared/section-divider";
 import { FrenchText } from "@/components/shared/french-text";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
+import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
+import { ParallaxImage } from "@/components/shared/parallax-image";
+import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { Wine, Gift, Star, Truck, ArrowRight } from "lucide-react";
 
 const benefits = [
@@ -22,14 +25,14 @@ export function WineClubSection() {
 
   return (
     <section ref={sectionRef} className="relative py-[var(--section-gap)] overflow-hidden">
-      {/* Background */}
+      {/* Background — parallax */}
       <div className="absolute inset-0 -z-10">
-        <Image
+        <ParallaxImage
           src="/images/club-love-story.webp"
           alt="Wine Club Le Cercle"
-          fill
-          className="object-cover"
           sizes="100vw"
+          className="absolute inset-0"
+          speed={0.08}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-olive-deep/90 via-black/60 to-pourpre-deep/70" />
         {/* Scroll-triggered blobs */}
@@ -53,11 +56,10 @@ export function WineClubSection() {
               <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
                 <FrenchText>Le Cercle</FrenchText>
               </p>
-              <h2 className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] font-light mb-2 leading-tight">
-                <span className="shimmer-text-light">Join Our</span>
-                <br />
-                <span className="shimmer-text-light italic">Wine Club</span>
-              </h2>
+              <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] font-light mb-2 leading-tight">
+                <LineMaskLine><span className="shimmer-text-light">Join Our</span></LineMaskLine>
+                <LineMaskLine><span className="shimmer-text-light italic">Wine Club</span></LineMaskLine>
+              </LineMaskReveal>
               <SectionDivider variant="light" className="justify-start mb-6 sm:mb-7" />
               <p className="text-warm-white/55 text-[13px] sm:text-sm md:text-base leading-relaxed mb-8 max-w-md">
                 Exclusive wines. Private events. A taste of France, delivered to your door three times a year.
@@ -110,7 +112,7 @@ export function WineClubSection() {
           {/* Right: Image card */}
           <ScrollReveal delay={0.2} direction="right">
             <div className="relative hidden sm:block">
-              <div className="relative aspect-[3/4] rounded-none overflow-hidden shadow-2xl">
+              <ClipPathReveal direction="right" duration={1.3} className="relative aspect-[3/4] rounded-none overflow-hidden shadow-2xl">
                 <Image
                   src="/images/wine-club-1.webp"
                   alt="Wine Club members enjoying a private tasting"
@@ -118,7 +120,7 @@ export function WineClubSection() {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-              </div>
+              </ClipPathReveal>
               {/* Floating card */}
               <div className="absolute -bottom-6 -left-4 sm:-left-8 bg-warm-white rounded-none p-5 shadow-xl border-l-2 border-gold/30">
                 <p className="text-olive font-heading text-3xl font-semibold">$0</p>

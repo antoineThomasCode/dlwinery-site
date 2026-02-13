@@ -6,17 +6,21 @@ import { StorySection } from "@/components/home/story-section";
 import { EventsSection } from "@/components/home/events-section";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { CtaSection } from "@/components/home/cta-section";
+import { TrustStrip } from "@/components/home/trust-strip";
+import { VisitInfo } from "@/components/home/visit-info";
 
 export default function HomePage() {
   return (
     <main>
       <HeroSection />
       <WelcomeBanner />
-      <ExperiencesSection />
-      <WineClubSection />
       <StorySection />
-      <EventsSection />
+      <TrustStrip />
+      <ExperiencesSection />
       <TestimonialsSection />
+      <WineClubSection />
+      <EventsSection />
+      <VisitInfo />
       <CtaSection />
     </main>
   );
