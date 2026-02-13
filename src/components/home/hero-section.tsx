@@ -90,36 +90,66 @@ export function HeroSection() {
           </span>
         </h1>
 
+        {/* Mobile: staggered/quinconce layout, Desktop: side by side */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.3, ease: LUXURY_EASE }}
-          className="flex flex-row gap-2.5 sm:gap-4 justify-center px-5 sm:px-0"
+          className="hidden sm:flex flex-row gap-4 justify-center"
         >
           <MagneticButton>
             <Link
               href="/experiences"
-              className="btn-cta-primary inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 sm:px-12 py-3.5 sm:py-4 text-[10px] sm:text-[13px] tracking-[0.12em] sm:tracking-[0.15em] uppercase font-body font-medium rounded-none whitespace-nowrap"
+              className="btn-cta-primary inline-flex items-center justify-center gap-2 px-12 py-4 text-[13px] tracking-[0.15em] uppercase font-body font-medium rounded-none whitespace-nowrap"
               data-track-event="cta_click"
               data-track-category="hero"
               data-track-label="book_tasting"
             >
-              <WineIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <WineIcon className="w-4 h-4" />
               Book a Tasting
             </Link>
           </MagneticButton>
           <MagneticButton>
             <Link
               href="/wines"
-              className="btn-cta-secondary inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 sm:px-12 py-3.5 sm:py-4 text-[10px] sm:text-[13px] tracking-[0.12em] sm:tracking-[0.15em] uppercase font-body font-medium rounded-none whitespace-nowrap"
+              className="btn-cta-secondary inline-flex items-center justify-center gap-2 px-12 py-4 text-[13px] tracking-[0.15em] uppercase font-body font-medium rounded-none whitespace-nowrap"
               data-track-event="cta_click"
               data-track-category="hero"
               data-track-label="explore_wines"
             >
               Explore Our Wines
-              <ArrowRightIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <ArrowRightIcon className="w-4 h-4" />
             </Link>
           </MagneticButton>
+        </motion.div>
+
+        {/* Mobile staggered — quinconce diagonal */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.3, ease: LUXURY_EASE }}
+          className="flex sm:hidden flex-col items-end gap-3 px-6"
+        >
+          <Link
+            href="/experiences"
+            className="btn-cta-primary inline-flex items-center justify-center gap-1.5 px-6 py-3 text-[10px] tracking-[0.12em] uppercase font-body font-medium rounded-none whitespace-nowrap mr-0"
+            data-track-event="cta_click"
+            data-track-category="hero"
+            data-track-label="book_tasting"
+          >
+            <WineIcon className="w-3.5 h-3.5" />
+            Book a Tasting
+          </Link>
+          <Link
+            href="/wines"
+            className="btn-cta-secondary inline-flex items-center justify-center gap-1.5 px-6 py-3 text-[10px] tracking-[0.12em] uppercase font-body font-medium rounded-none whitespace-nowrap self-start"
+            data-track-event="cta_click"
+            data-track-category="hero"
+            data-track-label="explore_wines"
+          >
+            Explore Our Wines
+            <ArrowRightIcon className="w-3.5 h-3.5" />
+          </Link>
         </motion.div>
       </div>
 
