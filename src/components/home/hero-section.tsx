@@ -128,11 +128,11 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.3, ease: LUXURY_EASE }}
-          className="flex sm:hidden flex-col items-end gap-3 px-6"
+          className="flex sm:hidden flex-col items-start gap-3 px-4"
         >
           <Link
             href="/experiences"
-            className="btn-cta-primary inline-flex items-center justify-center gap-1.5 px-6 py-3 text-[10px] tracking-[0.12em] uppercase font-body font-medium rounded-none whitespace-nowrap mr-0"
+            className="btn-cta-primary inline-flex items-center justify-center gap-1.5 px-6 py-3 text-[10px] tracking-[0.12em] uppercase font-body font-medium rounded-none whitespace-nowrap"
             data-track-event="cta_click"
             data-track-category="hero"
             data-track-label="book_tasting"
@@ -142,7 +142,7 @@ export function HeroSection() {
           </Link>
           <Link
             href="/wines"
-            className="btn-cta-secondary inline-flex items-center justify-center gap-1.5 px-6 py-3 text-[10px] tracking-[0.12em] uppercase font-body font-medium rounded-none whitespace-nowrap self-start"
+            className="btn-cta-secondary inline-flex items-center justify-center gap-1.5 px-6 py-3 text-[10px] tracking-[0.12em] uppercase font-body font-medium rounded-none whitespace-nowrap self-end"
             data-track-event="cta_click"
             data-track-category="hero"
             data-track-label="explore_wines"
