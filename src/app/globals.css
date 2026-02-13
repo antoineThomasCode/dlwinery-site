@@ -77,20 +77,20 @@
   --color-warm-white: #FEFCF7;
   --color-parchment: #EDE8DB;
 
-  /* Primary — Noir Profond with wine warmth (headings, body text) */
-  --color-olive: #2A1F1F;
-  --color-olive-deep: #1C1A17;
-  --color-olive-light: #4A1C28;
+  /* Primary — Vert profond (headings, body text, footer) */
+  --color-olive: #26321B;
+  --color-olive-deep: #1A2413;
+  --color-olive-light: #3A4D2C;
 
-  /* Accent — Or Royal (luminous, warm, regal) */
-  --color-gold: #D4AE54;
-  --color-gold-light: #E2C06A;
-  --color-gold-dark: #B8922E;
+  /* Accent — Or chaud (luminous, warm) */
+  --color-gold: #D7A45E;
+  --color-gold-light: #E4BB7A;
+  --color-gold-dark: #B8883A;
 
-  /* Wine — Pourpre (mid-tone accent) */
-  --color-pourpre: #6B2D3E;
-  --color-pourpre-deep: #4A1C28;
-  --color-pourpre-light: #8B3D4E;
+  /* Accent — Vert (mid-tone accent, replaces pourpre) */
+  --color-pourpre: #3A4D2C;
+  --color-pourpre-deep: #26321B;
+  --color-pourpre-light: #4E6840;
 
   /* Legacy compat */
   --color-bordeaux: var(--color-pourpre);
@@ -212,12 +212,12 @@
 
 .gold-line {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(196, 154, 60, 0.5) 30%, rgba(196, 154, 60, 0.7) 50%, rgba(196, 154, 60, 0.5) 70%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(215, 164, 94, 0.5) 30%, rgba(215, 164, 94, 0.7) 50%, rgba(215, 164, 94, 0.5) 70%, transparent 100%);
 }
 
 .gold-line-thin {
   height: 0.5px;
-  background: linear-gradient(90deg, transparent 0%, rgba(196, 154, 60, 0.3) 30%, rgba(196, 154, 60, 0.45) 50%, rgba(196, 154, 60, 0.3) 70%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(215, 164, 94, 0.3) 30%, rgba(215, 164, 94, 0.45) 50%, rgba(215, 164, 94, 0.3) 70%, transparent 100%);
 }
 
 .text-gold-gradient {
@@ -236,17 +236,17 @@
   50%      { background-position: 0% 0; }
 }
 
-/* Dark text shimmer — warm black base, pourpre + gold sweep accents */
+/* Dark text shimmer — deep green base, vert + gold sweep accents */
 .shimmer-text {
   background: linear-gradient(
     105deg,
-    #2A1F1F 0%,
-    #2A1F1F 35%,
-    #4A1C28 42%,
-    #D4AE54 50%,
-    #4A1C28 58%,
-    #2A1F1F 65%,
-    #2A1F1F 100%
+    #26321B 0%,
+    #26321B 35%,
+    #3A4D2C 42%,
+    #D7A45E 50%,
+    #3A4D2C 58%,
+    #26321B 65%,
+    #26321B 100%
   );
   background-size: 250% 100%;
   -webkit-background-clip: text;
@@ -262,7 +262,7 @@
     #FFFFFF 0%,
     #FFFFFF 35%,
     #EDD9B3 42%,
-    #D4AE54 50%,
+    #D7A45E 50%,
     #EDD9B3 58%,
     #FFFFFF 65%,
     #FFFFFF 100%
@@ -299,9 +299,9 @@
 
 .shimmer-hero {
   background:
-    radial-gradient(ellipse 120% 80% at 30% 50%, rgba(212, 174, 84, 0.35) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 90% at 70% 30%, rgba(196, 154, 60, 0.25) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 110% at 50% 70%, rgba(237, 217, 179, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 80% at 30% 50%, rgba(215, 164, 94, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 90% at 70% 30%, rgba(184, 136, 58, 0.25) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 110% at 50% 70%, rgba(228, 187, 122, 0.3) 0%, transparent 50%),
     linear-gradient(to right, #FFFFFF, #FFFFFF);
   background-size: 300% 300%, 250% 250%, 280% 280%, 100% 100%;
   -webkit-background-clip: text;
@@ -394,34 +394,34 @@
   contain: layout style;
 }
 
-/* Burgundy blob — warm wine tones */
+/* Green blob — deep forest tones */
 .blob-pourpre {
-  background: radial-gradient(ellipse 110% 100%, rgba(107, 45, 62, 0.35) 0%, rgba(74, 28, 40, 0.12) 45%, transparent 75%);
+  background: radial-gradient(ellipse 110% 100%, rgba(58, 77, 44, 0.35) 0%, rgba(38, 50, 27, 0.12) 45%, transparent 75%);
   animation: blob-drift-1 35s ease-in-out infinite;
 }
 
 /* Gold blob — warm luminous gold */
 .blob-gold {
-  background: radial-gradient(ellipse 100% 110%, rgba(196, 154, 60, 0.25) 0%, rgba(163, 126, 40, 0.08) 45%, transparent 75%);
+  background: radial-gradient(ellipse 100% 110%, rgba(215, 164, 94, 0.25) 0%, rgba(184, 136, 58, 0.08) 45%, transparent 75%);
   animation: blob-drift-2 28s ease-in-out infinite;
 }
 
 /* Dark blob — adds depth/shadow movement */
 .blob-dark {
-  background: radial-gradient(ellipse 100% 105%, rgba(28, 26, 23, 0.20) 0%, rgba(28, 26, 23, 0.06) 45%, transparent 75%);
+  background: radial-gradient(ellipse 100% 105%, rgba(26, 36, 19, 0.20) 0%, rgba(26, 36, 19, 0.06) 45%, transparent 75%);
   animation: blob-drift-3 40s ease-in-out infinite;
   animation-delay: -18s;
 }
 
-/* Olive blob — now pourpre-tinted (mapped from olive to deep wine) */
+/* Olive blob — deep green */
 .blob-olive {
-  background: radial-gradient(ellipse 115% 95%, rgba(74, 28, 40, 0.28) 0%, rgba(107, 45, 62, 0.10) 45%, transparent 75%);
+  background: radial-gradient(ellipse 115% 95%, rgba(38, 50, 27, 0.28) 0%, rgba(58, 77, 44, 0.10) 45%, transparent 75%);
   animation: blob-drift-2 32s ease-in-out infinite;
 }
 
 /* Champagne blob — warm golden cream */
 .blob-champagne {
-  background: radial-gradient(ellipse 105% 100%, rgba(237, 217, 179, 0.35) 0%, rgba(212, 174, 84, 0.12) 45%, transparent 75%);
+  background: radial-gradient(ellipse 105% 100%, rgba(228, 187, 122, 0.35) 0%, rgba(215, 164, 94, 0.12) 45%, transparent 75%);
   animation: blob-drift-1 30s ease-in-out infinite;
   animation-delay: -12s;
 }
@@ -459,7 +459,7 @@
 }
 .btn-cta-primary:hover {
   color: var(--color-pourpre-deep) !important;
-  box-shadow: 0 8px 30px rgba(212, 174, 84, 0.2);
+  box-shadow: 0 8px 30px rgba(215, 164, 94, 0.2);
 }
 .btn-cta-primary:hover::before {
   transform: scaleX(1);
@@ -532,7 +532,7 @@
 }
 .btn-header-cta:hover {
   color: var(--color-pourpre-deep) !important;
-  box-shadow: 0 4px 16px rgba(212, 174, 84, 0.2);
+  box-shadow: 0 4px 16px rgba(215, 164, 94, 0.2);
 }
 .btn-header-cta:hover::before {
   transform: scaleX(1);
@@ -563,7 +563,7 @@
 }
 .btn-shimmer-gold:hover {
   color: var(--color-warm-white);
-  box-shadow: 0 8px 24px rgba(74, 28, 40, 0.15);
+  box-shadow: 0 8px 24px rgba(38, 50, 27, 0.15);
 }
 .btn-shimmer-gold:hover::before {
   transform: scaleX(1);
@@ -633,11 +633,11 @@
 
 .card-heritage {
   position: relative;
-  border: 0.5px solid rgba(196, 154, 60, 0.1);
+  border: 0.5px solid rgba(215, 164, 94, 0.1);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .card-heritage:hover {
-  border-color: rgba(196, 154, 60, 0.2);
+  border-color: rgba(215, 164, 94, 0.2);
   box-shadow: 0 12px 40px rgba(28, 26, 23, 0.08);
   transform: translateY(-2px);
 }
@@ -657,11 +657,11 @@
   background: rgba(254, 252, 247, 0.92);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-top: 0.5px solid rgba(196, 154, 60, 0.15);
+  border-top: 0.5px solid rgba(215, 164, 94, 0.15);
 }
 
 ::selection {
-  background-color: rgba(107, 45, 62, 0.15);
+  background-color: rgba(58, 77, 44, 0.15);
   color: var(--color-pourpre-deep);
 }
 
@@ -759,7 +759,7 @@ html.lenis, html.lenis body {
   background: rgba(254, 252, 247, 0.92);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-top: 0.5px solid rgba(196, 154, 60, 0.15);
+  border-top: 0.5px solid rgba(215, 164, 94, 0.15);
 }
 
 /* ═══════════════════════════════════════════

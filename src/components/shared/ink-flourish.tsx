@@ -15,7 +15,7 @@ export function InkFlourish({ className = "" }: { className?: string }) {
         {/* Vine tendril — left curl */}
         <motion.path
           d="M15 28 C15 20, 20 16, 25 14 C30 12, 32 8, 30 4"
-          stroke="rgba(196,154,60,0.4)"
+          stroke="rgba(215,164,94,0.4)"
           strokeWidth="1.2"
           strokeLinecap="round"
           fill="none"
@@ -30,7 +30,7 @@ export function InkFlourish({ className = "" }: { className?: string }) {
         {/* Central stem */}
         <motion.path
           d="M30 4 C32 8, 35 12, 35 16 C35 20, 36 24, 40 28"
-          stroke="rgba(196,154,60,0.4)"
+          stroke="rgba(215,164,94,0.4)"
           strokeWidth="1.2"
           strokeLinecap="round"
           fill="none"
@@ -45,7 +45,7 @@ export function InkFlourish({ className = "" }: { className?: string }) {
         {/* Right curl */}
         <motion.path
           d="M40 28 C44 24, 48 20, 50 16 C52 12, 48 8, 55 6"
-          stroke="rgba(196,154,60,0.4)"
+          stroke="rgba(215,164,94,0.4)"
           strokeWidth="1.2"
           strokeLinecap="round"
           fill="none"
@@ -60,7 +60,7 @@ export function InkFlourish({ className = "" }: { className?: string }) {
         {/* Small leaf/grape accent — left */}
         <motion.path
           d="M22 16 C20 14, 18 16, 20 18"
-          stroke="rgba(196,154,60,0.3)"
+          stroke="rgba(215,164,94,0.3)"
           strokeWidth="0.8"
           strokeLinecap="round"
           fill="none"
@@ -75,7 +75,7 @@ export function InkFlourish({ className = "" }: { className?: string }) {
         {/* Small leaf/grape accent — right */}
         <motion.path
           d="M48 18 C50 16, 52 18, 50 20"
-          stroke="rgba(196,154,60,0.3)"
+          stroke="rgba(215,164,94,0.3)"
           strokeWidth="0.8"
           strokeLinecap="round"
           fill="none"

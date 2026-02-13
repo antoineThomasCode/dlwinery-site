@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 
 /* ──────────────────────────────────────────
-   Blob configuration — Triptique: Noir · Pourpre · Or
+   Blob configuration — Triptique: Noir · Vert · Or
    3 very stretched ellipses that intermingle when the
    cursor moves. Each blob has different spring physics
    so they separate, overlap, and blend as they rejoin.
@@ -40,10 +40,10 @@ const BLOBS: BlobConfig[] = [
     idle: { x: [-60, 60], y: [-30, 30], rotate: [-12, -4], duration: 20 },
   },
   {
-    // POURPRE — wine-red accent, bleeds through the noir
+    // VERT — deep green accent, bleeds through the noir
     width: 750,
     height: 380,
-    gradient: "radial-gradient(ellipse 100% 100%, rgba(74, 28, 40, 0.35) 0%, rgba(107, 45, 62, 0.15) 40%, transparent 70%)",
+    gradient: "radial-gradient(ellipse 100% 100%, rgba(38, 50, 27, 0.35) 0%, rgba(58, 77, 44, 0.15) 40%, transparent 70%)",
     spring: { damping: 40, stiffness: 100, mass: 1.5 },
     offset: { x: -120, y: 60 },
     blur: 120,
@@ -54,7 +54,7 @@ const BLOBS: BlobConfig[] = [
     // OR — luminous gold glow, smallest but most visible
     width: 650,
     height: 320,
-    gradient: "radial-gradient(ellipse 100% 100%, rgba(212, 174, 84, 0.18) 0%, rgba(184, 146, 46, 0.08) 40%, transparent 70%)",
+    gradient: "radial-gradient(ellipse 100% 100%, rgba(215, 164, 94, 0.18) 0%, rgba(184, 136, 58, 0.08) 40%, transparent 70%)",
     spring: { damping: 50, stiffness: 70, mass: 2.0 },
     offset: { x: 100, y: -70 },
     blur: 140,

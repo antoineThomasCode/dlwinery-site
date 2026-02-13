@@ -39,7 +39,7 @@ export function HeroSection() {
 
       {/* ── Layer 1: Static gradient — black dominant, pourpre breathes through ── */}
       <div className="absolute inset-0" style={{ zIndex: 1 }}>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-[rgba(42,20,24,0.25)] to-black/75" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-[rgba(26,36,19,0.25)] to-black/75" />
       </div>
 
       {/* ── Layer 2: Multiply blend tint — noir profond ── */}
@@ -47,7 +47,7 @@ export function HeroSection() {
         className="absolute inset-0"
         style={{
           zIndex: 2,
-          backgroundColor: "rgba(28, 22, 22, 0.35)",
+          backgroundColor: "rgba(22, 28, 18, 0.35)",
           mixBlendMode: "multiply",
         }}
       />

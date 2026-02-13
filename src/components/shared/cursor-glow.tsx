@@ -5,16 +5,16 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const GLOW_COLORS = {
   gold: {
-    inner: "rgba(196,154,60,0.12)",
-    outer: "rgba(196,154,60,0.04)",
+    inner: "rgba(215,164,94,0.12)",
+    outer: "rgba(215,164,94,0.04)",
   },
   champagne: {
     inner: "rgba(237,217,179,0.15)",
     outer: "rgba(237,217,179,0.05)",
   },
   burgundy: {
-    inner: "rgba(107,45,62,0.10)",
-    outer: "rgba(107,45,62,0.03)",
+    inner: "rgba(58,77,44,0.10)",
+    outer: "rgba(58,77,44,0.03)",
   },
 };
 
