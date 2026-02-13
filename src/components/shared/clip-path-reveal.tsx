@@ -33,7 +33,7 @@ export function ClipPathReveal({
     <motion.div
       initial={{ clipPath: clip.hidden }}
       whileInView={{ clipPath: clip.visible }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, amount: 0.05 }}
       transition={{ duration, delay, ease: LUXURY_EASE }}
       className={className}
     >
