@@ -7,6 +7,15 @@ import { SplitTextHero } from "@/components/shared/split-text-hero";
 import { HeroOverlayBlobs } from "./hero-overlay-blobs";
 import { WineIcon } from "@/components/ui/wine-icon";
 
+function ArrowRightIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className}>
+      <path d="M3.75 12H20.25" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M13.5 5.25L20.25 12L13.5 18.75" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function HeroSection() {
@@ -22,6 +31,7 @@ export function HeroSection() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
           poster="/images/winery-lake-view.webp"
+          onLoadedMetadata={(e) => { e.currentTarget.currentTime = 3; }}
         >
           <source src="/images/hero-video.webm" type="video/webm" />
         </video>
@@ -84,7 +94,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.3, ease: LUXURY_EASE }}
-          className="flex flex-row gap-2.5 sm:gap-4 justify-center px-2 sm:px-0"
+          className="flex flex-row gap-2.5 sm:gap-4 justify-center px-5 sm:px-0"
         >
           <MagneticButton>
             <Link
@@ -101,12 +111,13 @@ export function HeroSection() {
           <MagneticButton>
             <Link
               href="/wines"
-              className="btn-cta-secondary inline-flex items-center justify-center px-5 sm:px-12 py-3.5 sm:py-4 text-[10px] sm:text-[13px] tracking-[0.12em] sm:tracking-[0.15em] uppercase font-body font-medium rounded-none whitespace-nowrap"
+              className="btn-cta-secondary inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 sm:px-12 py-3.5 sm:py-4 text-[10px] sm:text-[13px] tracking-[0.12em] sm:tracking-[0.15em] uppercase font-body font-medium rounded-none whitespace-nowrap"
               data-track-event="cta_click"
               data-track-category="hero"
               data-track-label="explore_wines"
             >
               Explore Our Wines
+              <ArrowRightIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </Link>
           </MagneticButton>
         </motion.div>
