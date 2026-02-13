@@ -3,6 +3,7 @@
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
+import { ChatConcierge } from "@/components/home/chat-concierge";
 
 export function WelcomeBanner() {
   const { sectionRef, isVisible } = useSectionBlobs();
@@ -39,6 +40,7 @@ export function WelcomeBanner() {
             art of French winemaking to the heart of the Finger Lakes. Come for the
             wine, stay for the view.
           </p>
+          <ChatConcierge welcomeSectionRef={sectionRef} />
         </div>
       </ScrollReveal>
     </section>

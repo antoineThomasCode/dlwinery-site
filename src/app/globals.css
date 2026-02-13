@@ -731,6 +731,38 @@ html.lenis, html.lenis body {
 }
 
 /* ═══════════════════════════════════════════
+   Chat Concierge — Typing dots + sticky glass
+   ═══════════════════════════════════════════ */
+
+@keyframes typing-bounce {
+  0%, 60%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  30% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+.typing-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+  opacity: 0.6;
+  animation: typing-bounce 1.2s ease-in-out infinite;
+}
+
+.chat-sticky-glass {
+  background: rgba(254, 252, 247, 0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 0.5px solid rgba(196, 154, 60, 0.15);
+}
+
+/* ═══════════════════════════════════════════
    Micro-interactions — Mobile Touch Feedback
    ═══════════════════════════════════════════ */
 

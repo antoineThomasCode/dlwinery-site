@@ -61,7 +61,7 @@ export function HeroSection() {
             Finger Lakes, New York
           </p>
           <p className="text-warm-white/40 text-[9px] sm:text-[10px] tracking-[0.25em] uppercase font-body">
-            Est. 2012 &middot; 6th Generation &middot; Champagne Heritage
+            Est. 2012 &middot; 6th Generation<br className="sm:hidden" /> &middot; Champagne Heritage
           </p>
         </motion.div>
 
@@ -93,32 +93,21 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4, ease: LUXURY_EASE }}
-          className="font-heading italic text-warm-white/80 text-base sm:text-lg md:text-xl mb-2"
+          className="font-heading italic text-warm-white/80 text-base sm:text-lg md:text-xl mb-8 sm:mb-10"
         >
           Où la France rencontre les Finger Lakes
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5, ease: LUXURY_EASE }}
-          className="text-warm-white/60 text-[13px] sm:text-sm md:text-base mb-10 sm:mb-12 font-body max-w-md mx-auto leading-relaxed"
-        >
-          Six generations of French winemaking tradition.
-          <br className="hidden sm:block" />
-          One unforgettable lakeside experience.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.7, ease: LUXURY_EASE }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0"
+          transition={{ duration: 0.8, delay: 1.6, ease: LUXURY_EASE }}
+          className="flex flex-row gap-2.5 sm:gap-4 justify-center px-2 sm:px-0"
         >
           <MagneticButton>
             <Link
               href="/experiences"
-              className="btn-cta-primary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.15em] uppercase font-body font-medium rounded-none"
+              className="btn-cta-primary inline-flex items-center justify-center px-5 sm:px-12 py-3.5 sm:py-4 text-[10px] sm:text-[13px] tracking-[0.12em] sm:tracking-[0.15em] uppercase font-body font-medium rounded-none whitespace-nowrap"
               data-track-event="cta_click"
               data-track-category="hero"
               data-track-label="book_tasting"
@@ -129,7 +118,7 @@ export function HeroSection() {
           <MagneticButton>
             <Link
               href="/wines"
-              className="btn-cta-secondary inline-flex items-center justify-center min-w-[220px] px-12 py-4 text-[12px] sm:text-[13px] tracking-[0.15em] uppercase font-body font-medium rounded-none"
+              className="btn-cta-secondary inline-flex items-center justify-center px-5 sm:px-12 py-3.5 sm:py-4 text-[10px] sm:text-[13px] tracking-[0.12em] sm:tracking-[0.15em] uppercase font-body font-medium rounded-none whitespace-nowrap"
               data-track-event="cta_click"
               data-track-category="hero"
               data-track-label="explore_wines"
