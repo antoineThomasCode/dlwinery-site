@@ -33,6 +33,10 @@ export function useScrollBlobs(
     const section = sectionRef.current;
     if (!section) return;
 
+    // Skip on mobile — GSAP scrub per scroll pixel is too expensive on touch devices
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouch) return;
+
     // Respect reduced motion
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (motionQuery.matches) return;

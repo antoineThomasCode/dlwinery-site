@@ -106,6 +106,8 @@ export function HeroOverlayBlobs() {
   }, []);
 
   if (prefersReduced) return null;
+  // On mobile, hero blobs are extremely expensive (blur 100-140px + spring physics)
+  if (!hasPointer) return null;
 
   return (
     <motion.div

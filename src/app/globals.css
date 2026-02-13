@@ -768,9 +768,21 @@ html.lenis, html.lenis body {
   .organic-blob {
     filter: blur(60px);
     border-radius: 50%;
+    animation: none !important;
+    will-change: auto;
+    mix-blend-mode: normal;
+    opacity: 0.15;
   }
   .organic-blob:nth-child(n+3) {
     display: none;
+  }
+  /* Disable shimmer animations on mobile — background-clip:text + animation is expensive */
+  .shimmer-text,
+  .shimmer-text-light {
+    animation: none !important;
+  }
+  .shimmer-hero {
+    animation: none !important;
   }
 }
 
