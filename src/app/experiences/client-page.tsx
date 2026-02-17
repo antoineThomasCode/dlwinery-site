@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, useMemo, useCallback, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { SectionDivider } from "@/components/shared/section-divider";
 import { FrenchText } from "@/components/shared/french-text";
@@ -13,11 +14,52 @@ import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reve
 import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { ParallaxImage } from "@/components/shared/parallax-image";
 import { WineIcon } from "@/components/ui/wine-icon";
-import { Clock, Users, Check, ChevronLeft, ChevronRight, CalendarDays, User, Mail, Phone, MessageSquare, ArrowRight } from "lucide-react";
+import {
+  Clock, Users, Check, ChevronLeft, ChevronRight,
+  User, Mail, Phone, MessageSquare, ArrowRight,
+  Minus, Plus, Shield, Star, MapPin, Calendar,
+} from "lucide-react";
 import { experiences, generateTimeSlots } from "@/lib/data/experiences";
 
-type Step = "choose" | "datetime" | "details" | "confirmation";
+type Step = "choose" | "schedule" | "book" | "confirmed";
 
+const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
+
+const stepVariants = {
+  enter: { opacity: 0, y: 24 },
+  center: { opacity: 1, y: 0, transition: { duration: 0.5, ease: LUXURY_EASE } },
+  exit: { opacity: 0, y: -16, transition: { duration: 0.3, ease: LUXURY_EASE } },
+};
+
+/* ═══════════════════════════════════════════
+   Calendar helpers
+   ═══════════════════════════════════════════ */
+function getMonthDays(year: number, month: number) {
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const days: (number | null)[] = Array.from({ length: firstDay }, () => null);
+  for (let d = 1; d <= daysInMonth; d++) days.push(d);
+  return days;
+}
+
+function formatDateISO(year: number, month: number, day: number) {
+  return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+function formatDateDisplay(iso: string) {
+  const d = new Date(iso + "T12:00:00");
+  return d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+}
+
+const MONTH_NAMES = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+const DAY_LABELS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+
+/* ═══════════════════════════════════════════
+   Wrapper with Suspense
+   ═══════════════════════════════════════════ */
 export default function ExperiencesPageWrapper() {
   return (
     <Suspense>
@@ -26,48 +68,85 @@ export default function ExperiencesPageWrapper() {
   );
 }
 
+/* ═══════════════════════════════════════════
+   Main page component
+   ═══════════════════════════════════════════ */
 function ExperiencesPage() {
   const searchParams = useSearchParams();
   const preselect = searchParams.get("select");
 
-  const [step, setStep] = useState<Step>(preselect ? "datetime" : "choose");
+  const [step, setStep] = useState<Step>(preselect ? "schedule" : "choose");
   const [selectedExp, setSelectedExp] = useState(
     preselect ? experiences.find((e) => e.id === preselect) ?? null : null
   );
+  const [guests, setGuests] = useState(2);
+
+  // Calendar
+  const today = useMemo(() => new Date(), []);
+  const [calMonth, setCalMonth] = useState(today.getMonth());
+  const [calYear, setCalYear] = useState(today.getFullYear());
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
-  const [guests, setGuests] = useState(2);
+
+  // Form
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", notes: "" });
   const [submitted, setSubmitted] = useState(false);
 
   const { sectionRef, isVisible } = useSectionBlobs();
 
-  const handleSelectExperience = (exp: typeof experiences[number]) => {
-    setSelectedExp(exp);
-    setStep("datetime");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const todayISO = useMemo(
+    () => formatDateISO(today.getFullYear(), today.getMonth(), today.getDate()),
+    [today]
+  );
 
-  const handleDateNext = () => {
+  const slots = useMemo(() => (selectedDate ? generateTimeSlots(selectedDate) : []), [selectedDate]);
+  const morningSlots = useMemo(() => slots.filter((s) => new Date(s.startAt).getHours() < 12), [slots]);
+  const afternoonSlots = useMemo(() => slots.filter((s) => new Date(s.startAt).getHours() >= 12), [slots]);
+
+  const handleSelectExperience = useCallback((exp: (typeof experiences)[number]) => {
+    setSelectedExp(exp);
+    setStep("schedule");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const handleScheduleNext = useCallback(() => {
     if (selectedDate && selectedSlot) {
-      setStep("details");
+      setStep("book");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  };
+  }, [selectedDate, selectedSlot]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    setStep("confirmation");
+    setStep("confirmed");
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }, []);
 
-  const slots = selectedDate ? generateTimeSlots(selectedDate) : [];
+  const goBack = useCallback((to: Step) => {
+    setStep(to);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const calendarDays = useMemo(() => getMonthDays(calYear, calMonth), [calYear, calMonth]);
+
+  const navigateMonth = useCallback((dir: 1 | -1) => {
+    setCalMonth((m) => {
+      const next = m + dir;
+      if (next < 0) { setCalYear((y) => y - 1); return 11; }
+      if (next > 11) { setCalYear((y) => y + 1); return 0; }
+      return next;
+    });
+  }, []);
+
+  const stepLabels = ["Experience", "Schedule", "Book"];
+  const stepKeys: Step[] = ["choose", "schedule", "book"];
+  const currentStepIndex = step === "confirmed" ? 3 : stepKeys.indexOf(step);
 
   return (
     <main>
-      {/* Hero banner */}
-      <section className="relative h-[50vh] min-h-[360px] flex items-center justify-center overflow-hidden">
+      {/* ── Hero ── */}
+      <section className="relative h-[44vh] min-h-[320px] flex items-center justify-center overflow-hidden">
         <ParallaxImage
           src="/images/experience-tasting-3.webp"
           alt="Tasting experiences at Domaine LeSeurre"
@@ -89,24 +168,37 @@ function ExperiencesPage() {
         </div>
       </section>
 
-      {/* Progress bar */}
-      {step !== "choose" && (
-        <div className="bg-warm-white border-b border-gold/10">
-          <div className="max-w-[var(--max-width)] mx-auto px-6 py-4">
+      {/* ── Progress bar (sticky) ── */}
+      {step !== "choose" && step !== "confirmed" && (
+        <div className="bg-warm-white border-b border-gold/10 sticky top-[60px] z-30">
+          <div className="max-w-[var(--max-width)] mx-auto px-6 py-3">
             <div className="flex items-center justify-center gap-2 sm:gap-4">
-              {(["choose", "datetime", "details", "confirmation"] as Step[]).map((s, i) => {
-                const labels = ["Experience", "Date & Time", "Your Details", "Confirmed"];
-                const stepIndex = ["choose", "datetime", "details", "confirmation"].indexOf(step);
-                const isActive = i <= stepIndex;
+              {stepLabels.map((label, i) => {
+                const isActive = i <= currentStepIndex;
+                const isDone = i < currentStepIndex;
                 return (
-                  <div key={s} className="flex items-center gap-2 sm:gap-4">
-                    {i > 0 && <div className={`w-6 sm:w-10 h-px ${isActive ? "bg-gold" : "bg-gold/15"} transition-colors`} />}
+                  <div key={label} className="flex items-center gap-2 sm:gap-4">
+                    {i > 0 && (
+                      <div className={`w-8 sm:w-12 h-px transition-colors duration-500 ${isActive ? "bg-gold" : "bg-gold/10"}`} />
+                    )}
                     <div className="flex items-center gap-1.5">
-                      <div className={`w-6 h-6 rounded-full text-[10px] font-medium flex items-center justify-center transition-colors ${isActive ? "bg-gold text-pourpre-deep" : "bg-gold/10 text-stone/40"}`}>
-                        {i < stepIndex ? <Check className="w-3 h-3" /> : i + 1}
+                      <div
+                        className={`w-7 h-7 rounded-full text-[10px] font-medium flex items-center justify-center transition-all duration-500 ${
+                          isDone
+                            ? "bg-gold text-pourpre-deep"
+                            : isActive
+                              ? "bg-pourpre-deep text-warm-white"
+                              : "bg-gold/8 text-stone/30"
+                        }`}
+                      >
+                        {isDone ? <Check className="w-3 h-3" /> : i + 1}
                       </div>
-                      <span className={`hidden sm:block text-[11px] tracking-[0.08em] uppercase font-body ${isActive ? "text-pourpre-deep" : "text-stone/40"}`}>
-                        {labels[i]}
+                      <span
+                        className={`hidden sm:block text-[11px] tracking-[0.08em] uppercase font-body transition-colors duration-500 ${
+                          isActive ? "text-pourpre-deep" : "text-stone/30"
+                        }`}
+                      >
+                        {label}
                       </span>
                     </div>
                   </div>
@@ -117,419 +209,734 @@ function ExperiencesPage() {
         </div>
       )}
 
-      {/* Step: Choose experience */}
-      {step === "choose" && (
-        <section ref={sectionRef} className="py-[var(--section-gap)] bg-cream bg-parchment-texture relative overflow-hidden">
-          <SectionBlobs
-            isVisible={isVisible}
-            sectionRef={sectionRef}
-            blobs={[
-              { type: "olive", size: "65%", position: { top: "-10%", left: "-20%" } },
-              { type: "gold", size: "50%", position: { bottom: "-5%", right: "-15%" } },
-            ]}
-            parallax={[{ speed: 0.5 }, { speed: 0.3 }]}
-          />
-          <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
-            <ScrollReveal>
-              <div className="text-center mb-12 sm:mb-16">
-                <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-pourpre-deep font-light mb-4 leading-tight">
-                  <LineMaskLine><span className="shimmer-text">Choose Your Experience</span></LineMaskLine>
-                </LineMaskReveal>
-                <SectionDivider />
-              </div>
-            </ScrollReveal>
+      <AnimatePresence mode="wait">
+        {/* ═══════════════════════════════════════════
+           Step 1 — Choose Experience
+           ═══════════════════════════════════════════ */}
+        {step === "choose" && (
+          <motion.section
+            key="choose"
+            variants={stepVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            ref={sectionRef}
+            className="py-[var(--section-gap)] bg-cream bg-parchment-texture relative overflow-hidden"
+          >
+            <SectionBlobs
+              isVisible={isVisible}
+              sectionRef={sectionRef}
+              blobs={[
+                { type: "olive", size: "65%", position: { top: "-10%", left: "-20%" } },
+                { type: "gold", size: "50%", position: { bottom: "-5%", right: "-15%" } },
+              ]}
+              parallax={[{ speed: 0.5 }, { speed: 0.3 }]}
+            />
+            <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
+              <ScrollReveal>
+                <div className="text-center mb-12 sm:mb-16">
+                  <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-pourpre-deep font-light mb-4 leading-tight">
+                    <LineMaskLine>
+                      <span className="shimmer-text">Choose Your Experience</span>
+                    </LineMaskLine>
+                  </LineMaskReveal>
+                  <SectionDivider />
+                  <p className="text-stone/60 text-sm max-w-lg mx-auto mt-4">
+                    From a relaxed glass on the terrace to an immersive food pairing — every visit tells a story.
+                  </p>
+                </div>
+              </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-              {experiences.map((exp, i) => (
-                <ScrollReveal key={exp.id} delay={i * 0.1}>
-                  <div className="card-heritage group overflow-hidden bg-warm-white rounded-none h-full flex flex-col">
-                    <ClipPathReveal direction="up" duration={1.1} className="relative aspect-[16/10] overflow-hidden">
-                      <Image
-                        src={exp.image!}
-                        alt={exp.name}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                      {exp.price > 0 && (
-                        <div className="absolute top-0 right-0 bg-pourpre-deep/90 text-gold text-sm font-heading font-semibold px-4 py-2">
-                          ${exp.price}<span className="text-gold/50 text-xs">/person</span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                {experiences.map((exp, i) => (
+                  <ScrollReveal key={exp.id} delay={i * 0.1}>
+                    <div className="card-heritage group overflow-hidden bg-warm-white rounded-none h-full flex flex-col">
+                      <ClipPathReveal direction="up" duration={1.1} className="relative aspect-[16/10] overflow-hidden">
+                        <Image
+                          src={exp.image!}
+                          alt={exp.name}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                        {exp.price > 0 && (
+                          <div className="absolute top-0 right-0 bg-pourpre-deep/90 text-gold text-sm font-heading font-semibold px-4 py-2">
+                            ${exp.price}
+                            <span className="text-gold/50 text-xs">/person</span>
+                          </div>
+                        )}
+                        {exp.price === 0 && (
+                          <div className="absolute top-0 right-0 bg-pourpre/90 text-warm-white text-[13px] font-body font-medium px-4 py-2">
+                            Walk-in
+                          </div>
+                        )}
+                        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
+                      </ClipPathReveal>
+
+                      <div className="p-5 sm:p-6 flex flex-col flex-1">
+                        <p className="text-gold/60 text-[10px] tracking-[0.2em] uppercase font-medium mb-1.5">
+                          {exp.subtitle}
+                        </p>
+                        <h3 className="font-heading text-xl sm:text-2xl text-pourpre-deep mb-2.5 leading-tight">
+                          {exp.name}
+                        </h3>
+                        <p className="text-stone text-[13px] sm:text-sm leading-relaxed mb-4">
+                          {exp.description}
+                        </p>
+
+                        <ul className="space-y-1.5 mb-5">
+                          {exp.includes.map((item) => (
+                            <li key={item} className="flex items-start gap-2 text-[12px] text-stone/70">
+                              <Check className="w-3.5 h-3.5 text-gold/50 mt-0.5 flex-shrink-0" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+
+                        <div className="flex items-center gap-4 text-[11px] text-stone/50 mb-5 pb-4 border-b border-gold/8 mt-auto">
+                          <span className="flex items-center gap-1.5">
+                            <Clock className="w-3.5 h-3.5 text-gold/40" />
+                            {exp.duration}
+                          </span>
+                          <span className="flex items-center gap-1.5">
+                            <Users className="w-3.5 h-3.5 text-gold/40" />
+                            Up to {exp.maxGuests}
+                          </span>
+                          {exp.memberPrice === 0 && exp.price > 0 && (
+                            <span className="flex items-center gap-1.5 text-gold">
+                              <Star className="w-3.5 h-3.5" />
+                              Free for members
+                            </span>
+                          )}
                         </div>
-                      )}
-                      {exp.price === 0 && (
-                        <div className="absolute top-0 right-0 bg-pourpre/90 text-warm-white text-[13px] font-body font-medium px-4 py-2">
-                          Walk-in
-                        </div>
-                      )}
-                      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
-                    </ClipPathReveal>
 
-                    <div className="p-5 sm:p-6 flex flex-col flex-1">
-                      <p className="text-gold/60 text-[10px] tracking-[0.2em] uppercase font-medium mb-1.5">
-                        {exp.subtitle}
-                      </p>
-                      <h3 className="font-heading text-xl sm:text-2xl text-pourpre-deep mb-2.5 leading-tight">
-                        {exp.name}
-                      </h3>
-                      <p className="text-stone text-[13px] sm:text-sm leading-relaxed mb-4">
-                        {exp.description}
-                      </p>
-
-                      {/* Includes */}
-                      <ul className="space-y-1.5 mb-5">
-                        {exp.includes.map((item) => (
-                          <li key={item} className="flex items-start gap-2 text-[12px] text-stone/70">
-                            <Check className="w-3.5 h-3.5 text-gold/50 mt-0.5 flex-shrink-0" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-
-                      {/* Meta */}
-                      <div className="flex items-center gap-4 text-[11px] text-stone/50 mb-5 pb-4 border-b border-gold/8 mt-auto">
-                        <span className="flex items-center gap-1.5">
-                          <Clock className="w-3.5 h-3.5 text-gold/40" />
-                          {exp.duration}
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <Users className="w-3.5 h-3.5 text-gold/40" />
-                          Up to {exp.maxGuests}
-                        </span>
+                        {exp.id !== "walk-in" ? (
+                          <button
+                            onClick={() => handleSelectExperience(exp)}
+                            className="w-full flex items-center justify-center gap-2 btn-cta-primary rounded-none h-12 text-[11px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer"
+                          >
+                            <WineIcon className="w-3.5 h-3.5" />
+                            Reserve This Experience
+                          </button>
+                        ) : (
+                          <div className="w-full flex items-center justify-center h-12 text-[11px] tracking-[0.12em] uppercase font-body font-medium text-stone/50 border border-gold/15">
+                            No Reservation Needed
+                          </div>
+                        )}
                       </div>
-
-                      {exp.id !== "walk-in" ? (
-                        <button
-                          onClick={() => handleSelectExperience(exp)}
-                          className="w-full flex items-center justify-center gap-2 btn-cta-primary rounded-none h-12 text-[11px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer"
-                        >
-                          <WineIcon className="w-3.5 h-3.5" />
-                          Reserve This Experience
-                        </button>
-                      ) : (
-                        <div className="w-full flex items-center justify-center h-12 text-[11px] tracking-[0.12em] uppercase font-body font-medium text-stone/50 border border-gold/15">
-                          No Reservation Needed
-                        </div>
-                      )}
                     </div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-
-            {/* Member perk */}
-            <ScrollReveal>
-              <div className="mt-12 sm:mt-16 text-center p-6 sm:p-8 bg-warm-white border border-gold/10">
-                <p className="text-gold/70 text-[10px] tracking-[0.3em] uppercase mb-2 font-body font-medium">Wine Club Member?</p>
-                <p className="text-pourpre-deep text-sm sm:text-base font-heading mb-3">All tasting experiences are complimentary for members + 3 guests</p>
-                <Link
-                  href="/wine-club"
-                  className="inline-flex items-center gap-2 text-pourpre-deep text-[11px] font-body font-medium tracking-[0.15em] uppercase hover:text-pourpre transition-colors group"
-                >
-                  Learn about Le Cercle
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-      )}
-
-      {/* Step: Date & Time */}
-      {step === "datetime" && selectedExp && (
-        <section className="py-16 sm:py-20 bg-cream bg-parchment-texture relative overflow-hidden">
-          <div className="max-w-[680px] mx-auto px-5 sm:px-6">
-            <button
-              onClick={() => { setStep("choose"); setSelectedExp(null); }}
-              className="flex items-center gap-1.5 text-stone/60 text-[11px] tracking-[0.1em] uppercase font-body mb-8 hover:text-pourpre-deep transition-colors cursor-pointer"
-            >
-              <ChevronLeft className="w-3.5 h-3.5" /> Change experience
-            </button>
-
-            {/* Selected experience summary */}
-            <div className="flex items-center gap-4 p-4 bg-warm-white border border-gold/10 mb-10">
-              <div className="relative w-16 h-16 flex-shrink-0 overflow-hidden">
-                <Image src={selectedExp.image!} alt={selectedExp.name} fill className="object-cover" sizes="64px" />
-              </div>
-              <div>
-                <h3 className="font-heading text-pourpre-deep text-lg leading-tight">{selectedExp.name}</h3>
-                <p className="text-stone/60 text-[12px]">{selectedExp.duration} &middot; ${selectedExp.price}/person</p>
-              </div>
-            </div>
-
-            {/* Date picker */}
-            <div className="mb-8">
-              <label className="block text-pourpre-deep text-[11px] tracking-[0.12em] uppercase font-body font-medium mb-3">
-                <CalendarDays className="w-3.5 h-3.5 inline mr-2 text-gold/50" />
-                Select a Date
-              </label>
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => { setSelectedDate(e.target.value); setSelectedSlot(""); }}
-                min={new Date().toISOString().split("T")[0]}
-                className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors"
-              />
-            </div>
-
-            {/* Party size */}
-            <div className="mb-8">
-              <label className="block text-pourpre-deep text-[11px] tracking-[0.12em] uppercase font-body font-medium mb-3">
-                <Users className="w-3.5 h-3.5 inline mr-2 text-gold/50" />
-                Party Size
-              </label>
-              <div className="flex gap-2">
-                {Array.from({ length: selectedExp.maxGuests }, (_, i) => i + 1).map((n) => (
-                  <button
-                    key={n}
-                    onClick={() => setGuests(n)}
-                    className={`w-10 h-10 flex items-center justify-center text-sm font-body transition-colors cursor-pointer ${
-                      guests === n
-                        ? "bg-gold text-pourpre-deep font-medium"
-                        : "bg-warm-white border border-gold/15 text-stone/60 hover:border-gold/40"
-                    }`}
-                  >
-                    {n}
-                  </button>
+                  </ScrollReveal>
                 ))}
               </div>
-            </div>
 
-            {/* Time slots */}
-            {selectedDate && (
-              <div className="mb-10">
-                <label className="block text-pourpre-deep text-[11px] tracking-[0.12em] uppercase font-body font-medium mb-3">
-                  <Clock className="w-3.5 h-3.5 inline mr-2 text-gold/50" />
-                  Available Times
-                </label>
-                <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                  {slots.map((slot) => {
-                    const time = new Date(slot.startAt).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
-                    const isFull = slot.spotsLeft === 0;
-                    const isSelected = selectedSlot === slot.id;
-                    return (
-                      <button
-                        key={slot.id}
-                        disabled={isFull}
-                        onClick={() => setSelectedSlot(slot.id)}
-                        className={`py-2.5 px-2 text-center transition-colors text-sm cursor-pointer ${
-                          isFull
-                            ? "bg-stone/5 text-stone/25 cursor-not-allowed line-through"
-                            : isSelected
-                              ? "bg-gold text-pourpre-deep font-medium"
-                              : "bg-warm-white border border-gold/15 text-pourpre-deep hover:border-gold/40"
-                        }`}
-                      >
-                        <span className="block">{time}</span>
-                        {!isFull && (
-                          <span className={`text-[10px] ${slot.spotsLeft <= 2 ? "text-amber-600" : "text-stone/40"}`}>
-                            {slot.spotsLeft} left
-                          </span>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Total & Next */}
-            {selectedDate && selectedSlot && (
-              <div className="flex items-center justify-between p-5 bg-warm-white border border-gold/10 mb-6">
-                <div>
-                  <p className="text-stone/50 text-[10px] tracking-[0.1em] uppercase">Total</p>
-                  <p className="font-heading text-pourpre-deep text-2xl">
-                    ${selectedExp.price * guests}
+              {/* Member perk */}
+              <ScrollReveal>
+                <div className="mt-12 sm:mt-16 text-center p-6 sm:p-8 bg-warm-white border border-gold/10">
+                  <p className="text-gold/70 text-[10px] tracking-[0.3em] uppercase mb-2 font-body font-medium">
+                    Wine Club Member?
                   </p>
-                  <p className="text-stone/40 text-[11px]">{guests} guest{guests > 1 ? "s" : ""} × ${selectedExp.price}</p>
+                  <p className="text-pourpre-deep text-sm sm:text-base font-heading mb-3">
+                    All tasting experiences are complimentary for members + 3 guests
+                  </p>
+                  <Link
+                    href="/wine-club"
+                    className="inline-flex items-center gap-2 text-pourpre-deep text-[11px] font-body font-medium tracking-[0.15em] uppercase hover:text-pourpre transition-colors group"
+                  >
+                    Learn about Le Cercle
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </ScrollReveal>
+            </div>
+          </motion.section>
+        )}
+
+        {/* ═══════════════════════════════════════════
+           Step 2 — Schedule (Guests + Date + Time)
+           ═══════════════════════════════════════════ */}
+        {step === "schedule" && selectedExp && (
+          <motion.section
+            key="schedule"
+            variants={stepVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="py-12 sm:py-16 bg-cream bg-parchment-texture relative overflow-hidden"
+          >
+            <div className="max-w-[720px] mx-auto px-5 sm:px-6">
+              {/* Back */}
+              <button
+                onClick={() => goBack("choose")}
+                className="flex items-center gap-1.5 text-stone/60 text-[11px] tracking-[0.1em] uppercase font-body mb-6 hover:text-pourpre-deep transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" /> Change experience
+              </button>
+
+              {/* Experience summary */}
+              <div className="flex items-center gap-4 p-4 bg-warm-white border border-gold/10 mb-8">
+                <div className="relative w-16 h-16 flex-shrink-0 overflow-hidden">
+                  <Image src={selectedExp.image!} alt={selectedExp.name} fill className="object-cover" sizes="64px" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-heading text-pourpre-deep text-lg leading-tight">{selectedExp.name}</h3>
+                  <p className="text-stone/60 text-[12px]">
+                    {selectedExp.duration} &middot; ${selectedExp.price}/person
+                  </p>
                 </div>
                 <button
-                  onClick={handleDateNext}
-                  className="flex items-center gap-2 btn-cta-primary rounded-none h-12 px-8 text-[11px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer"
+                  onClick={() => goBack("choose")}
+                  className="text-[10px] text-gold tracking-[0.1em] uppercase font-body font-medium hover:text-gold-dark transition-colors cursor-pointer flex-shrink-0"
                 >
-                  Continue <ChevronRight className="w-3.5 h-3.5" />
+                  Change
                 </button>
               </div>
-            )}
-          </div>
-        </section>
-      )}
 
-      {/* Step: Details form */}
-      {step === "details" && selectedExp && (
-        <section className="py-16 sm:py-20 bg-cream bg-parchment-texture relative overflow-hidden">
-          <div className="max-w-[580px] mx-auto px-5 sm:px-6">
-            <button
-              onClick={() => setStep("datetime")}
-              className="flex items-center gap-1.5 text-stone/60 text-[11px] tracking-[0.1em] uppercase font-body mb-8 hover:text-pourpre-deep transition-colors cursor-pointer"
-            >
-              <ChevronLeft className="w-3.5 h-3.5" /> Change date & time
-            </button>
+              {/* Party size stepper */}
+              <div className="mb-8">
+                <label className="flex items-center gap-2 text-pourpre-deep text-[11px] tracking-[0.12em] uppercase font-body font-medium mb-3">
+                  <Users className="w-3.5 h-3.5 text-gold/50" />
+                  Number of Guests
+                </label>
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => setGuests((g) => Math.max(1, g - 1))}
+                    disabled={guests <= 1}
+                    className="w-11 h-11 flex items-center justify-center border border-gold/20 bg-warm-white text-pourpre-deep hover:border-gold/50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                    aria-label="Decrease guests"
+                  >
+                    <Minus className="w-4 h-4" />
+                  </button>
+                  <div className="text-center min-w-[3.5rem]">
+                    <span className="font-heading text-pourpre-deep text-2xl">{guests}</span>
+                    <span className="block text-stone/40 text-[10px] uppercase tracking-wider">
+                      {guests === 1 ? "guest" : "guests"}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setGuests((g) => Math.min(selectedExp.maxGuests, g + 1))}
+                    disabled={guests >= selectedExp.maxGuests}
+                    className="w-11 h-11 flex items-center justify-center border border-gold/20 bg-warm-white text-pourpre-deep hover:border-gold/50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                    aria-label="Increase guests"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
+                  <span className="text-stone/40 text-[11px] ml-1">{selectedExp.maxGuests} max</span>
+                </div>
+              </div>
 
-            <h2 className="font-heading text-[1.5rem] sm:text-3xl text-pourpre-deep font-light mb-2">
-              Almost There
-            </h2>
-            <p className="text-stone text-sm mb-8">Complete your details to confirm your reservation.</p>
+              {/* Visual calendar */}
+              <div className="mb-8">
+                <label className="flex items-center gap-2 text-pourpre-deep text-[11px] tracking-[0.12em] uppercase font-body font-medium mb-3">
+                  <Calendar className="w-3.5 h-3.5 text-gold/50" />
+                  Select a Date
+                </label>
+                <div className="bg-warm-white border border-gold/10 p-4 sm:p-5">
+                  {/* Month navigation */}
+                  <div className="flex items-center justify-between mb-4">
+                    <button
+                      onClick={() => navigateMonth(-1)}
+                      className="w-9 h-9 flex items-center justify-center hover:bg-gold/5 transition-colors cursor-pointer"
+                      aria-label="Previous month"
+                    >
+                      <ChevronLeft className="w-4 h-4 text-pourpre-deep" />
+                    </button>
+                    <h4 className="font-heading text-pourpre-deep text-base sm:text-lg">
+                      {MONTH_NAMES[calMonth]} {calYear}
+                    </h4>
+                    <button
+                      onClick={() => navigateMonth(1)}
+                      className="w-9 h-9 flex items-center justify-center hover:bg-gold/5 transition-colors cursor-pointer"
+                      aria-label="Next month"
+                    >
+                      <ChevronRight className="w-4 h-4 text-pourpre-deep" />
+                    </button>
+                  </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Day headers */}
+                  <div className="grid grid-cols-7 gap-1 mb-1">
+                    {DAY_LABELS.map((d) => (
+                      <div key={d} className="text-center text-[10px] text-stone/40 uppercase tracking-wider font-body py-1">
+                        {d}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Day grid */}
+                  <div className="grid grid-cols-7 gap-1">
+                    {calendarDays.map((day, i) => {
+                      if (day === null) return <div key={`empty-${i}`} />;
+                      const iso = formatDateISO(calYear, calMonth, day);
+                      const isPast = iso < todayISO;
+                      const isSelected = selectedDate === iso;
+                      const isToday = iso === todayISO;
+                      return (
+                        <button
+                          key={iso}
+                          disabled={isPast}
+                          onClick={() => {
+                            setSelectedDate(iso);
+                            setSelectedSlot("");
+                          }}
+                          className={`
+                            h-10 sm:h-11 flex items-center justify-center text-sm font-body transition-all cursor-pointer relative
+                            ${isPast ? "text-stone/15 cursor-not-allowed" : ""}
+                            ${isSelected
+                              ? "bg-gold text-pourpre-deep font-medium"
+                              : isToday
+                                ? "text-pourpre-deep font-medium"
+                                : !isPast
+                                  ? "text-pourpre-deep hover:bg-gold/8"
+                                  : ""
+                            }
+                          `}
+                        >
+                          {day}
+                          {isToday && !isSelected && (
+                            <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gold" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Time slots (morning / afternoon) */}
+              <AnimatePresence mode="wait">
+                {selectedDate && (
+                  <motion.div
+                    key={selectedDate}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.4, ease: LUXURY_EASE }}
+                    className="mb-8 overflow-hidden"
+                  >
+                    <label className="flex items-center gap-2 text-pourpre-deep text-[11px] tracking-[0.12em] uppercase font-body font-medium mb-3">
+                      <Clock className="w-3.5 h-3.5 text-gold/50" />
+                      Available Times — {formatDateDisplay(selectedDate)}
+                    </label>
+
+                    {morningSlots.length > 0 && (
+                      <div className="mb-4">
+                        <p className="text-[10px] text-stone/40 uppercase tracking-wider font-body mb-2">Morning</p>
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                          {morningSlots.map((slot) => (
+                            <TimeSlotButton
+                              key={slot.id}
+                              slot={slot}
+                              isSelected={selectedSlot === slot.id}
+                              onSelect={setSelectedSlot}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {afternoonSlots.length > 0 && (
+                      <div>
+                        <p className="text-[10px] text-stone/40 uppercase tracking-wider font-body mb-2">Afternoon</p>
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                          {afternoonSlots.map((slot) => (
+                            <TimeSlotButton
+                              key={slot.id}
+                              slot={slot}
+                              isSelected={selectedSlot === slot.id}
+                              onSelect={setSelectedSlot}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Sticky CTA bar */}
+              <AnimatePresence>
+                {selectedDate && selectedSlot && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 12 }}
+                    transition={{ duration: 0.3, ease: LUXURY_EASE }}
+                    className="sticky bottom-4 z-20"
+                  >
+                    <div className="flex items-center justify-between p-4 sm:p-5 bg-warm-white border border-gold/15 shadow-lg shadow-black/5">
+                      <div>
+                        <p className="text-stone/50 text-[10px] tracking-[0.1em] uppercase">Total</p>
+                        <p className="font-heading text-pourpre-deep text-2xl">
+                          ${selectedExp.price * guests}
+                        </p>
+                        <p className="text-stone/40 text-[11px]">
+                          {guests} guest{guests > 1 ? "s" : ""} &times; ${selectedExp.price}
+                        </p>
+                      </div>
+                      <button
+                        onClick={handleScheduleNext}
+                        className="flex items-center gap-2 btn-cta-primary rounded-none h-12 px-6 sm:px-8 text-[11px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer"
+                      >
+                        Continue <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.section>
+        )}
+
+        {/* ═══════════════════════════════════════════
+           Step 3 — Book (Contact form + Summary sidebar)
+           ═══════════════════════════════════════════ */}
+        {step === "book" && selectedExp && (
+          <motion.section
+            key="book"
+            variants={stepVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="py-12 sm:py-16 bg-cream bg-parchment-texture relative overflow-hidden"
+          >
+            <div className="max-w-[900px] mx-auto px-5 sm:px-6">
+              <button
+                onClick={() => goBack("schedule")}
+                className="flex items-center gap-1.5 text-stone/60 text-[11px] tracking-[0.1em] uppercase font-body mb-6 hover:text-pourpre-deep transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" /> Change schedule
+              </button>
+
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
+                {/* Contact form */}
                 <div>
-                  <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">
-                    <User className="w-3 h-3 inline mr-1.5 text-gold/50" /> First Name
-                  </label>
-                  <input
-                    required
-                    value={form.firstName}
-                    onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-                    className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors"
+                  <h2 className="font-heading text-[1.5rem] sm:text-3xl text-pourpre-deep font-light mb-2">
+                    Complete Your Reservation
+                  </h2>
+                  <p className="text-stone text-sm mb-8">Just a few details and you&apos;re all set.</p>
+
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <InputField
+                        icon={<User className="w-3 h-3" />}
+                        label="First Name"
+                        required
+                        value={form.firstName}
+                        onChange={(v) => setForm({ ...form, firstName: v })}
+                      />
+                      <InputField
+                        label="Last Name"
+                        required
+                        value={form.lastName}
+                        onChange={(v) => setForm({ ...form, lastName: v })}
+                      />
+                    </div>
+
+                    <InputField
+                      icon={<Mail className="w-3 h-3" />}
+                      label="Email"
+                      type="email"
+                      required
+                      value={form.email}
+                      onChange={(v) => setForm({ ...form, email: v })}
+                    />
+
+                    <InputField
+                      icon={<Phone className="w-3 h-3" />}
+                      label="Phone"
+                      type="tel"
+                      required
+                      value={form.phone}
+                      onChange={(v) => setForm({ ...form, phone: v })}
+                    />
+
+                    <div>
+                      <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">
+                        <MessageSquare className="w-3 h-3 inline mr-1.5 text-gold/50" /> Special Requests{" "}
+                        <span className="text-stone/40">(optional)</span>
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={form.notes}
+                        onChange={(e) => setForm({ ...form, notes: e.target.value })}
+                        className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors resize-none"
+                        placeholder="Allergies, celebrations, accessibility needs..."
+                      />
+                    </div>
+
+                    {/* Trust signals */}
+                    <div className="flex flex-wrap gap-4 text-[11px] text-stone/50 py-3">
+                      <span className="flex items-center gap-1.5">
+                        <Shield className="w-3.5 h-3.5 text-gold/40" />
+                        Free cancellation 24h before
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-gold/40" />
+                        Keuka Lake, Hammondsport NY
+                      </span>
+                    </div>
+
+                    {/* Mobile summary (inline before CTA) */}
+                    <div className="lg:hidden">
+                      <OrderSummary
+                        experience={selectedExp}
+                        date={selectedDate}
+                        slot={slots.find((s) => s.id === selectedSlot)}
+                        guests={guests}
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full flex items-center justify-center gap-2 btn-cta-primary rounded-none h-14 text-[12px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer"
+                      data-track-event="booking_confirmed"
+                    >
+                      <WineIcon className="w-4 h-4" />
+                      Confirm Reservation
+                    </button>
+
+                    <p className="text-center text-[10px] text-stone/35">
+                      No payment required — pay when you arrive. Free cancellation up to 24 hours before your visit.
+                    </p>
+                  </form>
+                </div>
+
+                {/* Desktop sticky summary */}
+                <div className="hidden lg:block sticky top-[120px]">
+                  <OrderSummary
+                    experience={selectedExp}
+                    date={selectedDate}
+                    slot={slots.find((s) => s.id === selectedSlot)}
+                    guests={guests}
                   />
                 </div>
-                <div>
-                  <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">
-                    Last Name
-                  </label>
-                  <input
-                    required
-                    value={form.lastName}
-                    onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                    className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors"
-                  />
-                </div>
               </div>
+            </div>
+          </motion.section>
+        )}
 
-              <div>
-                <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">
-                  <Mail className="w-3 h-3 inline mr-1.5 text-gold/50" /> Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors"
+        {/* ═══════════════════════════════════════════
+           Confirmation
+           ═══════════════════════════════════════════ */}
+        {step === "confirmed" && submitted && selectedExp && (
+          <motion.section
+            key="confirmed"
+            variants={stepVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="py-16 sm:py-24 bg-cream bg-parchment-texture relative overflow-hidden"
+          >
+            <div className="max-w-[540px] mx-auto px-5 sm:px-6 text-center">
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.5, ease: LUXURY_EASE }}
+                className="w-16 h-16 mx-auto mb-6 rounded-full bg-gold/10 flex items-center justify-center"
+              >
+                <Check className="w-7 h-7 text-gold" />
+              </motion.div>
+              <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-3 font-body font-medium">
+                <FrenchText>Merci</FrenchText>
+              </p>
+              <h2 className="font-heading text-[1.75rem] sm:text-4xl text-pourpre-deep font-light mb-4 leading-tight">
+                Your Reservation is Confirmed
+              </h2>
+              <p className="text-stone text-sm mb-8">
+                A confirmation email has been sent to <strong className="text-pourpre-deep">{form.email}</strong>. We
+                look forward to welcoming you.
+              </p>
+
+              <div className="p-6 bg-warm-white border border-gold/10 text-left mb-8 space-y-3">
+                <SummaryRow label="Experience" value={selectedExp.name} />
+                <SummaryRow label="Date" value={formatDateDisplay(selectedDate)} />
+                <SummaryRow
+                  label="Time"
+                  value={
+                    slots.find((s) => s.id === selectedSlot)
+                      ? new Date(slots.find((s) => s.id === selectedSlot)!.startAt).toLocaleTimeString("en-US", {
+                          hour: "numeric",
+                          minute: "2-digit",
+                        })
+                      : ""
+                  }
                 />
-              </div>
-
-              <div>
-                <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">
-                  <Phone className="w-3 h-3 inline mr-1.5 text-gold/50" /> Phone
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors"
-                />
-              </div>
-
-              <div>
-                <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">
-                  <MessageSquare className="w-3 h-3 inline mr-1.5 text-gold/50" /> Special Requests <span className="text-stone/40">(optional)</span>
-                </label>
-                <textarea
-                  rows={3}
-                  value={form.notes}
-                  onChange={(e) => setForm({ ...form, notes: e.target.value })}
-                  className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors resize-none"
-                  placeholder="Allergies, celebrations, accessibility needs..."
-                />
-              </div>
-
-              {/* Summary */}
-              <div className="p-5 bg-warm-white border border-gold/10 space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-stone/70">Experience</span>
-                  <span className="text-pourpre-deep font-medium">{selectedExp.name}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-stone/70">Date</span>
-                  <span className="text-pourpre-deep">{selectedDate && new Date(selectedDate + "T12:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-stone/70">Time</span>
-                  <span className="text-pourpre-deep">{selectedSlot && slots.find((s) => s.id === selectedSlot) && new Date(slots.find((s) => s.id === selectedSlot)!.startAt).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-stone/70">Guests</span>
-                  <span className="text-pourpre-deep">{guests}</span>
-                </div>
-                <div className="h-px bg-gold/10 my-2" />
+                <SummaryRow label="Guests" value={String(guests)} />
+                <SummaryRow label="Name" value={`${form.firstName} ${form.lastName}`} />
+                <div className="h-px bg-gold/10" />
                 <div className="flex justify-between">
                   <span className="text-pourpre-deep font-medium">Total</span>
                   <span className="font-heading text-pourpre-deep text-xl">${selectedExp.price * guests}</span>
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 btn-cta-primary rounded-none h-13 text-[12px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer"
-              >
-                <WineIcon className="w-4 h-4" />
-                Confirm Reservation
-              </button>
-            </form>
-          </div>
-        </section>
-      )}
-
-      {/* Step: Confirmation */}
-      {step === "confirmation" && submitted && selectedExp && (
-        <section className="py-16 sm:py-24 bg-cream bg-parchment-texture relative overflow-hidden">
-          <div className="max-w-[540px] mx-auto px-5 sm:px-6 text-center">
-            <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gold/10 flex items-center justify-center">
-              <Check className="w-7 h-7 text-gold" />
-            </div>
-            <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-3 font-body font-medium">
-              <FrenchText>Merci</FrenchText>
-            </p>
-            <h2 className="font-heading text-[1.75rem] sm:text-4xl text-pourpre-deep font-light mb-4 leading-tight">
-              Your Reservation is Confirmed
-            </h2>
-            <p className="text-stone text-sm mb-8">
-              A confirmation email has been sent to <strong className="text-pourpre-deep">{form.email}</strong>. We look forward to welcoming you.
-            </p>
-
-            <div className="p-6 bg-warm-white border border-gold/10 text-left mb-8 space-y-3">
-              <div className="flex justify-between text-sm">
-                <span className="text-stone/70">Experience</span>
-                <span className="text-pourpre-deep font-medium">{selectedExp.name}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-stone/70">Date</span>
-                <span className="text-pourpre-deep">{selectedDate && new Date(selectedDate + "T12:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-stone/70">Guests</span>
-                <span className="text-pourpre-deep">{guests}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-stone/70">Name</span>
-                <span className="text-pourpre-deep">{form.firstName} {form.lastName}</span>
-              </div>
-              <div className="h-px bg-gold/10" />
-              <div className="flex justify-between">
-                <span className="text-pourpre-deep font-medium">Total</span>
-                <span className="font-heading text-pourpre-deep text-xl">${selectedExp.price * guests}</span>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link
+                  href="/"
+                  className="btn-cta-primary inline-flex items-center justify-center rounded-none h-11 px-8 text-[11px] tracking-[0.15em] uppercase font-body font-medium"
+                >
+                  Back to Home
+                </Link>
+                <Link
+                  href="/wines"
+                  className="btn-shimmer-gold inline-flex items-center justify-center rounded-none h-11 px-8 text-[11px] tracking-[0.15em] uppercase font-body font-medium"
+                >
+                  Explore Our Wines
+                </Link>
               </div>
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href="/"
-                className="btn-cta-primary inline-flex items-center justify-center rounded-none h-11 px-8 text-[11px] tracking-[0.15em] uppercase font-body font-medium"
-              >
-                Back to Home
-              </Link>
-              <Link
-                href="/wines"
-                className="btn-shimmer-gold inline-flex items-center justify-center rounded-none h-11 px-8 text-[11px] tracking-[0.15em] uppercase font-body font-medium"
-              >
-                Explore Our Wines
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
+          </motion.section>
+        )}
+      </AnimatePresence>
     </main>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   Sub-components
+   ═══════════════════════════════════════════ */
+
+function TimeSlotButton({
+  slot,
+  isSelected,
+  onSelect,
+}: {
+  slot: { id: string; startAt: string; spotsLeft: number };
+  isSelected: boolean;
+  onSelect: (id: string) => void;
+}) {
+  const time = new Date(slot.startAt).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  const isFull = slot.spotsLeft === 0;
+  const isLow = slot.spotsLeft <= 2 && !isFull;
+
+  return (
+    <button
+      disabled={isFull}
+      onClick={() => onSelect(slot.id)}
+      className={`
+        py-3 px-2 text-center transition-all text-sm cursor-pointer
+        ${
+          isFull
+            ? "bg-stone/5 text-stone/20 cursor-not-allowed"
+            : isSelected
+              ? "bg-gold text-pourpre-deep font-medium shadow-sm"
+              : "bg-warm-white border border-gold/15 text-pourpre-deep hover:border-gold/40 hover:bg-gold/5"
+        }
+      `}
+    >
+      <span className="block font-body">{time}</span>
+      {!isFull && (
+        <span
+          className={`text-[10px] block mt-0.5 ${
+            isLow
+              ? "text-amber-600 font-medium"
+              : isSelected
+                ? "text-pourpre-deep/60"
+                : "text-stone/35"
+          }`}
+        >
+          {isLow ? `${slot.spotsLeft} left` : `${slot.spotsLeft} spots`}
+        </span>
+      )}
+      {isFull && <span className="text-[10px] block mt-0.5">Full</span>}
+    </button>
+  );
+}
+
+function InputField({
+  icon,
+  label,
+  type = "text",
+  required,
+  value,
+  onChange,
+}: {
+  icon?: React.ReactNode;
+  label: string;
+  type?: string;
+  required?: boolean;
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div>
+      <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">
+        {icon && <span className="inline-flex mr-1.5 text-gold/50">{icon}</span>}
+        {label}
+      </label>
+      <input
+        type={type}
+        required={required}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors"
+      />
+    </div>
+  );
+}
+
+function OrderSummary({
+  experience,
+  date,
+  slot,
+  guests,
+}: {
+  experience: (typeof experiences)[number];
+  date: string;
+  slot?: { id: string; startAt: string };
+  guests: number;
+}) {
+  return (
+    <div className="bg-warm-white border border-gold/10 overflow-hidden">
+      <div className="relative h-32 overflow-hidden">
+        <Image src={experience.image!} alt={experience.name} fill className="object-cover" sizes="320px" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(38,50,27,0.8)] to-transparent" />
+        <div className="absolute bottom-3 left-4 right-4">
+          <p className="text-gold/70 text-[10px] tracking-[0.2em] uppercase">{experience.subtitle}</p>
+          <h4 className="font-heading text-warm-white text-lg leading-tight">{experience.name}</h4>
+        </div>
+      </div>
+
+      <div className="p-5 space-y-3">
+        <SummaryRow label="Date" value={formatDateDisplay(date)} />
+        {slot && (
+          <SummaryRow
+            label="Time"
+            value={new Date(slot.startAt).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
+          />
+        )}
+        <SummaryRow label="Guests" value={`${guests} ${guests === 1 ? "person" : "people"}`} />
+        <SummaryRow label="Duration" value={experience.duration} />
+
+        <div className="h-px bg-gold/10 !my-4" />
+
+        <div className="flex justify-between text-sm">
+          <span className="text-stone/70">
+            {guests} &times; ${experience.price}
+          </span>
+          <span className="text-pourpre-deep">${experience.price * guests}</span>
+        </div>
+
+        <div className="h-px bg-gold/10" />
+
+        <div className="flex justify-between items-baseline">
+          <span className="text-pourpre-deep font-heading text-sm">Total</span>
+          <span className="font-heading text-pourpre-deep text-2xl">${experience.price * guests}</span>
+        </div>
+
+        <p className="text-[10px] text-stone/35 leading-relaxed pt-2">
+          Pay at the winery. Free cancellation up to 24 hours before your visit. Wine Club members enjoy complimentary
+          tastings.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function SummaryRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between text-sm">
+      <span className="text-stone/60">{label}</span>
+      <span className="text-pourpre-deep font-medium text-right">{value}</span>
+    </div>
   );
 }
