@@ -447,7 +447,7 @@ function ExperiencesPage() {
             initial="enter"
             animate="center"
             exit="exit"
-            className="pb-28 sm:pb-16 pt-6 sm:py-16 bg-cream bg-parchment-texture relative overflow-hidden"
+            className="pb-44 md:pb-16 pt-6 sm:py-16 bg-cream bg-parchment-texture relative overflow-hidden"
           >
             <div className="max-w-[720px] mx-auto px-4 sm:px-6">
               {/* Back — hidden on mobile (in progress bar) */}
@@ -667,10 +667,10 @@ function ExperiencesPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 40 }}
                   transition={{ duration: 0.35, ease: LUXURY_EASE }}
-                  className="fixed bottom-0 left-0 right-0 z-40 sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:z-20 sm:max-w-[720px] sm:mx-auto sm:px-6"
+                  className="fixed bottom-16 left-0 right-0 z-50 md:relative md:bottom-auto md:left-auto md:right-auto md:z-20 md:max-w-[720px] md:mx-auto md:px-6"
                 >
                   {/* Mobile: full-width fixed bottom bar with glass effect */}
-                  <div className="sm:hidden bg-warm-white/95 backdrop-blur-xl border-t border-gold/15 px-4 pt-3 safe-area-bottom">
+                  <div className="md:hidden bg-warm-white/95 backdrop-blur-xl border-t border-gold/15 px-4 pt-3 pb-3">
                     <div className="flex items-center justify-between mb-3">
                       <div>
                         <p className="text-stone/50 text-[10px] tracking-[0.1em] uppercase">Total</p>
@@ -689,7 +689,7 @@ function ExperiencesPage() {
                   </div>
 
                   {/* Desktop: sticky inline bar */}
-                  <div className="hidden sm:block sticky bottom-4">
+                  <div className="hidden md:block sticky bottom-4">
                     <div className="flex items-center justify-between p-5 bg-warm-white border border-gold/15 shadow-lg shadow-black/5">
                       <div>
                         <p className="text-stone/50 text-[10px] tracking-[0.1em] uppercase">Total</p>
