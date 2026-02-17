@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { MagneticButton } from "@/components/shared/magnetic-button";
 import { SplitTextHero } from "@/components/shared/split-text-hero";
 import { HeroOverlayBlobs } from "./hero-overlay-blobs";
@@ -19,6 +20,13 @@ function ArrowRightIcon({ className = "w-4 h-4" }: { className?: string }) {
 const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function HeroSection() {
+  const [videoReady, setVideoReady] = useState(false);
+
+  const handleVideoCanPlay = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
+    e.currentTarget.currentTime = 3;
+    setVideoReady(true);
+  }, []);
+
   return (
     <section className="relative min-h-[100svh] flex items-end justify-center overflow-hidden pb-28 md:pb-20 md:items-center">
 
@@ -29,12 +37,24 @@ export function HeroSection() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          poster="/images/winery-lake-view.webp"
-          onLoadedMetadata={(e) => { e.currentTarget.currentTime = 3; }}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoReady ? "opacity-100" : "opacity-0"}`}
+          onCanPlay={handleVideoCanPlay}
         >
           <source src="/images/hero-video.webm" type="video/webm" />
         </video>
+
+        {/* Premium loading state — dark bg + gold spinner */}
+        <AnimatePresence>
+          {!videoReady && (
+            <motion.div
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0 bg-[#1A2413] flex items-center justify-center"
+            >
+              <div className="hero-spinner" />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* ── Layer 1: Static gradient — black dominant, pourpre breathes through ── */}

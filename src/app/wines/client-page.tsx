@@ -129,7 +129,7 @@ export default function WinesPage() {
             {filtered.map((wine, i) => (
               <ScrollReveal key={wine.id} delay={i * 0.06}>
                 <div className="card-heritage group overflow-hidden bg-warm-white rounded-none h-full flex flex-col">
-                  <ClipPathReveal direction="up" duration={1.0} className="relative aspect-[4/3] overflow-hidden bg-parchment">
+                  <ClipPathReveal direction="up" duration={1.0} className="relative aspect-[4/3] overflow-hidden wine-image-skeleton">
                     <Image
                       src={wine.image ?? "/images/wine-placeholder.webp"}
                       alt={wine.name}

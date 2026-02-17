@@ -149,7 +149,7 @@ export default function ShopPage() {
                   const inCart = cart.find((c) => c.wineId === wine.id);
                   return (
                     <div key={wine.id} className="card-heritage group overflow-hidden bg-warm-white rounded-none flex flex-col">
-                      <div className="relative aspect-[4/3] overflow-hidden bg-parchment">
+                      <div className="relative aspect-[4/3] overflow-hidden wine-image-skeleton">
                         <Image
                           src={wine.image ?? "/images/wine-placeholder.webp"}
                           alt={wine.name}
@@ -223,8 +223,8 @@ export default function ShopPage() {
                           const wine = wines.find((w) => w.id === item.wineId)!;
                           return (
                             <div key={item.wineId} className="flex items-center gap-3 pb-3 border-b border-gold/8">
-                              <div className="relative w-12 h-12 flex-shrink-0 overflow-hidden bg-parchment">
-                                <Image src={wine.image ?? ""} alt={wine.name} fill className="object-cover" sizes="48px" />
+                              <div className="relative w-12 h-12 flex-shrink-0 overflow-hidden wine-image-skeleton">
+                                <Image src={wine.image ?? "/images/wine-placeholder.webp"} alt={wine.name} fill className="object-cover" sizes="48px" />
                               </div>
                               <div className="flex-1 min-w-0">
                                 <p className="text-pourpre-deep text-[13px] font-medium truncate">{wine.name}</p>
