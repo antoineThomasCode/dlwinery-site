@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, User, Wine, Home, ShoppingBag } from "lucide-react";
+import { Menu, User, Wine, Home } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { WineIcon } from "@/components/ui/wine-icon";
 
@@ -22,7 +22,6 @@ const mobileNavItems = [
   { href: "/", icon: Home, label: "Home" },
   { href: "/experiences", icon: WineIcon, label: "Book" },
   { href: "/wines", icon: Wine, label: "Wines" },
-  { href: "/shop", icon: ShoppingBag, label: "Shop" },
   { href: "/member", icon: User, label: "Account" },
 ];
 

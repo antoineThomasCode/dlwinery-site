@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { MagneticButton } from "@/components/shared/magnetic-button";
@@ -22,7 +22,13 @@ const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
 export function HeroSection() {
   const [videoReady, setVideoReady] = useState(false);
 
-  const handleVideoCanPlay = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
+  // Timeout fallback — if video hasn't loaded after 4s, dismiss spinner anyway
+  useEffect(() => {
+    const timer = setTimeout(() => setVideoReady(true), 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleVideoReady = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
     e.currentTarget.currentTime = 3;
     setVideoReady(true);
   }, []);
@@ -37,8 +43,10 @@ export function HeroSection() {
           muted
           loop
           playsInline
+          preload="auto"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoReady ? "opacity-100" : "opacity-0"}`}
-          onCanPlay={handleVideoCanPlay}
+          onCanPlay={handleVideoReady}
+          onLoadedData={handleVideoReady}
         >
           <source src="/images/hero-video.webm" type="video/webm" />
         </video>
