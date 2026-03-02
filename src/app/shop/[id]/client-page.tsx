@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Grape, Droplets, Award } from "lucide-react";
+import { ArrowLeft, Grape, Droplets } from "lucide-react";
 import { VinoshipperAddToCart } from "@/components/vinoshipper/vinoshipper-add-to-cart";
+import { VinoshipperAvailable } from "@/components/vinoshipper/vinoshipper-available";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { wines } from "@/lib/data/wines";
 import type { Wine } from "@/lib/types";
@@ -112,8 +113,8 @@ export default function WineDetailPage({ wine }: { wine: Wine }) {
                   )}
                 </div>
 
-                {/* Add to cart */}
-                <div className="mb-8">
+                {/* Add to cart — Vinoshipper handles qty selector, compliance, shipping */}
+                <div className="mb-6 pb-6 border-b border-gold/10">
                   {isGiftCard ? (
                     <a
                       href={wine.vinoshipperUrl}
@@ -126,9 +127,15 @@ export default function WineDetailPage({ wine }: { wine: Wine }) {
                   ) : (
                     <VinoshipperAddToCart productId={wine.id} />
                   )}
-                  <p className="text-stone/40 text-[10px] mt-2">
-                    Must be 21+ to purchase. Shipped via Vinoshipper.
+                  <p className="text-stone/40 text-[10px] mt-3">
+                    Must be 21+ to purchase. Shipping calculated at checkout.
                   </p>
+                </div>
+
+                {/* Available states — Vinoshipper renders dynamically */}
+                <div className="mb-6 pb-6 border-b border-gold/10">
+                  <p className="text-pourpre-deep text-[11px] tracking-[0.08em] uppercase font-body font-medium mb-2">Ships To</p>
+                  <VinoshipperAvailable className="text-stone/60 text-[12px]" />
                 </div>
 
                 {/* Description */}

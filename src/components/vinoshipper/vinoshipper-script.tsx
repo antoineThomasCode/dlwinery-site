@@ -1,34 +1,36 @@
 "use client";
 
-import Script from "next/script";
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 
 const ACCOUNT_ID = 1290;
 
 export function VinoshipperScript() {
-  const initVinoshipper = useCallback(() => {
-    if (typeof window !== "undefined" && window.Vinoshipper) {
-      window.Vinoshipper.init(ACCOUNT_ID, {
-        cartButton: false,
-        cartPosition: "end",
-        addToCartStyle: false,
-        autoRender: true,
-      });
-    }
+  useEffect(() => {
+    // Prevent double-init
+    if (document.getElementById("vs-injector-script")) return;
+
+    // 1. Register the event listener BEFORE loading the script (per docs)
+    window.document.addEventListener(
+      "vinoshipper:loaded",
+      () => {
+        window.Vinoshipper.init(ACCOUNT_ID, {
+          cartButton: false,
+          cartPosition: "end",
+          addToCartStyle: true,
+          autoRender: true,
+          debug: false,
+        });
+      },
+      false
+    );
+
+    // 2. Inject the script
+    const script = document.createElement("script");
+    script.id = "vs-injector-script";
+    script.src = "https://vinoshipper.com/injector/index.js";
+    script.async = true;
+    document.body.appendChild(script);
   }, []);
 
-  useEffect(() => {
-    // If already loaded (e.g. back-navigation), init immediately
-    if (typeof window !== "undefined" && window.Vinoshipper) {
-      initVinoshipper();
-    }
-  }, [initVinoshipper]);
-
-  return (
-    <Script
-      src="https://vinoshipper.com/injector/injector.js"
-      strategy="afterInteractive"
-      onLoad={initVinoshipper}
-    />
-  );
+  return null;
 }

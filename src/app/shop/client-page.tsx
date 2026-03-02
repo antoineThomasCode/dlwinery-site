@@ -3,12 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { FrenchText } from "@/components/shared/french-text";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
 import { ParallaxImage } from "@/components/shared/parallax-image";
 import { VinoshipperAddToCart } from "@/components/vinoshipper/vinoshipper-add-to-cart";
+import { VinoshipperAvailable } from "@/components/vinoshipper/vinoshipper-available";
 import { Tag, Truck, ArrowRight } from "lucide-react";
 import { wines } from "@/lib/data/wines";
 
@@ -52,13 +52,17 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* Volume discount banner */}
+      {/* Volume discount banner + Available In */}
       <div className="bg-pourpre-deep/95 text-warm-white">
-        <div className="max-w-[var(--max-width)] mx-auto px-6 py-3 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-[11px] tracking-[0.06em] uppercase font-body">
-          <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 5% off 6+ bottles</span>
-          <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 10% off 12+ bottles</span>
-          <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 15% off 24+ bottles</span>
-          <span className="flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-gold/60" /> $18 flat shipping</span>
+        <div className="max-w-[var(--max-width)] mx-auto px-6 py-3 flex flex-col items-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-[11px] tracking-[0.06em] uppercase font-body">
+            <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 5% off 6+ bottles</span>
+            <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 10% off 12+ bottles</span>
+            <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 15% off 24+ bottles</span>
+            <span className="flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-gold/60" /> $18 flat shipping</span>
+          </div>
+          {/* Vinoshipper: states we ship to */}
+          <VinoshipperAvailable className="text-warm-white/50 text-center text-[10px]" />
         </div>
       </div>
 
@@ -97,7 +101,6 @@ export default function ShopPage() {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
             {filtered.map((wine) => {
               const isGiftCard = wine.type === "gift-card";
-              const hasLowStock = wine.inventoryCount !== undefined && wine.inventoryCount < 12 && wine.inventoryCount > 0;
               const memberSaving = wine.price - wine.memberPrice;
               return (
                 <div key={wine.id} className="card-heritage group overflow-hidden bg-warm-white rounded-none flex flex-col">
@@ -110,18 +113,15 @@ export default function ShopPage() {
                         className="object-contain p-3 sm:p-4 transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       />
-                      <div className="absolute top-3 left-3 flex gap-1.5">
-                        {wine.badges.map((badge) => (
-                          <span key={badge} className="bg-pourpre-deep/90 text-gold text-[9px] tracking-[0.1em] uppercase font-medium px-2.5 py-1">
-                            {badge.replace("-", " ")}
-                          </span>
-                        ))}
-                        {hasLowStock && (
-                          <span className="bg-red-800/90 text-warm-white text-[9px] tracking-[0.1em] uppercase font-medium px-2.5 py-1">
-                            Only {wine.inventoryCount} left!
-                          </span>
-                        )}
-                      </div>
+                      {wine.badges.length > 0 && (
+                        <div className="absolute top-3 left-3 flex gap-1.5">
+                          {wine.badges.map((badge) => (
+                            <span key={badge} className="bg-pourpre-deep/90 text-gold text-[9px] tracking-[0.1em] uppercase font-medium px-2.5 py-1">
+                              {badge.replace("-", " ")}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </Link>
                   <div className="p-3 sm:p-4 flex flex-col flex-1">
@@ -139,15 +139,13 @@ export default function ShopPage() {
                       </p>
                     )}
                     <div className="mt-auto flex flex-col gap-2">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <span className="font-heading text-pourpre-deep text-base sm:text-lg">${wine.price}</span>
-                          {!isGiftCard && memberSaving > 0 && (
-                            <span className="block text-gold/70 text-[10px] sm:text-[11px]">
-                              Members save ${memberSaving.toFixed(2)}
-                            </span>
-                          )}
-                        </div>
+                      <div>
+                        <span className="font-heading text-pourpre-deep text-base sm:text-lg">${wine.price}</span>
+                        {!isGiftCard && memberSaving > 0 && (
+                          <span className="block text-gold/70 text-[10px] sm:text-[11px]">
+                            Members save ${memberSaving.toFixed(2)}
+                          </span>
+                        )}
                       </div>
                       {isGiftCard ? (
                         <a

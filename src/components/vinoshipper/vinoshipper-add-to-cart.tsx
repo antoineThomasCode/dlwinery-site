@@ -22,6 +22,8 @@ export function VinoshipperAddToCart({ productId, className }: VinoshipperAddToC
       ref={ref}
       className={`vs-add-to-cart ${className ?? ""}`}
       data-vs-product-id={productId}
+      data-vs-include-qty="true"
+      data-vs-product-units="Bottles"
     />
   );
 }

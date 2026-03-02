@@ -896,33 +896,118 @@ html.lenis, html.lenis body {
 /* ═══════════════════════════════════════════
    Vinoshipper Injector — Custom theme overrides
    Matches DL Winery palette: vert profond + or chaud
+   Full styling for Add-to-Cart, Qty selector, Cart
    ═══════════════════════════════════════════ */
 
+/* --- Add to Cart: Button --- */
 .vs-add-to-cart {
-  --vs-atc-button-background-color: transparent;
-  --vs-atc-button-border-color: #D7A45E;
+  --vs-atc-button-background-color: #26321B;
+  --vs-atc-button-border-color: #26321B;
   --vs-atc-button-color: #D7A45E;
-  --vs-atc-button-hover-background-color: #D7A45E;
-  --vs-atc-button-hover-color: #26321B;
-  --vs-atc-button-active-background-color: #B8883A;
-  --vs-atc-button-active-color: #26321B;
+  --vs-atc-button-hover-background-color: #3A4D2C;
+  --vs-atc-button-hover-border-color: #3A4D2C;
+  --vs-atc-button-hover-color: #E4BB7A;
+  --vs-atc-button-active-background-color: #1A2413;
+  --vs-atc-button-active-border-color: #1A2413;
+  --vs-atc-button-active-color: #D7A45E;
+  --vs-atc-button-disabled-background-color: #26321B;
+  --vs-atc-button-disabled-border-color: #26321B;
+  --vs-atc-button-disabled-color: #D7A45E;
+  --vs-atc-button-disabled-opacity: 0.5;
   --vs-atc-button-border-radius: 0;
+  --vs-atc-button-font-family: 'Sweet Sans Pro', sans-serif;
   --vs-atc-button-font-size: 0.6875rem;
   --vs-atc-button-font-weight: 500;
-  --vs-atc-button-text-transform: uppercase;
-  --vs-atc-button-letter-spacing: 0.1em;
+  --vs-atc-button-line-height: 1.5;
+  --vs-atc-button-padding-x: 1.25rem;
+  --vs-atc-button-padding-y: 0.5rem;
+  --vs-atc-button-box-shadow: none;
+  --vs-atc-button-transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* --- Add to Cart: Quantity selector --- */
+  --vs-atc-select-color: #26321B;
+  --vs-atc-select-background-color: #FEFCF7;
+  --vs-atc-select-border-color: rgba(215, 164, 94, 0.3);
+  --vs-atc-select-border-radius: 0;
+  --vs-atc-select-border-width: 1px;
+  --vs-atc-select-font-family: 'Sweet Sans Pro', sans-serif;
+  --vs-atc-select-font-size: 0.8125rem;
+  --vs-atc-select-font-weight: 400;
+  --vs-atc-select-box-shadow: none;
+  --vs-atc-select-focus-border-color: #D7A45E;
+  --vs-atc-select-focus-box-shadow: 0 0 0 2px rgba(215, 164, 94, 0.2);
+
+  /* --- Almost sold out badge --- */
+  --vs-atc-almost-soldout-background-color: #8B0000;
+  --vs-atc-almost-soldout-color: #FEFCF7;
+  --vs-atc-almost-soldout-border-radius: 0;
+  --vs-atc-almost-soldout-font-size: 0.625rem;
+  --vs-atc-almost-soldout-font-weight: 600;
+
+  --vs-atc-margin-bottom: 0;
 }
 
+/* --- Cart slide-out panel --- */
 .vs-cart {
+  --vs-cart-font-family: 'Sweet Sans Pro', sans-serif;
   --vs-cart-background-color: #FEFCF7;
   --vs-cart-color: #26321B;
-  --vs-cart-border-color: rgba(215, 164, 94, 0.15);
+  --vs-cart-link-color: #D7A45E;
+  --vs-cart-link-hover-color: #B8883A;
+  --vs-cart-close-color: #26321B;
+  --vs-cart-close-opacity: 0.4;
+  --vs-cart-close-hover-opacity: 1;
+  --vs-cart-icon-color: #D7A45E;
+  --vs-cart-stage-backdrop-shown-background-color: rgba(28, 26, 23, 0.5);
+  --vs-cart-contents-border-color: rgba(215, 164, 94, 0.12);
+
+  /* Item names */
+  --vs-cart-contents-item-name-font-family: 'Diaspora', sans-serif;
+  --vs-cart-contents-item-name-font-weight: 400;
+  --vs-cart-contents-item-name-font-size: 0.9375rem;
+
+  /* Quantity number */
+  --vs-cart-contents-qty-color: #26321B;
+  --vs-cart-contents-qty-font-weight: 700;
+  --vs-cart-contents-qty-font-size: 1.75rem;
+
+  /* Remove link */
+  --vs-cart-contents-remove-color: #6B6560;
+  --vs-cart-contents-remove-hover-color: #8B0000;
+  --vs-cart-contents-remove-text-decoration: none;
+  --vs-cart-contents-remove-hover-text-decoration: underline;
+
+  /* Subtotal */
+  --vs-cart-footer-subtotal-font-family: 'Diaspora', sans-serif;
+  --vs-cart-footer-subtotal-font-weight: 400;
+  --vs-cart-footer-subtotal-font-size: 1.125rem;
+
+  /* Checkout button */
   --vs-cart-actions-checkout-background-color: #26321B;
   --vs-cart-actions-checkout-color: #D7A45E;
   --vs-cart-actions-checkout-hover-background-color: #3A4D2C;
   --vs-cart-actions-checkout-border-radius: 0;
-  --vs-cart-item-remove-color: #6B6560;
-  --vs-cart-item-remove-hover-color: #26321B;
+  --vs-cart-actions-checkout-font-family: 'Sweet Sans Pro', sans-serif;
+  --vs-cart-actions-checkout-font-weight: 500;
+  --vs-cart-actions-checkout-font-size: 0.75rem;
+  --vs-cart-actions-checkout-letter-spacing: 0.12em;
+  --vs-cart-actions-checkout-text-transform: uppercase;
+
+  /* Continue shopping link */
+  --vs-cart-actions-continue-color: #D7A45E;
+  --vs-cart-actions-continue-hover-color: #B8883A;
+}
+
+/* --- Cart button (hidden, we use our own) --- */
+.vs-cart-button {
+  display: none !important;
+}
+
+/* --- Available In component --- */
+.vs-available {
+  font-family: 'Sweet Sans Pro', sans-serif;
+  color: #6B6560;
+  font-size: 0.75rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
