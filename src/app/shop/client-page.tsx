@@ -28,7 +28,7 @@ export default function ShopPage() {
   const filtered = wines.filter((w) => w.inStock && (typeFilter === "all" || w.type === typeFilter));
 
   return (
-    <main>
+    <main className="pb-20 md:pb-0">
       {/* Hero */}
       <section className="relative h-[45vh] min-h-[320px] flex items-center justify-center overflow-hidden">
         <ParallaxImage
@@ -47,22 +47,21 @@ export default function ShopPage() {
             <span className="shimmer-text-light">Bring the Terrace Home</span>
           </h1>
           <p className="text-warm-white/60 text-sm sm:text-base max-w-md mx-auto">
-            Shop our wines online. Volume discounts available.
+            Six generations of French winemaking. Direct to your cellar.
           </p>
         </div>
       </section>
 
       {/* Volume discount banner + Available In */}
       <div className="bg-pourpre-deep/95 text-warm-white">
-        <div className="max-w-[var(--max-width)] mx-auto px-6 py-3 flex flex-col items-center gap-3">
+        <div className="max-w-[var(--max-width)] mx-auto px-6 py-3 flex flex-col items-center gap-2">
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-[11px] tracking-[0.06em] uppercase font-body">
             <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 5% off 6+ bottles</span>
             <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 10% off 12+ bottles</span>
             <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 15% off 24+ bottles</span>
             <span className="flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-gold/60" /> $18 flat shipping</span>
           </div>
-          {/* Vinoshipper: states we ship to */}
-          <VinoshipperAvailable className="text-warm-white/50 text-center text-[10px]" />
+          <VinoshipperAvailable className="text-warm-white/40 text-center text-[10px]" />
         </div>
       </div>
 
@@ -78,14 +77,14 @@ export default function ShopPage() {
           parallax={[{ speed: 0.4 }, { speed: 0.3 }]}
         />
         <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
-          {/* Filters */}
-          <div className="flex flex-wrap items-center gap-4 mb-10">
-            <div className="flex gap-1.5 flex-wrap">
+          {/* Filters — horizontal scroll on mobile */}
+          <div className="-mx-5 sm:mx-0 px-5 sm:px-0 overflow-x-auto scrollbar-hide mb-6" data-lenis-prevent>
+            <div className="flex gap-1.5 min-w-max">
               {typeFilters.map((f) => (
                 <button
                   key={f.value}
                   onClick={() => setTypeFilter(f.value)}
-                  className={`px-4 py-2 text-[11px] tracking-[0.08em] uppercase font-body font-medium transition-colors cursor-pointer ${
+                  className={`px-4 py-2.5 text-[11px] tracking-[0.08em] uppercase font-body font-medium transition-colors cursor-pointer whitespace-nowrap ${
                     typeFilter === f.value
                       ? "bg-pourpre-deep text-warm-white"
                       : "bg-warm-white border border-gold/15 text-stone/60 hover:border-gold/40"
@@ -97,11 +96,17 @@ export default function ShopPage() {
             </div>
           </div>
 
-          {/* Wine grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+          {/* Results count */}
+          <p className="text-stone/50 text-[11px] tracking-[0.1em] uppercase font-body mb-6">
+            {filtered.length} wine{filtered.length !== 1 ? "s" : ""}
+          </p>
+
+          {/* Wine grid — 1 col on small mobile, 2 col on wider, 3-4 on desktop */}
+          <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
             {filtered.map((wine) => {
               const isGiftCard = wine.type === "gift-card";
               const memberSaving = wine.price - wine.memberPrice;
+              const hasLowStock = wine.inventoryCount !== undefined && wine.inventoryCount < 12 && wine.inventoryCount > 0;
               return (
                 <div key={wine.id} className="card-heritage group overflow-hidden bg-warm-white rounded-none flex flex-col">
                   <Link href={`/shop/${wine.id}`} className="block">
@@ -110,9 +115,10 @@ export default function ShopPage() {
                         src={wine.image ?? "/images/wine-placeholder.webp"}
                         alt={wine.name}
                         fill
-                        className="object-contain p-3 sm:p-4 transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        className="object-contain p-2 sm:p-4 transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 480px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
+                      {/* Badges — top left */}
                       {wine.badges.length > 0 && (
                         <div className="absolute top-3 left-3 flex gap-1.5">
                           {wine.badges.map((badge) => (
@@ -122,28 +128,34 @@ export default function ShopPage() {
                           ))}
                         </div>
                       )}
+                      {/* Low stock — top right */}
+                      {hasLowStock && (
+                        <span className="absolute top-3 right-3 bg-red-800/90 text-warm-white text-[9px] tracking-[0.1em] uppercase font-medium px-2.5 py-1">
+                          Only {wine.inventoryCount} left
+                        </span>
+                      )}
                     </div>
                   </Link>
-                  <div className="p-3 sm:p-4 flex flex-col flex-1">
+                  <div className="p-4 sm:p-5 flex flex-col flex-1">
                     <Link href={`/shop/${wine.id}`}>
-                      <h3 className="font-heading text-sm sm:text-base text-pourpre-deep leading-tight mb-1 hover:text-pourpre transition-colors">
+                      <h3 className="font-heading text-base sm:text-lg text-pourpre-deep leading-tight mb-1 hover:text-pourpre transition-colors">
                         {wine.name}
                       </h3>
                     </Link>
                     {!isGiftCard && (
-                      <p className="text-stone/50 text-[10px] sm:text-[11px] mb-2">{wine.vintage} · {wine.type}</p>
+                      <p className="text-stone/50 text-[11px] sm:text-xs mb-3 uppercase tracking-wide">{wine.vintage} · {wine.type}</p>
                     )}
                     {isGiftCard && wine.description && (
-                      <p className="text-stone text-[11px] leading-relaxed mb-3 flex-1 line-clamp-2">
+                      <p className="text-stone text-[12px] leading-relaxed mb-3 flex-1 line-clamp-2">
                         {wine.description}
                       </p>
                     )}
-                    <div className="mt-auto flex flex-col gap-2">
+                    <div className="mt-auto flex flex-col gap-2.5">
                       <div>
-                        <span className="font-heading text-pourpre-deep text-base sm:text-lg">${wine.price}</span>
+                        <span className="font-heading text-pourpre-deep text-lg sm:text-xl">${wine.price}</span>
                         {!isGiftCard && memberSaving > 0 && (
-                          <span className="block text-gold/70 text-[10px] sm:text-[11px]">
-                            Members save ${memberSaving.toFixed(2)}
+                          <span className="block text-gold text-[11px] sm:text-xs font-medium">
+                            Members: ${wine.memberPrice.toFixed(2)}
                           </span>
                         )}
                       </div>
@@ -152,7 +164,7 @@ export default function ShopPage() {
                           href={wine.vinoshipperUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-1.5 px-4 py-2 btn-cta-primary rounded-none text-[10px] tracking-[0.1em] uppercase font-body font-medium cursor-pointer"
+                          className="flex items-center justify-center gap-1.5 px-4 py-2.5 btn-cta-primary rounded-none text-[10px] tracking-[0.1em] uppercase font-body font-medium cursor-pointer"
                         >
                           Buy Gift Card <ArrowRight className="w-3 h-3" />
                         </a>

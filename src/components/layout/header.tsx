@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, User, Wine, Home, ShoppingCart } from "lucide-react";
@@ -26,9 +26,50 @@ const mobileNavItems = [
   { href: "/member", icon: User, label: "Account" },
 ];
 
+function useCartCount() {
+  const [count, setCount] = useState(0);
+
+  const readCount = useCallback(() => {
+    // Vinoshipper renders a badge inside .vs-cart-button with the item count
+    const badge = document.querySelector(".vs-cart-button__badge");
+    if (badge) {
+      const n = parseInt(badge.textContent ?? "0", 10);
+      setCount(Number.isNaN(n) ? 0 : n);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Read initial count
+    readCount();
+
+    // Observe Vinoshipper's cart button badge for changes
+    const target = document.querySelector(".vs-cart-button");
+    if (!target) {
+      // Vinoshipper may not be loaded yet — retry briefly
+      const retryId = setInterval(() => {
+        const el = document.querySelector(".vs-cart-button");
+        if (el) {
+          clearInterval(retryId);
+          readCount();
+          const obs = new MutationObserver(readCount);
+          obs.observe(el, { childList: true, subtree: true, characterData: true });
+        }
+      }, 500);
+      return () => clearInterval(retryId);
+    }
+
+    const observer = new MutationObserver(readCount);
+    observer.observe(target, { childList: true, subtree: true, characterData: true });
+    return () => observer.disconnect();
+  }, [readCount]);
+
+  return count;
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const cartCount = useCartCount();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -108,12 +149,17 @@ export function Header() {
                   window.Vinoshipper.cartOpen();
                 }
               }}
-              className={`hidden md:flex items-center justify-center w-9 h-9 rounded-full transition-colors cursor-pointer ${
+              className={`hidden md:flex items-center justify-center w-9 h-9 rounded-full transition-colors cursor-pointer relative ${
                 scrolled ? "hover:bg-pourpre-deep/5 text-pourpre-deep" : "hover:bg-warm-white/10 text-warm-white"
               }`}
               aria-label="Open cart"
             >
               <ShoppingCart className="w-4 h-4" />
+              {cartCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[16px] h-4 px-1 bg-gold text-pourpre-deep text-[9px] font-body font-bold rounded-full">
+                  {cartCount}
+                </span>
+              )}
             </button>
 
             {/* Member icon - desktop */}
@@ -226,9 +272,16 @@ export function Header() {
                     window.Vinoshipper.cartOpen();
                   }
                 }}
-                className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-pourpre-deep/60 hover:text-bordeaux transition-colors cursor-pointer"
+                className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-pourpre-deep/60 hover:text-bordeaux transition-colors cursor-pointer relative"
               >
-                <item.icon className="w-5 h-5" />
+                <span className="relative">
+                  <item.icon className="w-5 h-5" />
+                  {cartCount > 0 && (
+                    <span className="absolute -top-1.5 -right-2.5 flex items-center justify-center min-w-[14px] h-3.5 px-0.5 bg-gold text-pourpre-deep text-[8px] font-body font-bold rounded-full">
+                      {cartCount}
+                    </span>
+                  )}
+                </span>
                 <span className="text-[10px] font-medium tracking-wide">{item.label}</span>
               </button>
             ) : (

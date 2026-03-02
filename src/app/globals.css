@@ -899,29 +899,31 @@ html.lenis, html.lenis body {
    Full styling for Add-to-Cart, Qty selector, Cart
    ═══════════════════════════════════════════ */
 
-/* --- Add to Cart: Button --- */
+/* --- Add to Cart: Button — Gold CTA (high contrast, conversion-optimized) --- */
 .vs-add-to-cart {
-  --vs-atc-button-background-color: #26321B;
-  --vs-atc-button-border-color: #26321B;
-  --vs-atc-button-color: #D7A45E;
-  --vs-atc-button-hover-background-color: #3A4D2C;
-  --vs-atc-button-hover-border-color: #3A4D2C;
-  --vs-atc-button-hover-color: #E4BB7A;
-  --vs-atc-button-active-background-color: #1A2413;
-  --vs-atc-button-active-border-color: #1A2413;
-  --vs-atc-button-active-color: #D7A45E;
-  --vs-atc-button-disabled-background-color: #26321B;
-  --vs-atc-button-disabled-border-color: #26321B;
-  --vs-atc-button-disabled-color: #D7A45E;
-  --vs-atc-button-disabled-opacity: 0.5;
+  --vs-atc-button-background-color: #D7A45E;
+  --vs-atc-button-border-color: #D7A45E;
+  --vs-atc-button-color: #26321B;
+  --vs-atc-button-hover-background-color: #E4BB7A;
+  --vs-atc-button-hover-border-color: #E4BB7A;
+  --vs-atc-button-hover-color: #1A2413;
+  --vs-atc-button-active-background-color: #B8883A;
+  --vs-atc-button-active-border-color: #B8883A;
+  --vs-atc-button-active-color: #26321B;
+  --vs-atc-button-disabled-background-color: #D7A45E;
+  --vs-atc-button-disabled-border-color: #D7A45E;
+  --vs-atc-button-disabled-color: #26321B;
+  --vs-atc-button-disabled-opacity: 0.4;
   --vs-atc-button-border-radius: 0;
   --vs-atc-button-font-family: 'Sweet Sans Pro', sans-serif;
   --vs-atc-button-font-size: 0.6875rem;
-  --vs-atc-button-font-weight: 500;
+  --vs-atc-button-font-weight: 600;
   --vs-atc-button-line-height: 1.5;
-  --vs-atc-button-padding-x: 1.25rem;
-  --vs-atc-button-padding-y: 0.5rem;
+  --vs-atc-button-padding-x: 1.5rem;
+  --vs-atc-button-padding-y: 0.625rem;
   --vs-atc-button-box-shadow: none;
+  --vs-atc-button-letter-spacing: 0.08em;
+  --vs-atc-button-text-transform: uppercase;
   --vs-atc-button-transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   /* --- Add to Cart: Quantity selector --- */
@@ -968,8 +970,8 @@ html.lenis, html.lenis body {
 
   /* Quantity number */
   --vs-cart-contents-qty-color: #26321B;
-  --vs-cart-contents-qty-font-weight: 700;
-  --vs-cart-contents-qty-font-size: 1.75rem;
+  --vs-cart-contents-qty-font-weight: 600;
+  --vs-cart-contents-qty-font-size: 1.125rem;
 
   /* Remove link */
   --vs-cart-contents-remove-color: #6B6560;
@@ -982,15 +984,15 @@ html.lenis, html.lenis body {
   --vs-cart-footer-subtotal-font-weight: 400;
   --vs-cart-footer-subtotal-font-size: 1.125rem;
 
-  /* Checkout button */
-  --vs-cart-actions-checkout-background-color: #26321B;
-  --vs-cart-actions-checkout-color: #D7A45E;
-  --vs-cart-actions-checkout-hover-background-color: #3A4D2C;
+  /* Checkout button — Gold CTA (matches Add to Cart) */
+  --vs-cart-actions-checkout-background-color: #D7A45E;
+  --vs-cart-actions-checkout-color: #26321B;
+  --vs-cart-actions-checkout-hover-background-color: #E4BB7A;
   --vs-cart-actions-checkout-border-radius: 0;
   --vs-cart-actions-checkout-font-family: 'Sweet Sans Pro', sans-serif;
-  --vs-cart-actions-checkout-font-weight: 500;
+  --vs-cart-actions-checkout-font-weight: 600;
   --vs-cart-actions-checkout-font-size: 0.75rem;
-  --vs-cart-actions-checkout-letter-spacing: 0.12em;
+  --vs-cart-actions-checkout-letter-spacing: 0.1em;
   --vs-cart-actions-checkout-text-transform: uppercase;
 
   /* Continue shopping link */

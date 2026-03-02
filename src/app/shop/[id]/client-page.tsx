@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Grape, Droplets } from "lucide-react";
+import { ArrowLeft, Grape, Droplets, Wine } from "lucide-react";
 import { VinoshipperAddToCart } from "@/components/vinoshipper/vinoshipper-add-to-cart";
 import { VinoshipperAvailable } from "@/components/vinoshipper/vinoshipper-available";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { wines } from "@/lib/data/wines";
-import type { Wine } from "@/lib/types";
+import type { Wine as WineType } from "@/lib/types";
 
 const typeColors: Record<string, string> = {
   sparkling: "bg-amber-100/60 text-amber-800",
@@ -28,20 +28,20 @@ const sweetnessLabels: Record<string, string> = {
   sweet: "Sweet",
 };
 
-function getRelatedWines(wine: Wine): Wine[] {
+function getRelatedWines(wine: WineType): WineType[] {
   return wines
     .filter((w) => w.id !== wine.id && w.type === wine.type && w.type !== "gift-card" && w.inStock)
     .slice(0, 4);
 }
 
-export default function WineDetailPage({ wine }: { wine: Wine }) {
+export default function WineDetailPage({ wine }: { wine: WineType }) {
   const isGiftCard = wine.type === "gift-card";
   const memberSaving = wine.price - wine.memberPrice;
   const hasLowStock = wine.inventoryCount !== undefined && wine.inventoryCount < 12 && wine.inventoryCount > 0;
   const related = getRelatedWines(wine);
 
   return (
-    <main>
+    <main className="pb-20 md:pb-0">
       {/* Back nav */}
       <div className="bg-cream border-b border-gold/10">
         <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6 py-3">
@@ -56,12 +56,12 @@ export default function WineDetailPage({ wine }: { wine: Wine }) {
       </div>
 
       {/* Product detail */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-cream bg-parchment-texture">
+      <section className="py-10 sm:py-16 lg:py-20 bg-cream bg-parchment-texture">
         <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Image */}
             <ScrollReveal>
-              <div className="relative aspect-[3/4] bg-[#f8f6f2] overflow-hidden">
+              <div className="relative aspect-[3/4] bg-[#f8f6f2] overflow-hidden lg:sticky lg:top-24">
                 <Image
                   src={wine.image ?? "/images/wine-placeholder.webp"}
                   alt={wine.name}
@@ -70,7 +70,6 @@ export default function WineDetailPage({ wine }: { wine: Wine }) {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
                 />
-                {/* Badges */}
                 <div className="absolute top-4 left-4 flex flex-col gap-1.5">
                   {wine.badges.map((badge) => (
                     <span key={badge} className="bg-pourpre-deep/90 text-gold text-[9px] tracking-[0.1em] uppercase font-medium px-2.5 py-1 w-fit">
@@ -89,9 +88,9 @@ export default function WineDetailPage({ wine }: { wine: Wine }) {
             {/* Info */}
             <ScrollReveal delay={0.1}>
               <div className="flex flex-col">
-                {/* Type badge */}
+                {/* Type badge + vintage */}
                 {!isGiftCard && (
-                  <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-2 mb-3">
                     <span className={`px-2.5 py-1 text-[9px] tracking-[0.08em] uppercase font-medium ${typeColors[wine.type] ?? ""}`}>
                       {wine.type}
                     </span>
@@ -104,16 +103,26 @@ export default function WineDetailPage({ wine }: { wine: Wine }) {
                 </h1>
 
                 {/* Price */}
-                <div className="flex items-baseline gap-3 mb-6">
+                <div className="flex items-baseline gap-3 mb-4">
                   <span className="font-heading text-pourpre-deep text-2xl sm:text-3xl">${wine.price}</span>
                   {!isGiftCard && memberSaving > 0 && (
-                    <span className="text-gold text-[13px] font-body">
-                      ${wine.memberPrice.toFixed(2)} member price
-                    </span>
+                    <>
+                      <span className="text-gold font-heading text-lg sm:text-xl">
+                        ${wine.memberPrice.toFixed(2)}
+                      </span>
+                      <span className="text-gold/60 text-[11px] font-body">
+                        member
+                      </span>
+                    </>
                   )}
                 </div>
 
-                {/* Add to cart — Vinoshipper handles qty selector, compliance, shipping */}
+                {/* Description — before add-to-cart to convince first */}
+                <p className="text-stone text-sm sm:text-[15px] leading-relaxed mb-6">
+                  {wine.description}
+                </p>
+
+                {/* Add to cart — Vinoshipper handles qty selector + compliance */}
                 <div className="mb-6 pb-6 border-b border-gold/10">
                   {isGiftCard ? (
                     <a
@@ -132,18 +141,19 @@ export default function WineDetailPage({ wine }: { wine: Wine }) {
                   </p>
                 </div>
 
-                {/* Available states — Vinoshipper renders dynamically */}
-                <div className="mb-6 pb-6 border-b border-gold/10">
-                  <p className="text-pourpre-deep text-[11px] tracking-[0.08em] uppercase font-body font-medium mb-2">Ships To</p>
-                  <VinoshipperAvailable className="text-stone/60 text-[12px]" />
-                </div>
-
-                {/* Description */}
-                <div className="mb-6 pb-6 border-b border-gold/10">
-                  <p className="text-stone text-sm sm:text-[15px] leading-relaxed">
-                    {wine.description}
-                  </p>
-                </div>
+                {/* Wine Club upsell */}
+                {!isGiftCard && memberSaving > 0 && (
+                  <Link
+                    href="/wine-club"
+                    className="flex items-center gap-3 p-3.5 bg-gold/5 border border-gold/15 mb-6 group hover:bg-gold/10 transition-colors"
+                  >
+                    <Wine className="w-4 h-4 text-gold/60 flex-shrink-0" />
+                    <p className="text-stone text-[12px]">
+                      <span className="text-pourpre-deep font-medium">Join Le Cercle</span> and get this wine for ${wine.memberPrice.toFixed(2)}
+                      <span className="text-gold"> — Save ${memberSaving.toFixed(2)}</span>
+                    </p>
+                  </Link>
+                )}
 
                 {/* Tasting notes */}
                 {wine.tastingNotes && (
@@ -169,7 +179,7 @@ export default function WineDetailPage({ wine }: { wine: Wine }) {
 
                 {/* Specs */}
                 {!isGiftCard && (
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-4 mb-6 pb-6 border-b border-gold/10">
                     <div>
                       <p className="text-stone/40 text-[10px] tracking-[0.1em] uppercase font-body mb-1">Body</p>
                       <p className="text-pourpre-deep text-[13px] font-medium">{bodyLabels[wine.body]}</p>
@@ -184,11 +194,32 @@ export default function WineDetailPage({ wine }: { wine: Wine }) {
                     </div>
                   </div>
                 )}
+
+                {/* Available states + legal — de-emphasized, at the bottom */}
+                <div>
+                  <p className="text-stone/40 text-[10px] tracking-[0.1em] uppercase font-body mb-2">Ships To</p>
+                  <VinoshipperAvailable className="text-stone/50 text-[11px]" />
+                </div>
               </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
+
+      {/* Sticky mobile add-to-cart bar */}
+      {!isGiftCard && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-warm-white/95 backdrop-blur-md border-t border-gold/15 px-4 py-3 safe-area-bottom above-bottom-nav">
+          <div className="flex items-center gap-3">
+            <div className="flex-1 min-w-0">
+              <p className="font-heading text-pourpre-deep text-sm truncate">{wine.name}</p>
+              <p className="font-heading text-pourpre-deep text-lg">${wine.price}</p>
+            </div>
+            <div className="flex-shrink-0">
+              <VinoshipperAddToCart productId={wine.id} />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Related wines */}
       {related.length > 0 && (
@@ -197,26 +228,33 @@ export default function WineDetailPage({ wine }: { wine: Wine }) {
             <h2 className="font-heading text-xl sm:text-2xl text-pourpre-deep mb-8">You May Also Enjoy</h2>
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               {related.map((w) => (
-                <Link key={w.id} href={`/shop/${w.id}`} className="group">
+                <div key={w.id} className="group">
                   <div className="card-heritage overflow-hidden bg-cream rounded-none flex flex-col h-full">
-                    <div className="relative aspect-[3/4] overflow-hidden bg-[#f8f6f2]">
-                      <Image
-                        src={w.image ?? "/images/wine-placeholder.webp"}
-                        alt={w.name}
-                        fill
-                        className="object-contain p-3 transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 640px) 50vw, 25vw"
-                      />
-                    </div>
-                    <div className="p-3 sm:p-4">
-                      <h3 className="font-heading text-sm text-pourpre-deep leading-tight mb-1 group-hover:text-pourpre transition-colors">
-                        {w.name}
-                      </h3>
-                      <p className="text-stone/50 text-[10px] mb-1">{w.vintage} · {w.type}</p>
-                      <span className="font-heading text-pourpre-deep text-base">${w.price}</span>
+                    <Link href={`/shop/${w.id}`}>
+                      <div className="relative aspect-[3/4] overflow-hidden bg-[#f8f6f2]">
+                        <Image
+                          src={w.image ?? "/images/wine-placeholder.webp"}
+                          alt={w.name}
+                          fill
+                          className="object-contain p-3 transition-transform duration-700 group-hover:scale-105"
+                          sizes="(max-width: 640px) 50vw, 25vw"
+                        />
+                      </div>
+                    </Link>
+                    <div className="p-3 sm:p-4 flex flex-col flex-1">
+                      <Link href={`/shop/${w.id}`}>
+                        <h3 className="font-heading text-sm text-pourpre-deep leading-tight mb-1 group-hover:text-pourpre transition-colors">
+                          {w.name}
+                        </h3>
+                      </Link>
+                      <p className="text-stone/50 text-[10px] mb-2">{w.vintage} · {w.type}</p>
+                      <div className="mt-auto flex flex-col gap-2">
+                        <span className="font-heading text-pourpre-deep text-base">${w.price}</span>
+                        <VinoshipperAddToCart productId={w.id} />
+                      </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
