@@ -22,13 +22,13 @@ const typeFilters = [
   { value: "white", label: "White" },
   { value: "rose", label: "Rosé" },
   { value: "red", label: "Red" },
+  { value: "gift-card", label: "Gift Cards" },
 ] as const;
 
 export default function ShopPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [showCart, setShowCart] = useState(false);
   const [typeFilter, setTypeFilter] = useState("all");
-  const [checkoutStep, setCheckoutStep] = useState<"cart" | "checkout" | "done">("cart");
   const { sectionRef, isVisible } = useSectionBlobs();
 
   const filtered = wines.filter((w) => w.inStock && (typeFilter === "all" || w.type === typeFilter));
@@ -91,9 +91,9 @@ export default function ShopPage() {
       {/* Volume discount banner */}
       <div className="bg-pourpre-deep/95 text-warm-white">
         <div className="max-w-[var(--max-width)] mx-auto px-6 py-3 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-[11px] tracking-[0.06em] uppercase font-body">
-          <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 5% off 6+ bottles</span>
-          <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 10% off 12+ bottles</span>
-          <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 15% off 24+ bottles</span>
+          <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 5% off 6+ bottles <span className="text-warm-white/40">(on Vinoshipper)</span></span>
+          <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 10% off 12+ bottles <span className="text-warm-white/40">(on Vinoshipper)</span></span>
+          <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5 text-gold/60" /> 15% off 24+ bottles <span className="text-warm-white/40">(on Vinoshipper)</span></span>
           <span className="flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-gold/60" /> $18 flat shipping</span>
         </div>
       </div>
@@ -147,6 +147,9 @@ export default function ShopPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filtered.map((wine) => {
                   const inCart = cart.find((c) => c.wineId === wine.id);
+                  const isGiftCard = wine.type === "gift-card";
+                  const hasLowStock = wine.inventoryCount !== undefined && wine.inventoryCount < 12 && wine.inventoryCount > 0;
+                  const memberSaving = wine.price - wine.memberPrice;
                   return (
                     <div key={wine.id} className="card-heritage group overflow-hidden bg-warm-white rounded-none flex flex-col">
                       <div className="relative aspect-[4/3] overflow-hidden wine-image-skeleton">
@@ -157,43 +160,83 @@ export default function ShopPage() {
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
-                        {wine.badges.length > 0 && (
-                          <div className="absolute top-3 left-3 flex gap-1.5">
-                            {wine.badges.map((badge) => (
-                              <span key={badge} className="bg-pourpre-deep/90 text-gold text-[9px] tracking-[0.1em] uppercase font-medium px-2.5 py-1">
-                                {badge.replace("-", " ")}
-                              </span>
-                            ))}
-                          </div>
-                        )}
+                        <div className="absolute top-3 left-3 flex gap-1.5">
+                          {wine.badges.map((badge) => (
+                            <span key={badge} className="bg-pourpre-deep/90 text-gold text-[9px] tracking-[0.1em] uppercase font-medium px-2.5 py-1">
+                              {badge.replace("-", " ")}
+                            </span>
+                          ))}
+                          {hasLowStock && (
+                            <span className="bg-red-800/90 text-warm-white text-[9px] tracking-[0.1em] uppercase font-medium px-2.5 py-1">
+                              Only {wine.inventoryCount} left!
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <div className="p-4 sm:p-5 flex flex-col flex-1">
                         <h3 className="font-heading text-base sm:text-lg text-pourpre-deep leading-tight mb-1">
                           {wine.name}
                         </h3>
-                        <p className="text-stone/50 text-[11px] mb-2">{wine.vintage} · {wine.type}</p>
-                        <p className="text-stone text-[12px] leading-relaxed mb-4 flex-1 line-clamp-2">
-                          {wine.tastingNotes}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <span className="font-heading text-pourpre-deep text-lg">${wine.price}</span>
-                          {inCart ? (
-                            <div className="flex items-center gap-2">
-                              <button onClick={() => updateQty(wine.id, -1)} className="w-8 h-8 flex items-center justify-center border border-gold/20 hover:bg-gold/5 transition-colors cursor-pointer">
-                                <Minus className="w-3 h-3" />
-                              </button>
-                              <span className="text-sm font-medium w-6 text-center">{inCart.qty}</span>
-                              <button onClick={() => updateQty(wine.id, 1)} className="w-8 h-8 flex items-center justify-center border border-gold/20 hover:bg-gold/5 transition-colors cursor-pointer">
-                                <Plus className="w-3 h-3" />
-                              </button>
+                        {!isGiftCard && (
+                          <p className="text-stone/50 text-[11px] mb-2">{wine.vintage} · {wine.type}</p>
+                        )}
+                        {wine.tastingNotes && (
+                          <p className="text-stone text-[12px] leading-relaxed mb-4 flex-1 line-clamp-2">
+                            {wine.tastingNotes}
+                          </p>
+                        )}
+                        {isGiftCard && (
+                          <p className="text-stone text-[12px] leading-relaxed mb-4 flex-1 line-clamp-2">
+                            {wine.description}
+                          </p>
+                        )}
+                        <div className="flex flex-col gap-2">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <span className="font-heading text-pourpre-deep text-lg">${wine.price}</span>
+                              {!isGiftCard && memberSaving > 0 && (
+                                <span className="block text-gold/70 text-[11px]">
+                                  Members save ${memberSaving.toFixed(2)}
+                                </span>
+                              )}
                             </div>
-                          ) : (
-                            <button
-                              onClick={() => addToCart(wine.id)}
-                              className="flex items-center gap-1.5 px-4 py-2 btn-cta-primary rounded-none text-[10px] tracking-[0.1em] uppercase font-body font-medium cursor-pointer"
+                            {isGiftCard ? (
+                              <a
+                                href={wine.vinoshipperUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-1.5 px-4 py-2 btn-cta-primary rounded-none text-[10px] tracking-[0.1em] uppercase font-body font-medium cursor-pointer"
+                              >
+                                Buy Gift Card <ArrowRight className="w-3 h-3" />
+                              </a>
+                            ) : inCart ? (
+                              <div className="flex items-center gap-2">
+                                <button onClick={() => updateQty(wine.id, -1)} className="w-8 h-8 flex items-center justify-center border border-gold/20 hover:bg-gold/5 transition-colors cursor-pointer">
+                                  <Minus className="w-3 h-3" />
+                                </button>
+                                <span className="text-sm font-medium w-6 text-center">{inCart.qty}</span>
+                                <button onClick={() => updateQty(wine.id, 1)} className="w-8 h-8 flex items-center justify-center border border-gold/20 hover:bg-gold/5 transition-colors cursor-pointer">
+                                  <Plus className="w-3 h-3" />
+                                </button>
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() => addToCart(wine.id)}
+                                className="flex items-center gap-1.5 px-4 py-2 btn-cta-primary rounded-none text-[10px] tracking-[0.1em] uppercase font-body font-medium cursor-pointer"
+                              >
+                                <Plus className="w-3 h-3" /> Add
+                              </button>
+                            )}
+                          </div>
+                          {!isGiftCard && wine.vinoshipperUrl && (
+                            <a
+                              href={wine.vinoshipperUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1 text-gold/60 hover:text-gold text-[10px] tracking-[0.06em] uppercase font-body transition-colors self-end"
                             >
-                              <Plus className="w-3 h-3" /> Add
-                            </button>
+                              Buy on Vinoshipper <ArrowRight className="w-3 h-3" />
+                            </a>
                           )}
                         </div>
                       </div>
@@ -265,42 +308,17 @@ export default function ShopPage() {
                         </div>
                       </div>
 
-                      {checkoutStep === "cart" && (
-                        <button
-                          onClick={() => setCheckoutStep("checkout")}
-                          className="w-full flex items-center justify-center gap-2 btn-cta-primary rounded-none h-12 text-[11px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer"
-                        >
-                          <ShoppingCart className="w-4 h-4" /> Proceed to Checkout
-                        </button>
-                      )}
-
-                      {checkoutStep === "checkout" && (
-                        <div className="space-y-4">
-                          <p className="text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium">Shipping Details</p>
-                          <input placeholder="Full name" className="w-full bg-cream border border-gold/20 rounded-none px-3 py-2.5 text-sm font-body focus:outline-none focus:border-gold/50 transition-colors" />
-                          <input placeholder="Email" type="email" className="w-full bg-cream border border-gold/20 rounded-none px-3 py-2.5 text-sm font-body focus:outline-none focus:border-gold/50 transition-colors" />
-                          <input placeholder="Address" className="w-full bg-cream border border-gold/20 rounded-none px-3 py-2.5 text-sm font-body focus:outline-none focus:border-gold/50 transition-colors" />
-                          <div className="grid grid-cols-2 gap-2">
-                            <input placeholder="City" className="w-full bg-cream border border-gold/20 rounded-none px-3 py-2.5 text-sm font-body focus:outline-none focus:border-gold/50 transition-colors" />
-                            <input placeholder="State" className="w-full bg-cream border border-gold/20 rounded-none px-3 py-2.5 text-sm font-body focus:outline-none focus:border-gold/50 transition-colors" />
-                          </div>
-                          <input placeholder="Zip code" className="w-full bg-cream border border-gold/20 rounded-none px-3 py-2.5 text-sm font-body focus:outline-none focus:border-gold/50 transition-colors" />
-                          <p className="text-stone/40 text-[10px]">Must be 21+ to purchase. Shipped via VinoShipper.</p>
-                          <button
-                            onClick={() => { setCheckoutStep("done"); setCart([]); }}
-                            className="w-full flex items-center justify-center gap-2 btn-cta-primary rounded-none h-12 text-[11px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer"
-                          >
-                            Place Order — ${total.toFixed(2)}
-                          </button>
-                        </div>
-                      )}
-
-                      {checkoutStep === "done" && (
-                        <div className="text-center py-4">
-                          <p className="text-gold text-sm mb-2 font-medium">Order placed!</p>
-                          <p className="text-stone/60 text-[13px]">A confirmation email will be sent shortly.</p>
-                        </div>
-                      )}
+                      <a
+                        href="https://vinoshipper.com/shop/domaine_leseurre_winery"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-center gap-2 btn-cta-primary rounded-none h-12 text-[11px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer"
+                      >
+                        <ShoppingCart className="w-4 h-4" /> Complete Purchase on Vinoshipper
+                      </a>
+                      <p className="text-stone/40 text-[10px] text-center mt-2">
+                        Must be 21+ to purchase. Shipped via VinoShipper.
+                      </p>
                     </>
                   )}
                 </div>

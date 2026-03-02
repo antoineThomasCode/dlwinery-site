@@ -3,6 +3,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CursorGlow } from "@/components/shared/cursor-glow";
 import { SmoothScrollProvider } from "@/components/shared/smooth-scroll-provider";
+import { ScrollRestoration } from "@/components/shared/scroll-restoration";
 import { JsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body className="bg-cream text-black-warm antialiased">
         <JsonLd />
         <SmoothScrollProvider>
+          <ScrollRestoration />
           <CursorGlow variant="gold" />
           <Header />
           {children}

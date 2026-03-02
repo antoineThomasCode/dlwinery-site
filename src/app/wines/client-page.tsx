@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { SectionDivider } from "@/components/shared/section-divider";
 import { FrenchText } from "@/components/shared/french-text";
@@ -42,6 +41,7 @@ export default function WinesPage() {
   const { sectionRef, isVisible } = useSectionBlobs();
 
   const filtered = wines.filter((w) => {
+    if (w.type === "gift-card") return false;
     if (typeFilter !== "all" && w.type !== typeFilter) return false;
     if (bodyFilter !== "all" && w.body !== bodyFilter) return false;
     return true;
@@ -138,7 +138,7 @@ export default function WinesPage() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     {/* Badges */}
-                    {wine.badges.length > 0 && (
+                    {(wine.badges.length > 0 || (wine.inventoryCount !== undefined && wine.inventoryCount < 12 && wine.inventoryCount > 0)) && (
                       <div className="absolute top-3 left-3 flex gap-1.5">
                         {wine.badges.map((badge) => (
                           <span
@@ -148,6 +148,11 @@ export default function WinesPage() {
                             {badge.replace("-", " ")}
                           </span>
                         ))}
+                        {wine.inventoryCount !== undefined && wine.inventoryCount < 12 && wine.inventoryCount > 0 && (
+                          <span className="bg-red-800/90 text-warm-white text-[9px] tracking-[0.1em] uppercase font-medium px-2.5 py-1">
+                            Only {wine.inventoryCount} left
+                          </span>
+                        )}
                       </div>
                     )}
                     {/* Type tag */}
@@ -183,18 +188,26 @@ export default function WinesPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <span className="font-heading text-pourpre-deep text-xl">${wine.price}</span>
-                        <span className="text-stone/30 text-[11px] ml-2 line-through">${wine.price}</span>
                         <span className="text-gold/70 text-[11px] ml-1.5">
                           ${wine.memberPrice.toFixed(0)} member
                         </span>
                       </div>
-                      <Link
-                        href="/shop"
-                        className="flex items-center gap-1.5 text-pourpre-deep text-[10px] tracking-[0.1em] uppercase font-body font-medium hover:text-pourpre transition-colors"
-                      >
-                        <ShoppingCart className="w-3.5 h-3.5" />
-                        Shop
-                      </Link>
+                      {wine.vinoshipperUrl ? (
+                        <a
+                          href={wine.vinoshipperUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-pourpre-deep text-[10px] tracking-[0.1em] uppercase font-body font-medium hover:text-pourpre transition-colors"
+                        >
+                          <ShoppingCart className="w-3.5 h-3.5" />
+                          Buy
+                        </a>
+                      ) : (
+                        <span className="flex items-center gap-1.5 text-stone/40 text-[10px] tracking-[0.1em] uppercase font-body font-medium">
+                          <ShoppingCart className="w-3.5 h-3.5" />
+                          Buy
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>

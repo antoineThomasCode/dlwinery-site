@@ -3,7 +3,7 @@ export interface Wine {
   sku: string;
   name: string;
   vintage: number;
-  type: 'red' | 'white' | 'rose' | 'sparkling';
+  type: 'red' | 'white' | 'rose' | 'sparkling' | 'gift-card';
   body: 'light' | 'medium' | 'full';
   sweetness: 'dry' | 'off-dry' | 'sweet';
   price: number;
@@ -14,6 +14,9 @@ export interface Wine {
   image: string | null;
   badges: ('club-exclusive' | 'new-release' | 'limited')[];
   inStock: boolean;
+  inventoryCount?: number;
+  vinoshipperUrl?: string;
+  clubOnly?: boolean;
 }
 
 export interface Experience {

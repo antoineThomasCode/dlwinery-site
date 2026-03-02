@@ -11,8 +11,9 @@ import { useSectionBlobs } from "@/hooks/use-section-blobs";
 import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
 import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { ParallaxImage } from "@/components/shared/parallax-image";
-import { Wine, Gift, Star, Truck, Users, Calendar, Sparkles, Check, ChevronDown, WineOff } from "lucide-react";
+import { Wine, Gift, Star, Truck, Users, Calendar, Sparkles, Check, ChevronDown, WineOff, ExternalLink } from "lucide-react";
 import { WineIcon } from "@/components/ui/wine-icon";
+import { wines } from "@/lib/data/wines";
 
 const benefits = [
   { icon: Wine, title: "Exclusive Sparkling Wines", detail: "Members-only cuvées reserved for Le Cercle, including limited releases never sold in-store." },
@@ -37,6 +38,9 @@ const testimonials = [
   { name: "David L.", text: "The curated shipments are always a pleasant surprise. Sébastien has impeccable taste. And the 15% off means we stock up every visit!", location: "Ithaca, NY" },
   { name: "Susan K.", text: "Best wine club in the Finger Lakes, period. The free tastings for me and my friends make it a no-brainer.", location: "Syracuse, NY" },
 ];
+
+const featuredWineIds = ["100252", "176222", "20307"];
+const featuredWines = featuredWineIds.map((id) => wines.find((w) => w.id === id)!).filter(Boolean);
 
 export default function WineClubPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -114,8 +118,11 @@ export default function WineClubPage() {
           <h1 className="font-heading text-[2rem] sm:text-4xl md:text-5xl text-warm-white font-light leading-tight mb-4">
             <span className="shimmer-text-light">Join Our Wine Club</span>
           </h1>
-          <p className="text-warm-white/60 text-sm sm:text-base max-w-lg mx-auto mb-8">
+          <p className="text-warm-white/60 text-sm sm:text-base max-w-lg mx-auto mb-6">
             Exclusive wines. Private events. A taste of France, delivered to your door three times a year.
+          </p>
+          <p className="text-gold/80 text-[13px] sm:text-sm font-body mb-8">
+            Join 864 members who love great wine
           </p>
           <div className="inline-flex items-center gap-3 p-3 bg-warm-white/10 backdrop-blur-sm border border-warm-white/10">
             <span className="font-heading text-warm-white text-2xl font-semibold">$0</span>
@@ -142,7 +149,8 @@ export default function WineClubPage() {
                 <LineMaskLine><span className="shimmer-text">Member Benefits</span></LineMaskLine>
               </LineMaskReveal>
               <p className="text-stone text-[13px] sm:text-sm max-w-lg mx-auto leading-relaxed">
-                Membership is complimentary — just a love of fine wine.
+                Membership is complimentary — just a love of fine wine.<br />
+                <span className="text-gold font-medium">Save 15% on every bottle — e.g., $34.99 &rarr; $29.74</span>
               </p>
               <SectionDivider className="mt-5" />
             </div>
@@ -164,8 +172,52 @@ export default function WineClubPage() {
         </div>
       </section>
 
-      {/* How it works */}
+      {/* Featured Club Wines */}
       <section className="py-16 sm:py-20 bg-warm-white relative overflow-hidden">
+        <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-[1.5rem] sm:text-3xl text-pourpre-deep font-light mb-4">
+                Wines You&apos;ll Discover
+              </h2>
+              <SectionDivider />
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredWines.map((wine, i) => (
+              <ScrollReveal key={wine.id} delay={i * 0.1}>
+                <div className="card-heritage bg-cream/50 rounded-none overflow-hidden h-full flex flex-col">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-cream">
+                    <Image
+                      src={wine.image ?? "/images/wine-placeholder.webp"}
+                      alt={wine.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5 flex flex-col flex-1">
+                    {wine.vintage > 0 && (
+                      <p className="text-gold/60 text-[10px] tracking-[0.2em] uppercase font-body mb-1">{wine.vintage}</p>
+                    )}
+                    <h3 className="font-heading text-pourpre-deep text-base sm:text-lg mb-2">{wine.name}</h3>
+                    <p className="text-stone text-[13px] leading-relaxed mb-4 flex-1 line-clamp-2">{wine.description}</p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-stone/50 text-sm line-through">${wine.price.toFixed(2)}</span>
+                      <span className="text-gold font-heading text-lg font-semibold">${wine.memberPrice.toFixed(2)}</span>
+                      <span className="text-gold/60 text-[11px] font-body">for members</span>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="py-16 sm:py-20 bg-cream bg-parchment-texture relative overflow-hidden">
         <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
           <ScrollReveal>
             <div className="text-center mb-12">
@@ -197,7 +249,7 @@ export default function WineClubPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 sm:py-20 bg-cream bg-parchment-texture relative overflow-hidden">
+      <section className="py-16 sm:py-20 bg-warm-white relative overflow-hidden">
         <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
           <ScrollReveal>
             <div className="text-center mb-10">
@@ -232,7 +284,7 @@ export default function WineClubPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 sm:py-20 bg-warm-white">
+      <section className="py-16 sm:py-20 bg-cream bg-parchment-texture">
         <div className="max-w-[680px] mx-auto px-5 sm:px-6">
           <ScrollReveal>
             <div className="text-center mb-10">
@@ -263,6 +315,34 @@ export default function WineClubPage() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Vinoshipper CTA */}
+      <section className="py-12 sm:py-16 bg-pourpre-deep relative overflow-hidden">
+        <div className="max-w-[620px] mx-auto px-5 sm:px-6 text-center">
+          <ScrollReveal>
+            <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-3 font-body font-medium">
+              <FrenchText>Prêt à Nous Rejoindre ?</FrenchText>
+            </p>
+            <h2 className="font-heading text-[1.5rem] sm:text-3xl text-warm-white font-light mb-4">
+              Ready to Join?
+            </h2>
+            <p className="text-warm-white/60 text-sm mb-8 max-w-md mx-auto leading-relaxed">
+              Sign up directly on Vinoshipper — it takes less than 2 minutes.
+              Your benefits are active immediately.
+            </p>
+            <a
+              href="https://vinoshipper.com/club/domaine_leseurre"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-cta-primary inline-flex items-center justify-center gap-2 rounded-none h-13 px-10 text-[12px] tracking-[0.15em] uppercase font-body font-medium"
+            >
+              <Wine className="w-4 h-4" />
+              Join on Vinoshipper
+              <ExternalLink className="w-3 h-3 opacity-60" />
+            </a>
+          </ScrollReveal>
         </div>
       </section>
 

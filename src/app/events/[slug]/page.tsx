@@ -29,7 +29,6 @@ export default function EventDetailPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   if (submitted) {

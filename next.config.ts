@@ -10,6 +10,19 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img-production-vinoshipper.s3.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+        pathname: "/cdn.vinoshipper.com/**",
+      },
+    ],
+  },
   async headers() {
     return [
       {
