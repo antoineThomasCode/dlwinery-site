@@ -893,6 +893,38 @@ html.lenis, html.lenis body {
   }
 }
 
+/* ═══════════════════════════════════════════
+   Vinoshipper Injector — Custom theme overrides
+   Matches DL Winery palette: vert profond + or chaud
+   ═══════════════════════════════════════════ */
+
+.vs-add-to-cart {
+  --vs-atc-button-background-color: transparent;
+  --vs-atc-button-border-color: #D7A45E;
+  --vs-atc-button-color: #D7A45E;
+  --vs-atc-button-hover-background-color: #D7A45E;
+  --vs-atc-button-hover-color: #26321B;
+  --vs-atc-button-active-background-color: #B8883A;
+  --vs-atc-button-active-color: #26321B;
+  --vs-atc-button-border-radius: 0;
+  --vs-atc-button-font-size: 0.6875rem;
+  --vs-atc-button-font-weight: 500;
+  --vs-atc-button-text-transform: uppercase;
+  --vs-atc-button-letter-spacing: 0.1em;
+}
+
+.vs-cart {
+  --vs-cart-background-color: #FEFCF7;
+  --vs-cart-color: #26321B;
+  --vs-cart-border-color: rgba(215, 164, 94, 0.15);
+  --vs-cart-actions-checkout-background-color: #26321B;
+  --vs-cart-actions-checkout-color: #D7A45E;
+  --vs-cart-actions-checkout-hover-background-color: #3A4D2C;
+  --vs-cart-actions-checkout-border-radius: 0;
+  --vs-cart-item-remove-color: #6B6560;
+  --vs-cart-item-remove-hover-color: #26321B;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .shimmer-text,
   .shimmer-text-light,

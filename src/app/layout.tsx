@@ -5,6 +5,7 @@ import { CursorGlow } from "@/components/shared/cursor-glow";
 import { SmoothScrollProvider } from "@/components/shared/smooth-scroll-provider";
 import { ScrollRestoration } from "@/components/shared/scroll-restoration";
 import { JsonLd } from "@/components/seo/json-ld";
+import { VinoshipperScript } from "@/components/vinoshipper/vinoshipper-script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -56,6 +57,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </SmoothScrollProvider>
+        <VinoshipperScript />
       </body>
     </html>
   );

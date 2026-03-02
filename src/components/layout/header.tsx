@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, User, Wine, Home } from "lucide-react";
+import { Menu, User, Wine, Home, ShoppingCart } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { WineIcon } from "@/components/ui/wine-icon";
 
@@ -22,6 +22,7 @@ const mobileNavItems = [
   { href: "/", icon: Home, label: "Home" },
   { href: "/experiences", icon: WineIcon, label: "Book" },
   { href: "/wines", icon: Wine, label: "Wines" },
+  { href: "#cart", icon: ShoppingCart, label: "Cart" },
   { href: "/member", icon: User, label: "Account" },
 ];
 
@@ -100,6 +101,21 @@ export function Header() {
 
           {/* Right side */}
           <div className="flex items-center gap-2 sm:gap-3 w-[72px] lg:w-auto justify-end">
+            {/* Cart icon - desktop */}
+            <button
+              onClick={() => {
+                if (typeof window !== "undefined" && window.Vinoshipper) {
+                  window.Vinoshipper.cartOpen();
+                }
+              }}
+              className={`hidden md:flex items-center justify-center w-9 h-9 rounded-full transition-colors cursor-pointer ${
+                scrolled ? "hover:bg-pourpre-deep/5 text-pourpre-deep" : "hover:bg-warm-white/10 text-warm-white"
+              }`}
+              aria-label="Open cart"
+            >
+              <ShoppingCart className="w-4 h-4" />
+            </button>
+
             {/* Member icon - desktop */}
             <Link
               href="/member"
@@ -201,16 +217,31 @@ export function Header() {
       {/* Mobile Bottom Navigation — app-like */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bottom-nav-glass safe-area-bottom">
         <div className="flex items-center justify-around h-16 px-2">
-          {mobileNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-pourpre-deep/60 hover:text-bordeaux transition-colors"
-            >
-              <item.icon className="w-5 h-5" />
-              <span className="text-[10px] font-medium tracking-wide">{item.label}</span>
-            </Link>
-          ))}
+          {mobileNavItems.map((item) =>
+            item.href === "#cart" ? (
+              <button
+                key={item.href}
+                onClick={() => {
+                  if (typeof window !== "undefined" && window.Vinoshipper) {
+                    window.Vinoshipper.cartOpen();
+                  }
+                }}
+                className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-pourpre-deep/60 hover:text-bordeaux transition-colors cursor-pointer"
+              >
+                <item.icon className="w-5 h-5" />
+                <span className="text-[10px] font-medium tracking-wide">{item.label}</span>
+              </button>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-pourpre-deep/60 hover:text-bordeaux transition-colors"
+              >
+                <item.icon className="w-5 h-5" />
+                <span className="text-[10px] font-medium tracking-wide">{item.label}</span>
+              </Link>
+            )
+          )}
         </div>
       </nav>
     </>
