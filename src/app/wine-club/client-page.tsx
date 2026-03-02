@@ -51,7 +51,7 @@ export default function WineClubPage() {
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
     setFormSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // No scroll-to-top — confirmation renders in-place for app-like feel
   };
 
   if (formSubmitted) {

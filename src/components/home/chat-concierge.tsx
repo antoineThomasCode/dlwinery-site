@@ -70,9 +70,9 @@ export function ChatConcierge({
     return () => observer.disconnect();
   }, [welcomeSectionRef]);
 
-  // Scroll to bottom of messages
+  // Scroll to bottom of messages — use "nearest" to avoid page-level scroll jumps
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [messages, isTyping]);
 
   const handleSend = useCallback(() => {

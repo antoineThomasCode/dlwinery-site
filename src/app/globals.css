@@ -702,6 +702,16 @@
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
+/* Position fixed elements above the mobile bottom nav (64px + safe area) */
+.above-bottom-nav {
+  bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 768px) {
+  .above-bottom-nav {
+    bottom: auto;
+  }
+}
+
 /* Lenis smooth scroll handles scrolling — disable native smooth to avoid conflicts */
 html.lenis, html.lenis body {
   height: auto;

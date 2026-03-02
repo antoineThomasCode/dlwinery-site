@@ -128,7 +128,7 @@ function ExperiencesPage() {
   const goTo = useCallback((to: Step, dir: 1 | -1 = 1) => {
     setStepDir(dir);
     setStep(to);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // No scroll-to-top — let AnimatePresence transition in-place for app-like feel
   }, []);
 
   const handleSelectExperience = useCallback((exp: (typeof experiences)[number]) => {
@@ -152,10 +152,13 @@ function ExperiencesPage() {
   const handleDateSelect = useCallback((iso: string) => {
     setSelectedDate(iso);
     setSelectedSlot("");
-    // Smooth scroll to time slots on mobile
+    // Smooth scroll to time slots on mobile — offset for fixed header (64px) + progress bar (~45px)
     if (window.matchMedia("(max-width: 768px)").matches) {
       setTimeout(() => {
-        timeSlotsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        const el = timeSlotsRef.current;
+        if (!el) return;
+        const top = el.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({ top, behavior: "smooth" });
       }, 350);
     }
   }, []);
@@ -667,7 +670,7 @@ function ExperiencesPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 40 }}
                   transition={{ duration: 0.35, ease: LUXURY_EASE }}
-                  className="fixed bottom-16 left-0 right-0 z-50 md:relative md:bottom-auto md:left-auto md:right-auto md:z-20 md:max-w-[720px] md:mx-auto md:px-6"
+                  className="fixed above-bottom-nav left-0 right-0 z-50 md:relative md:left-auto md:right-auto md:z-20 md:max-w-[720px] md:mx-auto md:px-6"
                 >
                   {/* Mobile: full-width fixed bottom bar with glass effect */}
                   <div className="md:hidden bg-warm-white/95 backdrop-blur-xl border-t border-gold/15 px-4 pt-3 pb-3">

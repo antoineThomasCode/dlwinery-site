@@ -24,7 +24,7 @@ export default function MemberPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setView("dashboard");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // No scroll-to-top — dashboard renders in-place for app-like feel
   };
 
   // Login screen
