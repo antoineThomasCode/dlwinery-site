@@ -1,37 +1,52 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback, type RefObject } from "react";
+import { useState, useEffect, type RefObject } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, X, MessageCircle } from "lucide-react";
+import { X, MessageCircle, Clock, Wine, Users, Phone, MapPin, ExternalLink, ArrowRight } from "lucide-react";
+import { WineIcon } from "@/components/ui/wine-icon";
 
-type Message = {
-  role: "user" | "assistant";
-  text: string;
+type FaqItem = {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  answer: string;
+  link?: { text: string; href: string; external?: boolean };
 };
 
-const FAKE_RESPONSES: { keywords: string[]; response: string }[] = [
+const FAQ_ITEMS: FaqItem[] = [
   {
-    keywords: ["wine", "tasting", "visit", "taste", "try"],
-    response:
-      "We'd love to welcome you! Our tastings are available daily from 11am to 5pm. You can book a private experience or walk in — both are wonderful ways to discover our wines.",
+    id: "hours",
+    label: "Hours & Location",
+    icon: <Clock size={14} />,
+    answer:
+      "We're open daily from 11am to 5pm, year-round. Located on the west shore of Keuka Lake at 14 Winery Lane, Hammondsport, NY 14840.",
+    link: { text: "Get Directions", href: "https://maps.google.com/?q=Domaine+LeSeurre+Winery+Hammondsport+NY", external: true },
   },
   {
-    keywords: ["event", "wedding", "party", "celebrate", "celebration", "reception"],
-    response:
-      "Our lakeside terrace is perfect for private events. From intimate gatherings to celebrations of up to 80 guests, we'll craft something special. Shall I connect you with our events team?",
+    id: "tasting",
+    label: "Book a Tasting",
+    icon: <WineIcon className="w-3.5 h-3.5" />,
+    answer:
+      "We offer three tasting experiences: Educational ($15), Wine & Macaron Pairing ($28), and our Signature Food Pairing ($35). Walk-ins are always welcome too!",
+    link: { text: "View Experiences", href: "/experiences" },
+  },
+  {
+    id: "club",
+    label: "Join Wine Club",
+    icon: <Users size={14} />,
+    answer:
+      "Le Cercle membership is complimentary. Enjoy 15% off all purchases, free tastings for you + 3 guests, and 3 curated shipments per year. 864 members and counting!",
+    link: { text: "Join Le Cercle", href: "/wine-club" },
+  },
+  {
+    id: "contact",
+    label: "Contact Us",
+    icon: <Phone size={14} />,
+    answer:
+      "Call us at (607) 569-3299 or email info@dlwinery.com. We'd love to hear from you!",
+    link: { text: "Call Now", href: "tel:+16075693299" },
   },
 ];
-
-const DEFAULT_RESPONSE =
-  "Thank you for reaching out! I'm still learning, but our team would love to help. You can call us at (607) 569-3032 or email info@dlwinery.com for a personal response.";
-
-function getFakeResponse(input: string): string {
-  const lower = input.toLowerCase();
-  for (const { keywords, response } of FAKE_RESPONSES) {
-    if (keywords.some((kw) => lower.includes(kw))) return response;
-  }
-  return DEFAULT_RESPONSE;
-}
 
 const easing = [0.16, 1, 0.3, 1] as const;
 
@@ -40,15 +55,9 @@ export function ChatConcierge({
 }: {
   welcomeSectionRef: RefObject<HTMLElement | null>;
 }) {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [inputValue, setInputValue] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const [selectedFaq, setSelectedFaq] = useState<string | null>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  const inputRef = useRef<HTMLInputElement>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const stickyInputRef = useRef<HTMLInputElement>(null);
 
   // IntersectionObserver — detect when welcome-banner leaves viewport
   useEffect(() => {
@@ -70,130 +79,104 @@ export function ChatConcierge({
     return () => observer.disconnect();
   }, [welcomeSectionRef]);
 
-  // Scroll to bottom of messages — use "nearest" to avoid page-level scroll jumps
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }, [messages, isTyping]);
+  const activeFaq = FAQ_ITEMS.find((f) => f.id === selectedFaq);
 
-  const handleSend = useCallback(() => {
-    const text = inputValue.trim();
-    if (!text || isTyping) return;
-
-    setInputValue("");
-    setMessages((prev) => [...prev, { role: "user", text }]);
-    setIsTyping(true);
-
-    // If we're in sticky mode, open the conversation panel
+  const handleFaqClick = (id: string) => {
+    setSelectedFaq(selectedFaq === id ? null : id);
     if (isSticky) setIsOpen(true);
-
-    const delay = 1500 + Math.random() * 500;
-    setTimeout(() => {
-      setIsTyping(false);
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", text: getFakeResponse(text) },
-      ]);
-    }, delay);
-  }, [inputValue, isTyping, isSticky]);
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
   };
 
-  // ── Message Bubbles ──
-  const renderMessages = () => (
-    <div className="flex flex-col gap-3 overflow-y-auto max-h-[280px] scrollbar-hide px-1">
-      <AnimatePresence mode="popLayout">
-        {messages.map((msg, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.35, ease: easing }}
-            className={`max-w-[85%] ${
-              msg.role === "user" ? "self-end" : "self-start"
-            }`}
-          >
-            <div
-              className={`px-4 py-2.5 rounded-2xl text-[13px] leading-relaxed font-body ${
-                msg.role === "user"
-                  ? "bg-pourpre-deep text-cream rounded-br-md"
-                  : "bg-cream/80 text-pourpre-deep border border-gold/20 rounded-bl-md"
-              }`}
-            >
-              {msg.text}
-            </div>
-          </motion.div>
-        ))}
-      </AnimatePresence>
-
-      {/* Typing indicator */}
-      <AnimatePresence>
-        {isTyping && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="self-start"
-          >
-            <div className="bg-cream/80 border border-gold/20 rounded-2xl rounded-bl-md px-4 py-3 flex gap-1.5 items-center">
-              <span className="typing-dot" />
-              <span className="typing-dot" style={{ animationDelay: "0.15s" }} />
-              <span className="typing-dot" style={{ animationDelay: "0.3s" }} />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div ref={messagesEndRef} />
+  // ── FAQ Chips ──
+  const renderChips = (compact?: boolean) => (
+    <div className={`flex flex-wrap justify-center gap-2 ${compact ? "gap-1.5" : ""}`}>
+      {FAQ_ITEMS.map((faq) => (
+        <button
+          key={faq.id}
+          onClick={() => handleFaqClick(faq.id)}
+          className={`
+            inline-flex items-center gap-1.5 px-3 py-2 text-[12px] font-body font-medium
+            transition-all cursor-pointer active:scale-95
+            ${compact ? "px-2.5 py-1.5 text-[11px]" : ""}
+            ${
+              selectedFaq === faq.id
+                ? "bg-pourpre-deep text-warm-white"
+                : "bg-warm-white border border-gold/20 text-pourpre-deep/70 hover:border-gold/50 hover:text-pourpre-deep"
+            }
+          `}
+        >
+          {faq.icon}
+          {faq.label}
+        </button>
+      ))}
     </div>
   );
 
-  // ── Input Field ──
-  const renderInput = (ref: React.RefObject<HTMLInputElement | null>, autoFocus?: boolean) => (
-    <div className="flex items-center gap-2 bg-warm-white border border-gold/30 rounded-full px-4 py-2.5 focus-within:border-gold/60 transition-colors duration-300">
-      <input
-        ref={ref}
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="How can I help you today?"
-        autoFocus={autoFocus}
-        className="flex-1 bg-transparent text-pourpre-deep text-[13px] sm:text-sm font-body placeholder:text-pourpre-deep/40 outline-none"
-      />
-      <button
-        onClick={handleSend}
-        disabled={!inputValue.trim() || isTyping}
-        aria-label="Send message"
-        className="text-gold hover:text-gold-dark disabled:opacity-30 transition-colors duration-200 flex-shrink-0"
-      >
-        <Send size={18} strokeWidth={1.5} />
-      </button>
-    </div>
+  // ── Answer Panel ──
+  const renderAnswer = () => (
+    <AnimatePresence mode="wait">
+      {activeFaq && (
+        <motion.div
+          key={activeFaq.id}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.25, ease: easing }}
+          className="mt-4 p-4 bg-cream/80 border border-gold/15 text-left"
+        >
+          <p className="text-pourpre-deep text-[13px] leading-relaxed mb-3">
+            {activeFaq.answer}
+          </p>
+          {activeFaq.link && (
+            activeFaq.link.external ? (
+              <a
+                href={activeFaq.link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-gold text-[11px] tracking-[0.1em] uppercase font-body font-medium hover:text-gold-dark transition-colors group"
+              >
+                {activeFaq.link.text}
+                <ExternalLink className="w-3 h-3 opacity-60" />
+              </a>
+            ) : (
+              <a
+                href={activeFaq.link.href}
+                className="inline-flex items-center gap-1.5 text-gold text-[11px] tracking-[0.1em] uppercase font-body font-medium hover:text-gold-dark transition-colors group"
+              >
+                {activeFaq.link.text}
+                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+              </a>
+            )
+          )}
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 
-  // ── Inline Chat (inside Welcome Banner) ──
-  const inlineChat = (
+  // ── Inline FAQ (inside Welcome Banner) ──
+  const inlineFaq = (
     <div className="mt-6 max-w-md mx-auto">
-      {messages.length > 0 && <div className="mb-3">{renderMessages()}</div>}
-      {renderInput(inputRef)}
+      <p className="text-stone/40 text-[10px] tracking-[0.15em] uppercase font-body mb-3">
+        Quick Answers
+      </p>
+      {renderChips()}
+      {renderAnswer()}
+      <p className="text-stone/40 text-[10px] mt-4">
+        Need more help? Call us at{" "}
+        <a href="tel:+16075693299" className="text-gold hover:text-gold-dark transition-colors">
+          (607) 569-3299
+        </a>
+      </p>
     </div>
   );
 
-  // ── Sticky Chat (mobile only, below viewport) ──
-  const stickyChat = (
+  // ── Sticky FAQ (mobile only, below viewport) ──
+  const stickyFaq = (
     <AnimatePresence>
       {isSticky && (
         <>
-          {/* Conversation overlay */}
+          {/* Answer overlay */}
           <AnimatePresence>
-            {isOpen && (
+            {isOpen && activeFaq && (
               <>
                 {/* Backdrop */}
                 <motion.div
@@ -218,24 +201,55 @@ export function ChatConcierge({
                   {/* Header */}
                   <div className="flex items-center justify-between px-4 py-2.5 border-b border-gold/10">
                     <span className="text-xs font-body text-pourpre-deep/60 tracking-wide uppercase">
-                      Concierge
+                      Quick Answers
                     </span>
                     <button
                       onClick={() => setIsOpen(false)}
                       className="text-pourpre-deep/40 hover:text-pourpre-deep transition-colors"
-                      aria-label="Close chat"
+                      aria-label="Close"
                     >
                       <X size={16} />
                     </button>
                   </div>
-                  {/* Messages */}
-                  <div className="p-3">{renderMessages()}</div>
+                  {/* Answer */}
+                  <div className="p-4">
+                    <p className="text-pourpre-deep text-[13px] leading-relaxed mb-3">
+                      {activeFaq.answer}
+                    </p>
+                    {activeFaq.link && (
+                      activeFaq.link.external ? (
+                        <a
+                          href={activeFaq.link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-gold text-[11px] tracking-[0.1em] uppercase font-body font-medium hover:text-gold-dark transition-colors"
+                        >
+                          {activeFaq.link.text}
+                          <ExternalLink className="w-3 h-3 opacity-60" />
+                        </a>
+                      ) : (
+                        <a
+                          href={activeFaq.link.href}
+                          className="inline-flex items-center gap-1.5 text-gold text-[11px] tracking-[0.1em] uppercase font-body font-medium hover:text-gold-dark transition-colors group"
+                        >
+                          {activeFaq.link.text}
+                          <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                        </a>
+                      )
+                    )}
+                    <p className="text-stone/40 text-[10px] mt-4 border-t border-gold/8 pt-3">
+                      Need more help? Call{" "}
+                      <a href="tel:+16075693299" className="text-gold">
+                        (607) 569-3299
+                      </a>
+                    </p>
+                  </div>
                 </motion.div>
               </>
             )}
           </AnimatePresence>
 
-          {/* Sticky input bar */}
+          {/* Sticky chip bar */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -248,18 +262,17 @@ export function ChatConcierge({
           >
             <div className="px-4 py-2.5">
               <div className="flex items-center gap-2">
-                {/* Open conversation button (if messages exist) */}
-                {messages.length > 0 && !isOpen && (
+                {activeFaq && !isOpen && (
                   <button
                     onClick={() => setIsOpen(true)}
                     className="text-gold/60 hover:text-gold transition-colors flex-shrink-0"
-                    aria-label="Open conversation"
+                    aria-label="Open answer"
                   >
                     <MessageCircle size={18} strokeWidth={1.5} />
                   </button>
                 )}
-                <div className="flex-1">
-                  {renderInput(stickyInputRef)}
+                <div className="flex-1 overflow-x-auto scrollbar-hide">
+                  {renderChips(true)}
                 </div>
               </div>
             </div>
@@ -271,11 +284,11 @@ export function ChatConcierge({
 
   return (
     <>
-      {/* Inline chat — always in the Welcome Banner */}
-      {inlineChat}
+      {/* Inline FAQ — always in the Welcome Banner */}
+      {inlineFaq}
 
-      {/* Sticky chat — mobile only, when scrolled past Welcome */}
-      {stickyChat}
+      {/* Sticky FAQ — mobile only, when scrolled past Welcome */}
+      {stickyFaq}
     </>
   );
 }

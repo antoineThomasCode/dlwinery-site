@@ -26,12 +26,36 @@ const faqs = [
 export default function ContactPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formError, setFormError] = useState("");
+  const [formLoading, setFormLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const { sectionRef, isVisible } = useSectionBlobs();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setFormError("");
+    setFormLoading(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setFormError(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setFormSubmitted(true);
+    } catch {
+      setFormError("Could not send your message. Please try again or call us at (607) 224-3552.");
+    } finally {
+      setFormLoading(false);
+    }
   };
 
   return (
@@ -211,11 +235,26 @@ export default function ContactPage() {
                         placeholder="How can we help?"
                       />
                     </div>
+                    {formError && (
+                      <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3">
+                        {formError}
+                      </div>
+                    )}
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 btn-cta-primary rounded-none h-12 text-[11px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer"
+                      disabled={formLoading}
+                      className="w-full flex items-center justify-center gap-2 btn-cta-primary rounded-none h-12 text-[11px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-3.5 h-3.5" /> Send Message
+                      {formLoading ? (
+                        <>
+                          <span className="w-3.5 h-3.5 border-2 border-current/30 border-t-current rounded-full animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-3.5 h-3.5" /> Send Message
+                        </>
+                      )}
                     </button>
                   </form>
                 )}

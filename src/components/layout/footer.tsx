@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FrenchText } from "@/components/shared/french-text";
 import { WineIcon } from "@/components/ui/wine-icon";
+import { NewsletterForm } from "@/components/layout/newsletter-form";
 
 function MapPinIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -183,22 +184,7 @@ export function Footer() {
             <p className="text-sm mb-4 text-warm-white/50">
               Get updates on new releases, events, and exclusive offers.
             </p>
-            <form className="flex flex-col gap-2.5">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="bg-warm-white/8 border border-gold/20 rounded-none px-4 py-2.5 text-sm text-warm-white placeholder:text-warm-white/25 focus:outline-none focus:border-gold/50 transition-colors duration-300"
-              />
-              <button
-                type="submit"
-                className="btn-cta-primary rounded-none px-4 py-2.5 text-xs font-body font-medium tracking-[0.12em] uppercase cursor-pointer"
-                data-track-event="newsletter_signup"
-                data-track-category="footer"
-                data-track-label="email_capture"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
 
             {/* Social */}
             <div className="flex gap-3 mt-6">
