@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
       const errorData = await response.json().catch(() => null);
       console.error("Brevo API error:", response.status, errorData);
       return NextResponse.json(
-        { error: "Failed to send message. Please try again or call us directly at (607) 224-3552." },
+        { error: "Failed to send message. Please try again or call us directly at (607) 569-3299." },
         { status: 500 }
       );
     }
@@ -130,7 +130,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Contact form error:", error);
     return NextResponse.json(
-      { error: "An unexpected error occurred. Please try again or call us directly at (607) 224-3552." },
+      { error: "An unexpected error occurred. Please try again or call us directly at (607) 569-3299." },
       { status: 500 }
     );
   }

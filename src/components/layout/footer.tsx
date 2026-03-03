@@ -121,7 +121,7 @@ export function Footer() {
               <li className="flex items-start gap-2.5">
                 <MapPinIcon className="w-4 h-4 mt-0.5 text-gold/50 flex-shrink-0" />
                 <span>
-                  14 Winery Farm Rd
+                  9485 Route 76
                   <br />
                   Hammondsport, NY 14840
                 </span>
@@ -129,10 +129,10 @@ export function Footer() {
               <li className="flex items-center gap-2.5">
                 <PhoneIcon className="w-4 h-4 text-gold/50 flex-shrink-0" />
                 <a
-                  href="tel:+16072243552"
+                  href="tel:+16075693299"
                   className="hover:text-gold transition-colors duration-300"
                 >
-                  (607) 224-3552
+                  (607) 569-3299
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
