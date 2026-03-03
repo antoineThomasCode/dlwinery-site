@@ -132,7 +132,7 @@ export default function WinesPage() {
                   <ClipPathReveal direction="up" duration={1.0} className="relative aspect-[3/4] overflow-hidden bg-[#f8f6f2] wine-image-skeleton">
                     <Link href={`/shop/${wine.id}`} className="block absolute inset-0">
                       <Image
-                        src={wine.image ?? "/images/wine-placeholder.webp"}
+                        src={wine.image ?? "/images/wine-placeholder.svg"}
                         alt={wine.name}
                         fill
                         className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"

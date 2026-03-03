@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" fill="none">
+  <rect width="300" height="400" fill="#f8f6f2"/>
+  <!-- Wine bottle silhouette -->
+  <g transform="translate(150,200)" opacity="0.35">
+    <!-- Bottle body -->
+    <path d="M-20,60 L-20,-20 Q-20,-35 -12,-45 L-12,-80 Q-12,-85 -8,-85 L8,-85 Q12,-85 12,-80 L12,-45 Q20,-35 20,-20 L20,60 Q20,80 0,80 Q-20,80 -20,60Z" fill="#D7A45E"/>
+    <!-- Bottle cap -->
+    <rect x="-7" y="-100" width="14" height="18" rx="2" fill="#D7A45E"/>
+  </g>
+  <!-- Text -->
+  <text x="150" y="320" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#D7A45E" opacity="0.5" letter-spacing="4">DOMAINE LESEURRE</text>
+</svg>

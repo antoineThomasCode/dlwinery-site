@@ -127,13 +127,19 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Map placeholder */}
-                <div className="aspect-[16/9] bg-parchment border border-gold/10 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="w-8 h-8 text-gold/30 mx-auto mb-2" />
-                    <p className="text-stone/40 text-[11px] tracking-[0.1em] uppercase font-body">Interactive Map</p>
-                    <p className="text-stone/25 text-[10px]">Coming soon</p>
-                  </div>
+                {/* Google Maps embed */}
+                <div className="aspect-[16/9] overflow-hidden border border-gold/10">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Domaine+LeSeurre+Winery+9485+Route+76+Hammondsport+NY+14840&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Domaine LeSeurre Winery Location"
+                    className="w-full h-full"
+                  />
                 </div>
               </div>
             </ScrollReveal>

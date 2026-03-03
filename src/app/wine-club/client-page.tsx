@@ -190,7 +190,7 @@ export default function WineClubPage() {
                 <div className="card-heritage bg-cream/50 rounded-none overflow-hidden h-full flex flex-col">
                   <div className="relative aspect-[3/4] overflow-hidden bg-cream">
                     <Image
-                      src={wine.image ?? "/images/wine-placeholder.webp"}
+                      src={wine.image ?? "/images/wine-placeholder.svg"}
                       alt={wine.name}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

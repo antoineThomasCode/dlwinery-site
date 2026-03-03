@@ -112,7 +112,7 @@ export default function ShopPage() {
                   <Link href={`/shop/${wine.id}`} className="block">
                     <div className="relative aspect-[3/4] overflow-hidden bg-[#f8f6f2] wine-image-skeleton">
                       <Image
-                        src={wine.image ?? "/images/wine-placeholder.webp"}
+                        src={wine.image ?? "/images/wine-placeholder.svg"}
                         alt={wine.name}
                         fill
                         className="object-contain p-2 sm:p-4 transition-transform duration-700 group-hover:scale-105"

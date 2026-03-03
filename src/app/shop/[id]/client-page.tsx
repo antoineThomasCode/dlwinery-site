@@ -63,7 +63,7 @@ export default function WineDetailPage({ wine }: { wine: WineType }) {
             <ScrollReveal>
               <div className="relative aspect-[3/4] bg-[#f8f6f2] overflow-hidden lg:sticky lg:top-24">
                 <Image
-                  src={wine.image ?? "/images/wine-placeholder.webp"}
+                  src={wine.image ?? "/images/wine-placeholder.svg"}
                   alt={wine.name}
                   fill
                   className="object-contain p-6 sm:p-10"
@@ -233,7 +233,7 @@ export default function WineDetailPage({ wine }: { wine: WineType }) {
                     <Link href={`/shop/${w.id}`}>
                       <div className="relative aspect-[3/4] overflow-hidden bg-[#f8f6f2]">
                         <Image
-                          src={w.image ?? "/images/wine-placeholder.webp"}
+                          src={w.image ?? "/images/wine-placeholder.svg"}
                           alt={w.name}
                           fill
                           className="object-contain p-3 transition-transform duration-700 group-hover:scale-105"
