@@ -29,7 +29,7 @@ export function WineClubSection() {
       <div className="absolute inset-0 -z-10">
         <ParallaxImage
           src="/images/club-love-story.webp"
-          alt="Wine Club Le Cercle"
+          alt="LeSeurre Family Club"
           sizes="100vw"
           className="absolute inset-0"
           speed={0.08}
@@ -61,7 +61,7 @@ export function WineClubSection() {
           <ScrollReveal>
             <div>
               <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
-                <FrenchText>Le Cercle</FrenchText>
+                <FrenchText>La Famille</FrenchText>
               </p>
               <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] font-light mb-2 leading-tight">
                 <LineMaskLine><span className="shimmer-text-light">Join Our</span></LineMaskLine>

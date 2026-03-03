@@ -56,7 +56,7 @@ export function CtaSection() {
           </LineMaskReveal>
 
           <p className="text-warm-white/50 text-[13px] sm:text-base mb-10 sm:mb-12 font-body leading-relaxed max-w-md mx-auto">
-            Book your tasting, join Le Cercle, or simply come say <span className="font-heading italic text-gold/60">bonjour</span>. We&apos;re open every day.
+            Book your tasting, join the Family Club, or simply come say <span className="font-heading italic text-gold/60">bonjour</span>. We&apos;re open every day.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
@@ -80,7 +80,7 @@ export function CtaSection() {
                 data-track-category="final_cta"
                 data-track-label="join_club"
               >
-                Join Le Cercle
+                Join the Family Club
               </Link>
             </MagneticButton>
           </div>

@@ -149,7 +149,7 @@ export default function WineDetailPage({ wine }: { wine: WineType }) {
                   >
                     <Wine className="w-4 h-4 text-gold/60 flex-shrink-0" />
                     <p className="text-stone text-[12px]">
-                      <span className="text-pourpre-deep font-medium">Join Le Cercle</span> and get this wine for ${wine.memberPrice.toFixed(2)}
+                      <span className="text-pourpre-deep font-medium">Join the Family Club</span> and get this wine for ${wine.memberPrice.toFixed(2)}
                       <span className="text-gold"> — Save ${memberSaving.toFixed(2)}</span>
                     </p>
                   </Link>

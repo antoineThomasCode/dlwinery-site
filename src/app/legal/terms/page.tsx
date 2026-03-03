@@ -30,7 +30,7 @@ export default function TermsPage() {
 
           <section>
             <h2 className="font-heading text-pourpre-deep text-lg mb-3">4. Wine Club Membership</h2>
-            <p>Le Cercle membership is complimentary. Members agree to receive 3 shipments per year (6 bottles each) at the current member pricing. Membership may be cancelled at any time with 30 days notice before the next scheduled shipment. Cancellation does not affect pending shipments.</p>
+            <p>LeSeurre Family Club membership is free to join. Members agree to receive 3 shipments per year (6 bottles each) at the current member pricing. Membership may be cancelled with 30 days notice before the next scheduled shipment. Contact us for details on cancellation terms. Cancellation does not affect pending shipments.</p>
           </section>
 
           <section>

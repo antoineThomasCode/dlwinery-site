@@ -209,7 +209,7 @@ export default function WineClubPage() {
       <section className="relative h-[60vh] min-h-[420px] flex items-center justify-center overflow-hidden">
         <ParallaxImage
           src="/images/club-love-story.webp"
-          alt="Wine Club Le Cercle"
+          alt="LeSeurre Family Club"
           sizes="100vw"
           className="absolute inset-0"
           speed={0.08}
@@ -217,7 +217,7 @@ export default function WineClubPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-[rgba(38,50,27,0.7)]" />
         <div className="relative z-10 text-center px-6 max-w-2xl mx-auto">
           <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
-            <FrenchText>Le Cercle</FrenchText>
+            <FrenchText>La Famille</FrenchText>
           </p>
           <h1 className="font-heading text-[2rem] sm:text-4xl md:text-5xl text-warm-white font-light leading-tight mb-4">
             <span className="shimmer-text-light">Join Our Wine Club</span>
@@ -432,7 +432,7 @@ export default function WineClubPage() {
                 <FrenchText>Rejoignez-Nous</FrenchText>
               </p>
               <h2 className="font-heading text-[1.75rem] sm:text-4xl text-warm-white font-light mb-4">
-                Ready to Join Le Cercle?
+                Ready to Join the Family?
               </h2>
               <p className="text-warm-white/60 text-sm max-w-md mx-auto leading-relaxed">
                 Tell us about yourself, then complete your membership on Vinoshipper.

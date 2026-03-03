@@ -208,7 +208,7 @@ function ExperiencesPage() {
                 href="/wine-club"
                 className="inline-flex items-center gap-2 text-pourpre-deep text-[11px] font-body font-medium tracking-[0.15em] uppercase hover:text-pourpre transition-colors group"
               >
-                Learn about Le Cercle
+                Learn about the Family Club
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

@@ -35,8 +35,8 @@ const FAQ_ITEMS: FaqItem[] = [
     label: "Join Wine Club",
     icon: <Users size={14} />,
     answer:
-      "Le Cercle membership is complimentary. Enjoy 15% off all purchases, free tastings for you + 3 guests, and 3 curated shipments per year. 864 members and counting!",
-    link: { text: "Join Le Cercle", href: "/wine-club" },
+      "LeSeurre Family Club membership is free to join. Enjoy 15% off all purchases, free tastings for you + 3 guests, and 3 curated shipments per year. 860+ members and counting!",
+    link: { text: "Join the Family Club", href: "/wine-club" },
   },
   {
     id: "contact",

@@ -13,7 +13,7 @@ export default function MemberPage() {
         <ScrollReveal>
           <div className="text-center mb-10">
             <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-3 font-body font-medium">
-              <FrenchText>Le Cercle</FrenchText>
+              <FrenchText>La Famille</FrenchText>
             </p>
             <h1 className="font-heading text-[1.75rem] sm:text-3xl text-pourpre-deep font-light mb-3">
               Member Portal
@@ -50,7 +50,7 @@ export default function MemberPage() {
                 href="/wine-club"
                 className="btn-shimmer-gold inline-flex items-center justify-center gap-2 rounded-none h-12 px-8 text-[11px] tracking-[0.15em] uppercase font-body font-medium"
               >
-                Join Le Cercle
+                Join the Family Club
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>

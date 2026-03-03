@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import WineClubPage from "./client-page";
 
 export const metadata: Metadata = {
-  title: "Wine Club Le Cercle — Free Membership, Exclusive Wines",
+  title: "LeSeurre Family Club — Free Membership, Exclusive Wines",
   description:
-    "Join Le Cercle, the wine club of Domaine LeSeurre. Free membership, 15% off all wines, complimentary tastings, and 3 curated shipments per year.",
+    "Join the LeSeurre Family Club. Free membership, 15% off all wines, complimentary tastings, and 3 curated shipments per year from Keuka Lake.",
   openGraph: {
-    title: "Wine Club Le Cercle | Domaine LeSeurre",
+    title: "LeSeurre Family Club | Domaine LeSeurre",
     description:
       "Free membership. 15% off all wines. Complimentary tastings. 3 curated shipments per year from Keuka Lake.",
   },
