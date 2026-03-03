@@ -1093,28 +1093,6 @@ html.lenis, html.lenis body {
   display: none !important;
 }
 
-/* --- Club Registration embed (iframe-based) --- */
-.vs-club-registration {
-  --vs-embed-theme: #D7A45E;
-  --vs-embed-theme-rgb: 215, 164, 94;
-  --vs-embed-theme-color: #1A2413;
-  --vs-body-bg: 254, 252, 247;
-  --vs-body-color: #26321B;
-  --vs-body-font-family: 'Sweet Sans Pro', sans-serif;
-  --vs-heading-color: #26321B;
-  --vs-heading-font-family: 'Diaspora', sans-serif;
-  --vs-embed-btn-primary-bg: #D7A45E;
-  --vs-embed-btn-primary-color: #1A2413;
-  --vs-embed-btn-primary-hover-bg: #E4BB7A;
-  --vs-embed-btn-primary-active-bg: #B8883A;
-  --vs-embed-btn-primary-border-radius: 0;
-  --vs-border-radius: 0;
-  --vs-input-border-color: rgba(215, 164, 94, 0.25);
-  --vs-input-focus-border-color: #D7A45E;
-  --vs-input-border-radius: 0;
-  min-height: 200px;
-}
-
 /* --- Available In component --- */
 .vs-available {
   font-family: 'Sweet Sans Pro', sans-serif;

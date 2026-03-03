@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
@@ -9,13 +9,13 @@ import { FrenchText } from "@/components/shared/french-text";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
 import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
-import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { ParallaxImage } from "@/components/shared/parallax-image";
-import { Wine, Gift, Star, Truck, Users, Calendar, Check, ChevronDown, ArrowDown } from "lucide-react";
+import { Wine, Gift, Star, Truck, Users, Calendar, ChevronDown, ArrowDown, ExternalLink, Loader2 } from "lucide-react";
 import { WineIcon } from "@/components/ui/wine-icon";
 import { wines } from "@/lib/data/wines";
 
-const VINOSHIPPER_CLUB_ID = 10399;
+const VINOSHIPPER_CLUB_URL =
+  "https://vinoshipper.com/shop/domaine_leseurre_winery/join-our-club";
 
 const benefits = [
   { icon: Wine, title: "Exclusive Sparkling Wines", detail: "Members-only cuvees reserved for Le Cercle, including limited releases never sold in-store." },
@@ -44,29 +44,158 @@ const testimonials = [
 const featuredWineIds = ["100252", "176222", "20307"];
 const featuredWines = featuredWineIds.map((id) => wines.find((w) => w.id === id)!).filter(Boolean);
 
-function VinoshipperClubForm() {
-  const formRef = useRef<HTMLDivElement>(null);
+function ClubLeadForm() {
+  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "" });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  useEffect(() => {
-    // After the div mounts, tell Vinoshipper to re-render so it picks up the new element
-    const timer = setTimeout(() => {
-      if (window.Vinoshipper?.isRendered()) {
-        window.Vinoshipper.render();
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("submitting");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/club-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(data.error || "Something went wrong.");
+        setStatus("error");
+        return;
       }
-    }, 500);
-    return () => clearTimeout(timer);
-  }, []);
+
+      setStatus("success");
+    } catch {
+      setErrorMsg("Connection error. Please try again.");
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="bg-warm-white/5 border border-gold/20 p-8 text-center">
+        <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gold/15 flex items-center justify-center">
+          <Wine className="w-6 h-6 text-gold" />
+        </div>
+        <h3 className="font-heading text-warm-white text-xl mb-2">
+          Welcome, {form.firstName}!
+        </h3>
+        <p className="text-warm-white/60 text-sm mb-3 leading-relaxed">
+          One last step — complete your membership on Vinoshipper to activate your 15% discount, free tastings, and first shipment.
+        </p>
+        <div className="bg-warm-white/5 border border-gold/10 p-4 mb-6">
+          <p className="text-gold/80 text-[11px] tracking-[0.1em] uppercase font-body mb-2">Your Annual Savings</p>
+          <p className="font-heading text-gold text-3xl font-semibold">~$150</p>
+          <p className="text-warm-white/40 text-[12px] mt-1">On 18 bottles at 15% off + free tastings</p>
+        </div>
+        <a
+          href={VINOSHIPPER_CLUB_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-cta-primary inline-flex items-center justify-center gap-2 rounded-none h-12 px-10 text-[11px] tracking-[0.15em] uppercase font-body font-medium"
+        >
+          Complete Signup on Vinoshipper
+          <ExternalLink className="w-3.5 h-3.5 opacity-60" />
+        </a>
+        <p className="text-warm-white/25 text-[11px] mt-4">
+          Vinoshipper handles age verification, payment, and shipping compliance
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-warm-white/95 rounded-none overflow-hidden">
-      <div
-        ref={formRef}
-        className="vs-club-registration"
-        data-vs-club-allow={String(VINOSHIPPER_CLUB_ID)}
-        data-vs-club-default={String(VINOSHIPPER_CLUB_ID)}
-        data-vs-club-headline="0"
-      />
-    </div>
+    <form onSubmit={handleSubmit} className="bg-warm-white/5 border border-gold/20 p-6 sm:p-8 text-left">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label htmlFor="club-first" className="block text-warm-white/50 text-[11px] tracking-[0.1em] uppercase font-body mb-1.5">
+            First Name <span className="text-gold/60">*</span>
+          </label>
+          <input
+            id="club-first"
+            type="text"
+            required
+            value={form.firstName}
+            onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+            className="w-full bg-warm-white/8 border border-warm-white/15 text-warm-white text-sm px-4 py-3 placeholder:text-warm-white/20 focus:border-gold/40 focus:outline-none transition-colors"
+            placeholder="Céline"
+          />
+        </div>
+        <div>
+          <label htmlFor="club-last" className="block text-warm-white/50 text-[11px] tracking-[0.1em] uppercase font-body mb-1.5">
+            Last Name <span className="text-gold/60">*</span>
+          </label>
+          <input
+            id="club-last"
+            type="text"
+            required
+            value={form.lastName}
+            onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+            className="w-full bg-warm-white/8 border border-warm-white/15 text-warm-white text-sm px-4 py-3 placeholder:text-warm-white/20 focus:border-gold/40 focus:outline-none transition-colors"
+            placeholder="LeSeurre"
+          />
+        </div>
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="club-email" className="block text-warm-white/50 text-[11px] tracking-[0.1em] uppercase font-body mb-1.5">
+          Email <span className="text-gold/60">*</span>
+        </label>
+        <input
+          id="club-email"
+          type="email"
+          required
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          className="w-full bg-warm-white/8 border border-warm-white/15 text-warm-white text-sm px-4 py-3 placeholder:text-warm-white/20 focus:border-gold/40 focus:outline-none transition-colors"
+          placeholder="you@example.com"
+        />
+      </div>
+
+      <div className="mb-6">
+        <label htmlFor="club-phone" className="block text-warm-white/50 text-[11px] tracking-[0.1em] uppercase font-body mb-1.5">
+          Phone <span className="text-warm-white/25 text-[10px] normal-case">(optional)</span>
+        </label>
+        <input
+          id="club-phone"
+          type="tel"
+          value={form.phone}
+          onChange={(e) => setForm({ ...form, phone: e.target.value })}
+          className="w-full bg-warm-white/8 border border-warm-white/15 text-warm-white text-sm px-4 py-3 placeholder:text-warm-white/20 focus:border-gold/40 focus:outline-none transition-colors"
+          placeholder="(607) 555-0123"
+        />
+      </div>
+
+      {errorMsg && (
+        <p className="text-red-400 text-[13px] mb-4">{errorMsg}</p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === "submitting"}
+        className="btn-cta-primary w-full inline-flex items-center justify-center gap-2 rounded-none h-12 px-8 text-[11px] tracking-[0.15em] uppercase font-body font-medium disabled:opacity-50"
+      >
+        {status === "submitting" ? (
+          <>
+            <Loader2 className="w-4 h-4 animate-spin" />
+            Saving...
+          </>
+        ) : (
+          <>
+            <WineIcon className="w-4 h-4" />
+            Continue to Membership
+          </>
+        )}
+      </button>
+
+      <p className="text-warm-white/25 text-[11px] mt-4 text-center">
+        Next step: complete signup on Vinoshipper (age verification &amp; payment)
+      </p>
+    </form>
   );
 }
 
@@ -215,7 +344,7 @@ export default function WineClubPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { step: "1", title: "Sign Up on Vinoshipper", desc: "Join Le Cercle through our secure partner Vinoshipper — it takes less than 2 minutes. No fees, no commitment." },
+              { step: "1", title: "Tell Us About Yourself", desc: "Share your name and email below — it takes 30 seconds. Then complete your membership on Vinoshipper." },
               { step: "2", title: "Receive Your Wines", desc: "3 curated shipments of 6 bottles per year (spring, summer, fall). Customize if you prefer." },
               { step: "3", title: "Enjoy the Perks", desc: "15% off, free tastings, priority events, and exclusive members-only wines. All day, every day." },
             ].map((item, i) => (
@@ -303,29 +432,26 @@ export default function WineClubPage() {
         </div>
       </section>
 
-      {/* Join CTA — Embedded Vinoshipper Club Registration */}
+      {/* Join CTA — Lead Capture Form */}
       <section id="join" className="py-16 sm:py-24 bg-pourpre-deep relative overflow-hidden">
-        <div className="max-w-[620px] mx-auto px-5 sm:px-6 text-center">
+        <div className="max-w-[520px] mx-auto px-5 sm:px-6">
           <ScrollReveal>
-            <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-3 font-body font-medium">
-              <FrenchText>Rejoignez-Nous</FrenchText>
-            </p>
-            <h2 className="font-heading text-[1.75rem] sm:text-4xl text-warm-white font-light mb-4">
-              Ready to Join Le Cercle?
-            </h2>
-            <p className="text-warm-white/60 text-sm mb-8 max-w-md mx-auto leading-relaxed">
-              Sign up below — it takes less than 2 minutes.
-              Your benefits are active immediately.
-            </p>
+            <div className="text-center mb-8">
+              <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-3 font-body font-medium">
+                <FrenchText>Rejoignez-Nous</FrenchText>
+              </p>
+              <h2 className="font-heading text-[1.75rem] sm:text-4xl text-warm-white font-light mb-4">
+                Ready to Join Le Cercle?
+              </h2>
+              <p className="text-warm-white/60 text-sm max-w-md mx-auto leading-relaxed">
+                Tell us about yourself, then complete your membership on Vinoshipper.
+                Your benefits are active immediately.
+              </p>
+            </div>
           </ScrollReveal>
 
-          {/* Vinoshipper Embedded Club Registration Form */}
-          <VinoshipperClubForm />
-
-          <ScrollReveal delay={0.2}>
-            <p className="text-warm-white/30 text-[11px] mt-6 max-w-sm mx-auto">
-              Secure signup powered by Vinoshipper — handles shipping compliance, age verification, and membership management
-            </p>
+          <ScrollReveal delay={0.1}>
+            <ClubLeadForm />
           </ScrollReveal>
         </div>
       </section>
