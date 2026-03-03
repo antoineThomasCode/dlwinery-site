@@ -4,7 +4,7 @@ import ShopPage from "./client-page";
 export const metadata: Metadata = {
   title: "Shop Wines Online — Volume Discounts & Flat Rate Shipping",
   description:
-    "Order wines from Domaine LeSeurre online. Sparkling, white, rosé, and red. 5–15% volume discounts. $18 flat rate shipping to 38 states.",
+    "Order wines from Domaine LeSeurre online. Sparkling, white, rosé, and red. 5–15% volume discounts. Nationwide shipping via VinoShipper.",
   openGraph: {
     title: "Shop Wines | Domaine LeSeurre",
     description:

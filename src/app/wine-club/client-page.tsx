@@ -18,27 +18,27 @@ const VINOSHIPPER_CLUB_URL =
   "https://vinoshipper.com/shop/domaine_leseurre_winery/join-our-club";
 
 const benefits = [
-  { icon: Wine, title: "Exclusive Sparkling Wines", detail: "Members-only cuvees reserved for Le Cercle, including limited releases never sold in-store." },
-  { icon: Gift, title: "15% Off All Purchases", detail: "In-store and online. Applies to all wines, merchandise, and gift sets year-round." },
+  { icon: Wine, title: "Exclusive Sparkling Wines", detail: "Access to sparkling wines reserved for club members — limited production, unique cuvees." },
+  { icon: Gift, title: "15% Off Every Bottle", detail: "Members enjoy 15% off all wine purchases. Save on every visit and every order." },
   { icon: Star, title: "Free Tastings + 3 Guests", detail: "Unlimited complimentary tastings for you and up to 3 guests on every visit." },
-  { icon: Truck, title: "$18 Flat Rate Shipping", detail: "Nationwide delivery at a fixed $18, compared to $30+ standard shipping rates." },
-  { icon: Calendar, title: "3 Curated Shipments/Year", detail: "6 bottles hand-selected by Sebastien, shipped in spring, summer, and fall." },
-  { icon: Users, title: "Priority Event Access", detail: "First access to Jazz on the Terrace, harvest celebrations, and exclusive member-only events." },
+  { icon: Truck, title: "$18 Flat Rate Shipping", detail: "Club shipments delivered at a fixed $18 rate (6+ bottles), compared to $30+ standard shipping." },
+  { icon: Calendar, title: "3 Curated Shipments/Year", detail: "6 bottles hand-selected by Sebastien, shipped in March, June, and September." },
+  { icon: Users, title: "Priority Event Access", detail: "First access to winery events, harvest celebrations, and exclusive member-only gatherings." },
 ];
 
 const faqs = [
-  { q: "How much does membership cost?", a: "Membership is complimentary. You only pay for the wine in your shipments (6 bottles, 3 times per year) at your 15% member discount, plus $18 flat-rate shipping per shipment." },
-  { q: "Can I customize my shipments?", a: "You can choose between Sebastien's curated selection (recommended) or customize your own from our full catalog. Changes can be made up to 2 weeks before each shipment." },
-  { q: "What states do you ship to?", a: "We currently ship to 38 states via VinoShipper. Due to state regulations, we cannot ship to all states. Contact us to check availability in your area." },
-  { q: "Can I cancel my membership?", a: "You may cancel anytime with no fees or penalties. Simply email info@dlwinery.com or call us. We only ask for 30 days notice before your next scheduled shipment." },
-  { q: "What if I don't like a wine?", a: "We stand behind our wines. If you're not satisfied with a bottle, contact us and we'll replace it in your next shipment or offer a credit toward a different selection." },
-  { q: "Do I get benefits immediately?", a: "Yes! Your 15% discount and free tasting benefits are active from the moment you sign up. Your first shipment will be included in the next scheduled cycle." },
+  { q: "How much does membership cost?", a: "Membership is free to join. You only pay for the wine in your shipments (6 bottles, 3 times per year) at your 15% member discount, plus $18 flat-rate shipping per club shipment." },
+  { q: "Can I customize my shipments?", a: "You can choose between Sebastien's curated selection (recommended) or customize your own from our catalog. Contact us before each shipment to make changes." },
+  { q: "What states do you ship to?", a: "We ship to most US states via VinoShipper. Due to state alcohol regulations, some states are restricted. Contact us to check availability in your area." },
+  { q: "Can I cancel my membership?", a: "Contact us at info@dlwinery.com or call (607) 569-3299 to discuss your membership options. We ask for 30 days notice before your next scheduled shipment." },
+  { q: "What's included in each shipment?", a: "6 bottles hand-selected by Sebastien — a mix of our best reds, whites, and seasonal selections. Club shipments go out in March, June, and September." },
+  { q: "When do my benefits start?", a: "Your 15% discount and free tasting benefits are active once your membership is confirmed through Vinoshipper. Your first shipment will be included in the next scheduled cycle." },
 ];
 
-const testimonials = [
-  { name: "Jennifer & Tom R.", text: "We joined after our first tasting and it's been the gift that keeps giving. The sparkling wines alone are worth it — you can't get them anywhere else.", location: "Rochester, NY" },
-  { name: "David L.", text: "The curated shipments are always a pleasant surprise. Sebastien has impeccable taste. And the 15% off means we stock up every visit!", location: "Ithaca, NY" },
-  { name: "Susan K.", text: "Best wine club in the Finger Lakes, period. The free tastings for me and my friends make it a no-brainer.", location: "Syracuse, NY" },
+const socialProofStats = [
+  { value: "860+", label: "Active Members", detail: "And growing every month" },
+  { value: "6th Gen", label: "French Winemaking", detail: "Champagne family heritage" },
+  { value: "15%", label: "Off Every Bottle", detail: "In-store and online" },
 ];
 
 const featuredWineIds = ["100252", "176222", "20307"];
@@ -89,8 +89,8 @@ function ClubLeadForm() {
         </p>
         <div className="bg-warm-white/5 border border-gold/10 p-4 mb-6">
           <p className="text-gold/80 text-[11px] tracking-[0.1em] uppercase font-body mb-2">Your Annual Savings</p>
-          <p className="font-heading text-gold text-3xl font-semibold">~$150</p>
-          <p className="text-warm-white/40 text-[12px] mt-1">On 18 bottles at 15% off + free tastings</p>
+          <p className="font-heading text-gold text-3xl font-semibold">$95–$115</p>
+          <p className="text-warm-white/40 text-[12px] mt-1">On 18 bottles at 15% off + free tastings for you &amp; 3 guests</p>
         </div>
         <a
           href={VINOSHIPPER_CLUB_URL}
@@ -226,7 +226,7 @@ export default function WineClubPage() {
             Exclusive wines. Private events. A taste of France, delivered to your door three times a year.
           </p>
           <p className="text-gold/80 text-[13px] sm:text-sm font-body mb-8">
-            Join 864 members who love great wine
+            Join 860+ members who love great wine
           </p>
           <div className="inline-flex items-center gap-3 p-3 bg-warm-white/10 backdrop-blur-sm border border-warm-white/10 mb-6">
             <span className="font-heading text-warm-white text-2xl font-semibold">$0</span>
@@ -263,8 +263,8 @@ export default function WineClubPage() {
                 <LineMaskLine><span className="shimmer-text">Member Benefits</span></LineMaskLine>
               </LineMaskReveal>
               <p className="text-stone text-[13px] sm:text-sm max-w-lg mx-auto leading-relaxed">
-                Membership is complimentary — just a love of fine wine.<br />
-                <span className="text-gold font-medium">Save 15% on every bottle — e.g., $34.99 &rarr; $29.74</span>
+                Free to join — just a love of fine wine.<br />
+                <span className="text-gold font-medium">15% off every bottle — e.g., $34.99 &rarr; $29.74</span>
               </p>
               <SectionDivider className="mt-5" />
             </div>
@@ -345,7 +345,7 @@ export default function WineClubPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { step: "1", title: "Tell Us About Yourself", desc: "Share your name and email below — it takes 30 seconds. Then complete your membership on Vinoshipper." },
-              { step: "2", title: "Receive Your Wines", desc: "3 curated shipments of 6 bottles per year (spring, summer, fall). Customize if you prefer." },
+              { step: "2", title: "Receive Your Wines", desc: "3 curated shipments of 6 bottles per year — March, June, and September. Customize if you prefer." },
               { step: "3", title: "Enjoy the Perks", desc: "15% off, free tastings, priority events, and exclusive members-only wines. All day, every day." },
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.12}>
@@ -362,34 +362,25 @@ export default function WineClubPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Social Proof */}
       <section className="py-16 sm:py-20 bg-warm-white relative overflow-hidden">
         <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
           <ScrollReveal>
             <div className="text-center mb-10">
               <h2 className="font-heading text-[1.5rem] sm:text-3xl text-pourpre-deep font-light mb-4">
-                What Members Say
+                Why Members Stay
               </h2>
               <SectionDivider />
             </div>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
+            {socialProofStats.map((stat, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="card-heritage bg-warm-white rounded-none p-6 h-full flex flex-col">
-                  <div className="flex gap-0.5 mb-4">
-                    {Array.from({ length: 5 }).map((_, j) => (
-                      <Star key={j} className="w-3 h-3 fill-gold/70 text-gold/70" />
-                    ))}
-                  </div>
-                  <blockquote className="text-pourpre-deep/70 text-[13px] sm:text-sm leading-relaxed mb-5 flex-1">
-                    &ldquo;{t.text}&rdquo;
-                  </blockquote>
-                  <div className="pt-4 border-t border-gold/8">
-                    <p className="text-pourpre-deep font-medium text-[13px]">{t.name}</p>
-                    <p className="text-stone/50 text-[11px]">{t.location}</p>
-                  </div>
+                <div className="card-heritage bg-warm-white rounded-none p-8 h-full text-center">
+                  <p className="font-heading text-gold text-4xl sm:text-5xl font-semibold mb-2">{stat.value}</p>
+                  <p className="text-pourpre-deep font-heading text-base sm:text-lg mb-1">{stat.label}</p>
+                  <p className="text-stone/60 text-[13px]">{stat.detail}</p>
                 </div>
               </ScrollReveal>
             ))}

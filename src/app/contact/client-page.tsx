@@ -19,7 +19,7 @@ const faqs = [
   { q: "Do you host private events?", a: "Absolutely! We offer private tasting experiences, rehearsal dinners, corporate events, and intimate celebrations. Contact us to discuss your vision." },
   { q: "Is the winery accessible?", a: "Our tasting room and terrace are fully accessible. If you have specific accessibility needs, please let us know in advance and we'll make arrangements." },
   { q: "What is your cancellation policy?", a: "Cancellations made 24 hours before your reservation are fully refundable. No-shows may be charged the full tasting fee. Contact us if plans change — we're always flexible." },
-  { q: "Do you ship wine?", a: "Yes! We ship to 38 states via VinoShipper. Wine Club members enjoy $18 flat-rate shipping. Visit our Shop page or call us to place an order." },
+  { q: "Do you ship wine?", a: "Yes! We ship to most US states via VinoShipper. Wine Club members enjoy $18 flat-rate shipping on club shipments. Visit our Shop page or call us to place an order." },
   { q: "Can I buy a gift card?", a: "Yes, gift cards are available in any amount for tastings, wine purchases, or merchandise. Available in-store or by calling us." },
 ];
 
