@@ -894,113 +894,201 @@ html.lenis, html.lenis body {
 }
 
 /* ═══════════════════════════════════════════
-   Vinoshipper Injector — Custom theme overrides
-   Matches DL Winery palette: vert profond + or chaud
-   Full styling for Add-to-Cart, Qty selector, Cart
+   Vinoshipper Injector — DL Winery Premium Theme
+   Palette: vert profond #26321B · or chaud #D7A45E · warm-white #FEFCF7
+   Fonts: Diaspora (headings) · Sweet Sans Pro (body)
+   No border-radius anywhere — sharp luxury edges
    ═══════════════════════════════════════════ */
 
-/* --- Add to Cart: Button — Gold CTA (high contrast, conversion-optimized) --- */
+/* --- Add to Cart: Button — Gold CTA --- */
 .vs-add-to-cart {
   --vs-atc-button-background-color: #D7A45E;
   --vs-atc-button-border-color: #D7A45E;
-  --vs-atc-button-color: #26321B;
+  --vs-atc-button-border-width: 1px;
+  --vs-atc-button-border-style: solid;
+  --vs-atc-button-color: #1A2413;
   --vs-atc-button-hover-background-color: #E4BB7A;
   --vs-atc-button-hover-border-color: #E4BB7A;
   --vs-atc-button-hover-color: #1A2413;
   --vs-atc-button-active-background-color: #B8883A;
   --vs-atc-button-active-border-color: #B8883A;
-  --vs-atc-button-active-color: #26321B;
+  --vs-atc-button-active-color: #FEFCF7;
+  --vs-atc-button-active-shadow: none;
   --vs-atc-button-disabled-background-color: #D7A45E;
   --vs-atc-button-disabled-border-color: #D7A45E;
-  --vs-atc-button-disabled-color: #26321B;
-  --vs-atc-button-disabled-opacity: 0.4;
+  --vs-atc-button-disabled-color: #1A2413;
+  --vs-atc-button-disabled-opacity: 0.35;
+  --vs-atc-button-disabled-box-shadow: none;
   --vs-atc-button-border-radius: 0;
   --vs-atc-button-font-family: 'Sweet Sans Pro', sans-serif;
   --vs-atc-button-font-size: 0.6875rem;
   --vs-atc-button-font-weight: 600;
-  --vs-atc-button-line-height: 1.5;
+  --vs-atc-button-line-height: 1;
   --vs-atc-button-padding-x: 1.5rem;
-  --vs-atc-button-padding-y: 0.625rem;
+  --vs-atc-button-padding-y: 0.75rem;
   --vs-atc-button-box-shadow: none;
-  --vs-atc-button-letter-spacing: 0.08em;
+  --vs-atc-button-letter-spacing: 0.1em;
   --vs-atc-button-text-transform: uppercase;
   --vs-atc-button-transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* --- Add to Cart: Quantity selector --- */
+  /* --- Quantity selector --- */
   --vs-atc-select-color: #26321B;
   --vs-atc-select-background-color: #FEFCF7;
-  --vs-atc-select-border-color: rgba(215, 164, 94, 0.3);
+  --vs-atc-select-border-color: rgba(215, 164, 94, 0.25);
   --vs-atc-select-border-radius: 0;
   --vs-atc-select-border-width: 1px;
+  --vs-atc-select-border-style: solid;
   --vs-atc-select-font-family: 'Sweet Sans Pro', sans-serif;
   --vs-atc-select-font-size: 0.8125rem;
-  --vs-atc-select-font-weight: 400;
+  --vs-atc-select-font-weight: 500;
+  --vs-atc-select-line-height: 1;
   --vs-atc-select-box-shadow: none;
+  --vs-atc-select-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  --vs-atc-select-focus-color: #26321B;
+  --vs-atc-select-focus-background-color: #FEFCF7;
   --vs-atc-select-focus-border-color: #D7A45E;
-  --vs-atc-select-focus-box-shadow: 0 0 0 2px rgba(215, 164, 94, 0.2);
+  --vs-atc-select-focus-box-shadow: 0 0 0 2px rgba(215, 164, 94, 0.15);
+  --vs-atc-select-disabled-color: #6B6560;
+  --vs-atc-select-disabled-background-color: #EDE8DB;
+  --vs-atc-select-disabled-border-color: rgba(215, 164, 94, 0.1);
 
   /* --- Almost sold out badge --- */
   --vs-atc-almost-soldout-background-color: #8B0000;
   --vs-atc-almost-soldout-color: #FEFCF7;
   --vs-atc-almost-soldout-border-radius: 0;
-  --vs-atc-almost-soldout-font-size: 0.625rem;
+  --vs-atc-almost-soldout-font-size: 0.5625rem;
   --vs-atc-almost-soldout-font-weight: 600;
+  --vs-atc-almost-soldout-padding-x: 0.5rem;
+  --vs-atc-almost-soldout-padding-y: 0.25rem;
 
   --vs-atc-margin-bottom: 0;
+  --vs-atc-horizontal-select-margin-right: 0.5rem;
 }
 
 /* --- Cart slide-out panel --- */
 .vs-cart {
+  /* Base */
   --vs-cart-font-family: 'Sweet Sans Pro', sans-serif;
   --vs-cart-background-color: #FEFCF7;
   --vs-cart-color: #26321B;
-  --vs-cart-link-color: #D7A45E;
-  --vs-cart-link-hover-color: #B8883A;
+  --vs-cart-link-color: #B8883A;
+  --vs-cart-link-text-decoration: none;
+  --vs-cart-link-hover-color: #D7A45E;
+  --vs-cart-link-hover-text-decoration: none;
+
+  /* Panel width + animation */
+  --vs-cart-shown-width-max: 420px;
+  --vs-cart-animation-duration: 350ms;
+  --vs-cart-animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  --vs-cart-animation-close-duration: 250ms;
+  --vs-cart-animation-close-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Backdrop overlay */
+  --vs-cart-stage-backdrop-z-index: 9998;
+  --vs-cart-stage-z-index: 9999;
+  --vs-cart-stage-backdrop-background-color: rgba(0, 0, 0, 0);
+  --vs-cart-stage-backdrop-shown-background-color: rgba(26, 36, 19, 0.45);
+
+  /* Close button */
   --vs-cart-close-color: #26321B;
-  --vs-cart-close-opacity: 0.4;
+  --vs-cart-close-opacity: 0.35;
+  --vs-cart-close-hover-color: #26321B;
   --vs-cart-close-hover-opacity: 1;
+
+  /* Icon (cart icon in header) */
   --vs-cart-icon-color: #D7A45E;
-  --vs-cart-stage-backdrop-shown-background-color: rgba(28, 26, 23, 0.5);
-  --vs-cart-contents-border-color: rgba(215, 164, 94, 0.12);
 
-  /* Item names */
+  /* Content dividers */
+  --vs-cart-contents-border-color: rgba(215, 164, 94, 0.1);
+
+  /* Content text */
+  --vs-cart-contents-color: #26321B;
+  --vs-cart-contents-font-family: 'Sweet Sans Pro', sans-serif;
+  --vs-cart-contents-font-size: 0.8125rem;
+  --vs-cart-contents-font-weight: 400;
+  --vs-cart-contents-line-height: 1.5;
+
+  /* Item names — heading font */
   --vs-cart-contents-item-name-font-family: 'Diaspora', sans-serif;
+  --vs-cart-contents-item-name-font-size: 1rem;
   --vs-cart-contents-item-name-font-weight: 400;
-  --vs-cart-contents-item-name-font-size: 0.9375rem;
+  --vs-cart-contents-item-name-line-height: 1.3;
+  --vs-cart-contents-item-name-letter-spacing: 0.01em;
 
-  /* Quantity number */
+  /* Quantity */
   --vs-cart-contents-qty-color: #26321B;
+  --vs-cart-contents-qty-font-family: 'Sweet Sans Pro', sans-serif;
+  --vs-cart-contents-qty-font-size: 0.9375rem;
   --vs-cart-contents-qty-font-weight: 600;
-  --vs-cart-contents-qty-font-size: 1.125rem;
+  --vs-cart-contents-qty-line-height: 1;
 
   /* Remove link */
-  --vs-cart-contents-remove-color: #6B6560;
-  --vs-cart-contents-remove-hover-color: #8B0000;
+  --vs-cart-contents-remove-color: #9B9590;
+  --vs-cart-contents-remove-font-size: 0.6875rem;
+  --vs-cart-contents-remove-font-weight: 400;
   --vs-cart-contents-remove-text-decoration: none;
-  --vs-cart-contents-remove-hover-text-decoration: underline;
+  --vs-cart-contents-remove-text-transform: uppercase;
+  --vs-cart-contents-remove-hover-color: #8B0000;
+  --vs-cart-contents-remove-hover-text-decoration: none;
 
   /* Subtotal */
   --vs-cart-footer-subtotal-font-family: 'Diaspora', sans-serif;
+  --vs-cart-footer-subtotal-font-size: 1.25rem;
   --vs-cart-footer-subtotal-font-weight: 400;
-  --vs-cart-footer-subtotal-font-size: 1.125rem;
+  --vs-cart-footer-subtotal-line-height: 1;
+  --vs-cart-footer-subtotal-letter-spacing: 0.01em;
 
-  /* Checkout button — Gold CTA (matches Add to Cart) */
+  /* Actions area */
+  --vs-cart-actions-padding: 1.25rem;
+  --vs-cart-actions-background-color: transparent;
+  --vs-cart-actions-border-radius: 0;
+
+  /* Checkout button — Gold CTA */
+  --vs-cart-actions-checkout-padding: 0.875rem 1.5rem;
   --vs-cart-actions-checkout-background-color: #D7A45E;
-  --vs-cart-actions-checkout-color: #26321B;
-  --vs-cart-actions-checkout-hover-background-color: #E4BB7A;
+  --vs-cart-actions-checkout-color: #1A2413;
+  --vs-cart-actions-checkout-border-color: #D7A45E;
+  --vs-cart-actions-checkout-border-width: 1px;
+  --vs-cart-actions-checkout-border-style: solid;
   --vs-cart-actions-checkout-border-radius: 0;
   --vs-cart-actions-checkout-font-family: 'Sweet Sans Pro', sans-serif;
+  --vs-cart-actions-checkout-font-size: 0.6875rem;
   --vs-cart-actions-checkout-font-weight: 600;
-  --vs-cart-actions-checkout-font-size: 0.75rem;
-  --vs-cart-actions-checkout-letter-spacing: 0.1em;
+  --vs-cart-actions-checkout-line-height: 1;
+  --vs-cart-actions-checkout-letter-spacing: 0.12em;
   --vs-cart-actions-checkout-text-transform: uppercase;
+  --vs-cart-actions-checkout-text-decoration: none;
+  --vs-cart-actions-checkout-hover-background-color: #E4BB7A;
+  --vs-cart-actions-checkout-hover-color: #1A2413;
+  --vs-cart-actions-checkout-hover-border-color: #E4BB7A;
+  --vs-cart-actions-checkout-active-background-color: #B8883A;
+  --vs-cart-actions-checkout-active-color: #FEFCF7;
+  --vs-cart-actions-checkout-active-border-color: #B8883A;
 
-  /* Continue shopping link */
-  --vs-cart-actions-continue-color: #D7A45E;
-  --vs-cart-actions-continue-hover-color: #B8883A;
+  /* Continue shopping — subtle link */
+  --vs-cart-actions-continue-padding: 0.75rem 1rem;
+  --vs-cart-actions-continue-background-color: transparent;
+  --vs-cart-actions-continue-color: #26321B;
+  --vs-cart-actions-continue-border-color: rgba(215, 164, 94, 0.25);
+  --vs-cart-actions-continue-border-width: 1px;
+  --vs-cart-actions-continue-border-style: solid;
+  --vs-cart-actions-continue-border-radius: 0;
+  --vs-cart-actions-continue-font-family: 'Sweet Sans Pro', sans-serif;
+  --vs-cart-actions-continue-font-size: 0.6875rem;
+  --vs-cart-actions-continue-font-weight: 500;
+  --vs-cart-actions-continue-line-height: 1;
+  --vs-cart-actions-continue-letter-spacing: 0.08em;
+  --vs-cart-actions-continue-text-transform: uppercase;
+  --vs-cart-actions-continue-text-decoration: none;
+  --vs-cart-actions-continue-hover-background-color: rgba(215, 164, 94, 0.06);
+  --vs-cart-actions-continue-hover-color: #26321B;
+  --vs-cart-actions-continue-hover-border-color: rgba(215, 164, 94, 0.4);
+  --vs-cart-actions-continue-active-background-color: rgba(215, 164, 94, 0.1);
+  --vs-cart-actions-continue-active-color: #26321B;
+  --vs-cart-actions-continue-active-border-color: #D7A45E;
 }
 
-/* --- Cart button (hidden, we use our own) --- */
+/* --- Cart button (hidden, we use our own in header) --- */
 .vs-cart-button {
   display: none !important;
 }
@@ -1009,7 +1097,8 @@ html.lenis, html.lenis body {
 .vs-available {
   font-family: 'Sweet Sans Pro', sans-serif;
   color: #6B6560;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
 }
 
 @media (prefers-reduced-motion: reduce) {

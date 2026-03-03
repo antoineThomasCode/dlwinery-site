@@ -14,6 +14,7 @@ export function VinoshipperScript() {
       "vinoshipper:loaded",
       () => {
         window.Vinoshipper.init(ACCOUNT_ID, {
+          theme: null,
           cartButton: false,
           cartPosition: "end",
           addToCartStyle: true,
