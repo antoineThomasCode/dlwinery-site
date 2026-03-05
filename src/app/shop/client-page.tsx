@@ -7,6 +7,7 @@ import { FrenchText } from "@/components/shared/french-text";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
 import { ParallaxImage } from "@/components/shared/parallax-image";
+import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { VinoshipperAddToCart } from "@/components/vinoshipper/vinoshipper-add-to-cart";
 import { VinoshipperAvailable } from "@/components/vinoshipper/vinoshipper-available";
 import { Tag, Truck, ArrowRight } from "lucide-react";
@@ -32,8 +33,8 @@ export default function ShopPage() {
       {/* Hero */}
       <section className="relative h-[45vh] min-h-[320px] flex items-center justify-center overflow-hidden">
         <ParallaxImage
-          src="/images/winery-scenic-view.webp"
-          alt="Wine shop"
+          src="/images/shop-1.webp"
+          alt="Wine shop — selection of Domaine LeSeurre wines"
           sizes="100vw"
           className="absolute inset-0"
           speed={0.08}
@@ -74,6 +75,34 @@ export default function ShopPage() {
             winemaking methods on the shores of Keuka Lake. Volume discounts available &mdash;
             shipped nationwide via VinoShipper.
           </p>
+        </div>
+      </section>
+
+      {/* Ambiance Gallery */}
+      <section className="bg-cream py-6 sm:py-8 overflow-hidden">
+        <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
+          {/* Desktop: flex row, Mobile: horizontal scroll */}
+          <div className="-mx-5 sm:mx-0 px-5 sm:px-0 overflow-x-auto scrollbar-hide snap-x snap-mandatory sm:snap-none sm:overflow-visible" data-lenis-prevent>
+            <div className="flex gap-3 sm:gap-4 min-w-max sm:min-w-0 sm:grid sm:grid-cols-3">
+              {[
+                { src: "/images/club-tasting-room-wines.webp", alt: "Wines displayed in the tasting room" },
+                { src: "/images/shop-2.webp", alt: "Curated wine selection at Domaine LeSeurre" },
+                { src: "/images/winery-interior-2.webp", alt: "Inside the winery — rustic charm" },
+              ].map((img, i) => (
+                <ClipPathReveal key={img.src} delay={i * 0.12} duration={1.0} className="flex-shrink-0 w-[72vw] sm:w-auto">
+                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 72vw, 33vw"
+                    />
+                  </div>
+                </ClipPathReveal>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

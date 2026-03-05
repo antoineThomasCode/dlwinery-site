@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AuthGate } from "./_components/auth-gate";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
@@ -52,8 +53,10 @@ export default function AdminLayout({
         </div>
       </header>
 
-      {/* Admin content */}
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">{children}</main>
+      {/* Admin content — protected by auth gate */}
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+        <AuthGate>{children}</AuthGate>
+      </main>
     </div>
   );
 }

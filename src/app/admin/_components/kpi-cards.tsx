@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { getAdminToken } from "./auth-gate";
 
 type LeadStats = {
   total: number;
@@ -51,7 +52,10 @@ export function KpiCards() {
 
   const fetchStats = useCallback(async () => {
     try {
-      const res = await fetch("/api/admin/leads");
+      const token = getAdminToken();
+      const res = await fetch("/api/admin/leads", {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
       if (!res.ok) throw new Error("Failed");
       const data = await res.json();
       setStats(computeStats(data.leads || []));

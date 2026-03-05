@@ -26,9 +26,9 @@ const timeline = [
   {
     year: "2000s",
     title: "A Global Journey",
-    description: "Sébastien trained alongside master winemakers in New Zealand and Australia, absorbing New World techniques while staying true to Old World principles. Each vineyard taught him something new about terroir and expression.",
-    image: "/images/owners-photo-1.webp",
-    imageAlt: "Sébastien LeSeurre",
+    description: "Céline and Sébastien met in New Zealand, where Sébastien was training alongside master winemakers. From the Southern Hemisphere to Australia, they absorbed New World techniques while staying true to Old World principles. Each vineyard taught them something new about terroir and expression — and about each other.",
+    image: "/images/story-meeting-newzealand.webp",
+    imageAlt: "Céline & Sébastien meet in New Zealand",
   },
   {
     year: "2012",
@@ -45,17 +45,43 @@ const timeline = [
     imageAlt: "Wine tasting at Domaine LeSeurre",
   },
   {
+    year: "The Craft",
+    title: "Champagne Precision, Finger Lakes Soul",
+    description: "Every bottle at Domaine LeSeurre is shaped by six generations of Champagne savoir-faire. Céline tastes every barrel, guiding each wine with the precision of méthode champenoise — gentle pressing, patient fermentation, and an instinct for balance that no textbook can teach. The result: wines that honor tradition while embracing the singular terroir of Keuka Lake.",
+    image: "/images/story-celine-barrel-tasting.jpg",
+    imageAlt: "Céline LeSeurre tasting from barrel",
+  },
+  {
     year: "Today",
     title: "A French Accent on Keuka Lake",
-    description: "What started as a dream has become one of the most celebrated wineries in the Finger Lakes. Domaine LeSeurre is known for its French-inspired approach, warm hospitality, and wines that tell the story of two worlds meeting in one glass.",
+    description: "What started as a dream has become one of the most celebrated wineries in the Finger Lakes. Alongside a dedicated team, Céline and Sébastien have built Domaine LeSeurre into a destination known for its French-inspired approach, warm hospitality, and wines that tell the story of two worlds meeting in one glass.",
     image: "/images/winery-terrace-dining.jpg",
     imageAlt: "Terrace dining at Domaine LeSeurre",
+  },
+];
+
+const family = [
+  {
+    name: "Céline LeSeurre",
+    role: "Co-founder & Winemaker",
+    bio: "Born into six generations of Champagne heritage, Céline brings the precision of méthode champenoise to every bottle.",
+    image: "/images/staff-celine-leseurre.webp",
+    imageAlt: "Céline LeSeurre",
+  },
+  {
+    name: "Sébastien LeSeurre",
+    role: "Co-founder & Vineyard Director",
+    bio: "From Champagne to New Zealand to Keuka Lake, Sébastien\u2019s journey shaped a winemaking philosophy rooted in two hemispheres.",
+    image: "/images/staff-sebastien-leseurre.webp",
+    imageAlt: "Sébastien LeSeurre",
   },
 ];
 
 export default function OurStoryPage() {
   const { sectionRef: storyRef, isVisible: storyVisible } = useSectionBlobs();
   const { sectionRef: valuesRef, isVisible: valuesVisible } = useSectionBlobs();
+  const { sectionRef: familyRef, isVisible: familyVisible } = useSectionBlobs();
+  const { sectionRef: cellarRef, isVisible: cellarVisible } = useSectionBlobs();
 
   return (
     <main>
@@ -156,6 +182,100 @@ export default function OurStoryPage() {
                 </ScrollReveal>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Meet the Family */}
+      <section ref={familyRef} className="py-[var(--section-gap)] bg-cream bg-parchment-texture relative overflow-hidden">
+        <SectionBlobs
+          isVisible={familyVisible}
+          sectionRef={familyRef}
+          blobs={[
+            { type: "gold", size: "50%", position: { top: "-8%", left: "-12%" } },
+            { type: "olive", size: "45%", position: { bottom: "-8%", right: "-12%" } },
+          ]}
+          parallax={[{ speed: 0.3 }, { speed: 0.35 }]}
+        />
+        <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
+          <ScrollReveal>
+            <div className="text-center mb-12 sm:mb-16">
+              <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
+                <FrenchText>La Famille</FrenchText>
+              </p>
+              <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-pourpre-deep font-light mb-4 leading-tight">
+                <LineMaskLine><span className="shimmer-text">Meet the Family</span></LineMaskLine>
+              </LineMaskReveal>
+              <SectionDivider />
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 max-w-[900px] mx-auto">
+            {family.map((person, i) => (
+              <ScrollReveal key={i} delay={i * 0.15}>
+                <div className="bg-warm-white border border-gold/15 overflow-hidden group h-full">
+                  <ClipPathReveal direction={i === 0 ? "left" : "right"} duration={1.2}>
+                    <div className="relative aspect-[3/4] overflow-hidden">
+                      <Image
+                        src={person.image}
+                        alt={person.imageAlt}
+                        fill
+                        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 450px"
+                      />
+                    </div>
+                  </ClipPathReveal>
+                  <div className="p-6 sm:p-8 text-center">
+                    <h3 className="font-heading text-xl sm:text-2xl text-pourpre-deep mb-1 leading-tight">
+                      {person.name}
+                    </h3>
+                    <p className="text-gold text-[10px] tracking-[0.25em] uppercase font-body font-medium mb-4">
+                      {person.role}
+                    </p>
+                    <p className="text-stone text-[13px] sm:text-sm leading-relaxed">
+                      {person.bio}
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* The Cellar */}
+      <section ref={cellarRef} className="relative overflow-hidden">
+        <SectionBlobs
+          isVisible={cellarVisible}
+          sectionRef={cellarRef}
+          blobs={[
+            { type: "pourpre", size: "55%", position: { top: "-10%", right: "-15%" } },
+          ]}
+          parallax={[{ speed: 0.3 }]}
+        />
+        <div className="relative h-[50vh] sm:h-[60vh] min-h-[400px]">
+          <ParallaxImage
+            src="/images/winery-barrel-room.webp"
+            alt="Barrel room at Domaine LeSeurre"
+            sizes="100vw"
+            className="absolute inset-0"
+            speed={0.08}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(38,50,27,0.85)] via-[rgba(38,50,27,0.35)] to-transparent" />
+          <div className="absolute inset-0 flex items-end">
+            <div className="max-w-[720px] mx-auto px-5 sm:px-6 pb-12 sm:pb-16 text-center w-full">
+              <ScrollReveal>
+                <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-4 font-body font-medium">
+                  <FrenchText>Le Chai</FrenchText>
+                </p>
+                <h2 className="font-heading text-[1.75rem] sm:text-3xl md:text-4xl text-warm-white font-light mb-4 leading-tight">
+                  The Cellar
+                </h2>
+                <p className="text-warm-white/70 text-sm sm:text-base max-w-[560px] mx-auto leading-relaxed">
+                  Where French tradition meets Finger Lakes terroir. Our barrel room houses the patience and craft behind every vintage.
+                </p>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>

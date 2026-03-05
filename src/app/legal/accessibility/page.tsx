@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Accessibility Statement",
+  description:
+    "Accessibility commitment at Domaine LeSeurre Winery. Learn about our efforts to make our website and tasting room welcoming for all visitors.",
 };
 
 export default function AccessibilityPage() {

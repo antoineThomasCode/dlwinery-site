@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
+  description:
+    "Terms and conditions for purchases, tastings, and services at Domaine LeSeurre Winery in Hammondsport, NY.",
 };
 
 export default function TermsPage() {

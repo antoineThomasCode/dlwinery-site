@@ -21,6 +21,13 @@ import { experiences } from "@/lib/data/experiences";
 const SQUARE_BOOKING_URL =
   "https://book.squareup.com/appointments/1bmq73zitx9y4n/location/ANY786TGF515Z/";
 
+const AMBIANCE_PHOTOS = [
+  { src: "/images/experience-social-1.webp", alt: "Guests enjoying wine tasting at Domaine LeSeurre" },
+  { src: "/images/experience-social-2.webp", alt: "Friends sharing a tasting experience on the terrace" },
+  { src: "/images/experience-tasting-2.webp", alt: "Guided wine tasting with Celine LeSeurre" },
+  { src: "/images/winery-tasting-room-2.webp", alt: "The tasting room at Domaine LeSeurre" },
+];
+
 /* ═══════════════════════════════════════════
    Wrapper with Suspense
    ═══════════════════════════════════════════ */
@@ -61,6 +68,53 @@ function ExperiencesPage() {
           <p className="text-warm-white/60 text-[13px] sm:text-base max-w-md mx-auto">
             Choose your experience and let us take care of the rest.
           </p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+         "Your Tasting, Your Way" — Ambiance section
+         ═══════════════════════════════════════════ */}
+      <section className="py-12 sm:py-[var(--section-gap)] bg-warm-white overflow-hidden">
+        <div className="max-w-[var(--max-width)] mx-auto px-4 sm:px-6">
+          <ScrollReveal>
+            <div className="text-center mb-8 sm:mb-12">
+              <LineMaskReveal className="font-heading text-[1.5rem] sm:text-4xl md:text-[3.25rem] text-pourpre-deep font-light mb-3 sm:mb-4 leading-tight">
+                <LineMaskLine>
+                  <span className="shimmer-text">Your Tasting, Your Way</span>
+                </LineMaskLine>
+              </LineMaskReveal>
+              <SectionDivider />
+              <p className="text-stone/60 text-[13px] sm:text-sm max-w-lg mx-auto mt-3 sm:mt-4">
+                Whether you&apos;re a first-time visitor or a seasoned collector, every glass tells a story.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Photo strip — mobile: horizontal scroll, desktop: 4-col grid */}
+          <div
+            className="flex gap-3 sm:gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-4 md:overflow-visible"
+            data-lenis-prevent
+          >
+            {AMBIANCE_PHOTOS.map((photo, i) => (
+              <ClipPathReveal
+                key={photo.src}
+                direction="up"
+                duration={1.1}
+                delay={i * 0.12}
+                className="flex-shrink-0 w-[75vw] snap-center md:w-auto"
+              >
+                <div className="relative h-[280px] sm:h-[320px] md:h-[360px] rounded-xl overflow-hidden">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 75vw, 25vw"
+                  />
+                </div>
+              </ClipPathReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -216,6 +270,98 @@ function ExperiencesPage() {
           </ScrollReveal>
         </div>
       </motion.section>
+
+      {/* ═══════════════════════════════════════════
+         Testimonial — Social Proof
+         ═══════════════════════════════════════════ */}
+      <section className="relative py-16 sm:py-24 overflow-hidden">
+        {/* Background image at very low opacity */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/experience-banner.webp"
+            alt=""
+            fill
+            className="object-cover opacity-[0.06]"
+            sizes="100vw"
+            aria-hidden="true"
+          />
+        </div>
+        <div className="absolute inset-0 bg-cream/90" />
+
+        <div className="relative z-10 max-w-3xl mx-auto px-6 sm:px-8">
+          <ScrollReveal>
+            <blockquote className="text-center">
+              {/* Decorative opening quote */}
+              <span
+                className="block font-heading text-[4rem] sm:text-[5rem] leading-none text-gold/30 select-none mb-[-1rem] sm:mb-[-1.5rem]"
+                aria-hidden="true"
+              >
+                &ldquo;
+              </span>
+              <p className="font-heading text-xl sm:text-2xl md:text-[1.75rem] text-pourpre-deep italic leading-relaxed mb-6">
+                We came for the wine. We stayed for the story. C&eacute;line made us feel like family.
+              </p>
+              {/* Decorative closing quote */}
+              <span
+                className="block font-heading text-[4rem] sm:text-[5rem] leading-none text-gold/30 select-none mt-[-2rem] sm:mt-[-2.5rem] mb-4"
+                aria-hidden="true"
+              >
+                &rdquo;
+              </span>
+              <SectionDivider variant="gold" />
+              <footer className="mt-4">
+                <cite className="not-italic text-stone/60 text-[12px] sm:text-sm tracking-wide font-body">
+                  Google Review, 2025
+                </cite>
+              </footer>
+            </blockquote>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+         CTA — Visit the Tasting Room
+         ═══════════════════════════════════════════ */}
+      <section className="relative h-[60vh] min-h-[400px] sm:h-[70vh] sm:min-h-[480px] flex items-center justify-center overflow-hidden">
+        <ParallaxImage
+          src="/images/winery-tasting-room-3.webp"
+          alt="Domaine LeSeurre tasting room overlooking Keuka Lake"
+          sizes="100vw"
+          className="absolute inset-0"
+          speed={0.1}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
+
+        <div className="relative z-10 text-center px-6 max-w-2xl mx-auto">
+          <ScrollReveal>
+            <p className="text-gold/70 text-[10px] tracking-[0.35em] uppercase mb-3 sm:mb-4 font-body font-medium">
+              <FrenchText>Bienvenue</FrenchText>
+            </p>
+            <h2 className="font-heading text-[1.75rem] sm:text-4xl md:text-5xl text-warm-white font-light leading-tight mb-4 sm:mb-6">
+              <span className="shimmer-text-light">Come taste France</span>
+              <br />
+              <span className="shimmer-text-light">on Keuka Lake</span>
+            </h2>
+            <SectionDivider variant="light" className="mb-6 sm:mb-8" />
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <a
+                href={SQUARE_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 btn-cta-primary rounded-none h-12 px-8 text-[11px] tracking-[0.15em] uppercase font-body font-medium cursor-pointer active:scale-[0.97] transition-transform"
+              >
+                <WineIcon className="w-3.5 h-3.5" />
+                Book Your Tasting
+                <ExternalLink className="w-3 h-3 opacity-60" />
+              </a>
+              <span className="w-full sm:w-auto inline-flex items-center justify-center h-12 px-8 text-[11px] tracking-[0.12em] uppercase font-body font-medium text-warm-white/60 border border-warm-white/20 rounded-none">
+                Walk-ins Welcome
+              </span>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
     </main>
   );
 }

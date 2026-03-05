@@ -101,7 +101,7 @@ export default async function ArticlePage({ params }: PageProps) {
       {/* Hero */}
       <section className="relative h-[45vh] sm:h-[50vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <Image src={heroImage} alt="" fill className="object-cover" sizes="100vw" priority />
+          <Image src={heroImage} alt={`Hero image for ${post.title}`} fill className="object-cover" sizes="100vw" priority />
           <div className="absolute inset-0 bg-gradient-to-t from-olive-deep/90 via-olive-deep/40 to-olive-deep/20" />
         </div>
         <div className="relative max-w-[720px] mx-auto w-full px-5 sm:px-6 pb-8 sm:pb-12">

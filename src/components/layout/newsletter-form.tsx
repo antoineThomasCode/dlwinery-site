@@ -50,7 +50,9 @@ export function NewsletterForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
+      <label htmlFor="newsletter-email" className="sr-only">Email address</label>
       <input
+        id="newsletter-email"
         type="email"
         required
         placeholder="Your email"

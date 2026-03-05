@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Return & Refund Policy",
+  description:
+    "Return and refund policy for wine purchases from Domaine LeSeurre Winery. Learn about our shipping damage claims and exchange process.",
 };
 
 export default function ReturnsPage() {

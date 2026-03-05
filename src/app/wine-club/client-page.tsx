@@ -10,6 +10,7 @@ import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
 import { LineMaskReveal, LineMaskLine } from "@/components/shared/line-mask-reveal";
 import { ParallaxImage } from "@/components/shared/parallax-image";
+import { ClipPathReveal } from "@/components/shared/clip-path-reveal";
 import { Wine, Gift, Star, Truck, Users, Calendar, ChevronDown, ArrowDown, ExternalLink, Loader2 } from "lucide-react";
 import { WineIcon } from "@/components/ui/wine-icon";
 import { wines } from "@/lib/data/wines";
@@ -314,6 +315,18 @@ export default function WineClubPage() {
         </div>
       </div>
 
+      {/* Club Banner Image */}
+      <section className="relative h-[28vh] sm:h-[32vh] min-h-[180px] overflow-hidden">
+        <Image
+          src="/images/wine-club-promo.webp"
+          alt="Wine club members enjoying a tasting at Domaine LeSeurre"
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-pourpre-deep/30 via-transparent to-pourpre-deep/20" />
+      </section>
+
       {/* Benefits */}
       <section ref={sectionRef} className="py-[var(--section-gap)] bg-cream bg-parchment-texture relative overflow-hidden">
         <SectionBlobs
@@ -452,6 +465,49 @@ export default function WineClubPage() {
                   <p className="text-stone/60 text-[13px]">{stat.detail}</p>
                 </div>
               </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Life in the Club — Photo Gallery */}
+      <section className="py-16 sm:py-20 bg-cream/60 relative overflow-hidden">
+        <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6">
+          <ScrollReveal>
+            <div className="text-center mb-10 sm:mb-14">
+              <h2 className="font-heading text-[1.5rem] sm:text-3xl md:text-[2.75rem] text-pourpre-deep font-light mb-4 leading-tight">
+                More Than a Membership — It&apos;s a Way of Life
+              </h2>
+              <p className="text-stone text-[13px] sm:text-sm max-w-lg mx-auto leading-relaxed">
+                Join our community of wine lovers who celebrate every season together.
+              </p>
+              <SectionDivider className="mt-5" />
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {[
+              { src: "/images/experience-social-1.webp", alt: "Members enjoying a tasting together" },
+              { src: "/images/experience-social-2.webp", alt: "Wine and friends at the winery" },
+              { src: "/images/experience-social-3.webp", alt: "Life at the domaine — seasonal celebrations" },
+              { src: "/images/experience-social-4.webp", alt: "Wine club gathering at Domaine LeSeurre" },
+            ].map((img, i) => (
+              <ClipPathReveal
+                key={img.src}
+                delay={i * 0.1}
+                duration={1.0}
+                direction={i % 2 === 0 ? "left" : "right"}
+              >
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                </div>
+              </ClipPathReveal>
             ))}
           </div>
         </div>

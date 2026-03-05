@@ -1,9 +1,11 @@
-// TODO: Add authentication middleware (e.g., API key check, session-based auth)
-// This endpoint is currently unprotected — MVP only, do NOT expose publicly without auth.
-
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
+import {
+  verifyAdminAuth,
+  adminKeyNotConfiguredResponse,
+  unauthorizedResponse,
+} from "@/lib/admin-auth";
 
 const LEADS_FILE = path.join(process.cwd(), "data", "club-leads.json");
 
@@ -17,7 +19,15 @@ type ClubLead = {
   completedSignup: boolean;
 };
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // Auth check
+  if (!process.env.ADMIN_API_KEY) {
+    return adminKeyNotConfiguredResponse();
+  }
+  if (!verifyAdminAuth(request)) {
+    return unauthorizedResponse();
+  }
+
   try {
     const data = await fs.readFile(LEADS_FILE, "utf-8");
     const leads: ClubLead[] = JSON.parse(data);

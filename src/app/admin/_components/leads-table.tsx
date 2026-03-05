@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { getAdminToken } from "./auth-gate";
 
 type ClubLead = {
   firstName: string;
@@ -53,7 +54,10 @@ export function LeadsTable() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/admin/leads");
+      const token = getAdminToken();
+      const res = await fetch("/api/admin/leads", {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       setLeads(data.leads || []);
