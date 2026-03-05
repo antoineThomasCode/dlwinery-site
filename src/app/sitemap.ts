@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
+import { wines } from "@/lib/data/wines";
+import { events } from "@/lib/data/events";
 
 const BASE_URL = "https://dlwinery.com";
 
@@ -18,6 +20,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
   ];
 
+  // Individual wine / product pages
+  const wineRoutes: MetadataRoute.Sitemap = wines
+    .filter((w) => w.inStock)
+    .map((wine) => ({
+      url: `${BASE_URL}/shop/${wine.id}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
+
+  // Individual event pages
+  const eventRoutes: MetadataRoute.Sitemap = events.map((event) => ({
+    url: `${BASE_URL}/events/${event.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  // Blog article pages
   const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/${post.slug}`,
     lastModified: new Date(post.date),
@@ -25,5 +46,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...blogRoutes];
+  return [...staticRoutes, ...wineRoutes, ...eventRoutes, ...blogRoutes];
 }

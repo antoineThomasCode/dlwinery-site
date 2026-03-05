@@ -34,7 +34,7 @@ export default function BlogPage() {
             sizes="100vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-navy-deep/30 to-navy-deep/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-olive-deep/85 via-olive-deep/30 to-olive-deep/10" />
         </div>
         <div className="relative max-w-[var(--max-width)] mx-auto w-full px-5 sm:px-6 pb-8 sm:pb-12">
           <p className="text-gold text-[10px] tracking-[0.3em] uppercase font-body font-medium mb-2">
@@ -64,7 +64,7 @@ export default function BlogPage() {
                 <span className={`self-start text-[10px] tracking-[0.12em] uppercase font-body font-semibold px-2 py-0.5 rounded-sm mb-3 ${getPillarMeta(featured.pillar).color}`}>
                   {getPillarMeta(featured.pillar).label}
                 </span>
-                <h2 className="font-heading text-2xl sm:text-3xl text-navy group-hover:text-bordeaux transition-colors mb-3 leading-tight font-medium">
+                <h2 className="font-heading text-2xl sm:text-3xl text-olive group-hover:text-pourpre-light transition-colors mb-3 leading-tight font-medium">
                   {featured.title}
                 </h2>
                 <p className="text-sm sm:text-base text-stone leading-relaxed font-body line-clamp-3 mb-4">
@@ -80,7 +80,7 @@ export default function BlogPage() {
                     {featured.readingTime} min
                   </span>
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-bordeaux text-xs font-body font-medium tracking-wide uppercase group-hover:gap-2.5 transition-all">
+                <span className="inline-flex items-center gap-1.5 text-pourpre-light text-xs font-body font-medium tracking-wide uppercase group-hover:gap-2.5 transition-all">
                   Read article <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
@@ -94,7 +94,7 @@ export default function BlogPage() {
         {rest.length > 0 && (
           <>
             <div className="flex items-center gap-3 mb-8">
-              <h2 className="font-heading text-xl text-navy font-medium whitespace-nowrap">More Articles</h2>
+              <h2 className="font-heading text-xl text-olive font-medium whitespace-nowrap">More Articles</h2>
               <div className="flex-1 gold-line-thin" />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
@@ -119,7 +119,7 @@ export default function BlogPage() {
                       <span className={`self-start text-[10px] tracking-[0.12em] uppercase font-body font-semibold px-2 py-0.5 rounded-sm mb-2 ${pillar.color}`}>
                         {pillar.label}
                       </span>
-                      <h3 className="font-heading text-lg text-navy group-hover:text-bordeaux transition-colors mb-2 leading-snug font-medium">
+                      <h3 className="font-heading text-lg text-olive group-hover:text-pourpre-light transition-colors mb-2 leading-snug font-medium">
                         {post.title}
                       </h3>
                       <p className="text-sm text-stone leading-relaxed font-body line-clamp-2 mb-3 flex-1">
@@ -130,7 +130,7 @@ export default function BlogPage() {
                           <Clock className="w-3 h-3" />
                           {post.readingTime} min
                         </span>
-                        <span className="inline-flex items-center gap-1 text-bordeaux font-medium tracking-wide uppercase group-hover:gap-1.5 transition-all">
+                        <span className="inline-flex items-center gap-1 text-pourpre-light font-medium tracking-wide uppercase group-hover:gap-1.5 transition-all">
                           Read <ArrowRight className="w-3 h-3" />
                         </span>
                       </div>

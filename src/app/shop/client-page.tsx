@@ -65,6 +65,18 @@ export default function ShopPage() {
         </div>
       </div>
 
+      {/* SEO intro */}
+      <section className="bg-cream border-b border-gold/8">
+        <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6 py-8 sm:py-10">
+          <p className="text-stone/70 text-sm sm:text-[15px] leading-relaxed max-w-3xl">
+            Shop award-winning Finger Lakes wines direct from Domaine LeSeurre. Our collection spans
+            sparkling, white, ros&eacute;, and red wines, all crafted with traditional French
+            winemaking methods on the shores of Keuka Lake. Volume discounts available &mdash;
+            shipped nationwide via VinoShipper.
+          </p>
+        </div>
+      </section>
+
       {/* Shop */}
       <section ref={sectionRef} className="py-[var(--section-gap)] bg-cream bg-parchment-texture relative overflow-hidden">
         <SectionBlobs
@@ -155,7 +167,7 @@ export default function ShopPage() {
                         <span className="font-heading text-pourpre-deep text-lg sm:text-xl">${wine.price}</span>
                         {!isGiftCard && memberSaving > 0 && (
                           <span className="block text-gold text-[11px] sm:text-xs font-medium">
-                            Members: ${wine.memberPrice.toFixed(2)}
+                            Club: ${wine.memberPrice.toFixed(2)} <span className="text-gold/50">(save ${memberSaving.toFixed(0)})</span>
                           </span>
                         )}
                       </div>

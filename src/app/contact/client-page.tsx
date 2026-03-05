@@ -52,7 +52,7 @@ export default function ContactPage() {
 
       setFormSubmitted(true);
     } catch {
-      setFormError("Could not send your message. Please try again or call us at (607) 224-3552.");
+      setFormError("Could not send your message. Please try again or call us at (607) 569-3299.");
     } finally {
       setFormLoading(false);
     }
@@ -68,6 +68,7 @@ export default function ContactPage() {
           sizes="100vw"
           className="absolute inset-0"
           speed={0.08}
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-[rgba(38,50,27,0.6)]" />
         <div className="relative z-10 text-center px-6">
@@ -195,21 +196,22 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">Full Name</label>
-                        <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors" />
+                        <label htmlFor="name" className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">Full Name</label>
+                        <input id="name" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors" />
                       </div>
                       <div>
-                        <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">Email</label>
-                        <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors" />
+                        <label htmlFor="email" className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">Email</label>
+                        <input id="email" type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors" />
                       </div>
                     </div>
                     <div>
-                      <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">Phone <span className="text-stone/30">(optional)</span></label>
-                      <input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors" />
+                      <label htmlFor="phone" className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">Phone <span className="text-stone/30">(optional)</span></label>
+                      <input id="phone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full bg-warm-white border border-gold/20 rounded-none px-4 py-3 text-sm text-pourpre-deep font-body focus:outline-none focus:border-gold/50 transition-colors" />
                     </div>
                     <div>
-                      <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">Subject</label>
+                      <label htmlFor="subject" className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">Subject</label>
                       <select
+                        id="subject"
                         required
                         value={form.subject}
                         onChange={(e) => setForm({ ...form, subject: e.target.value })}
@@ -225,8 +227,9 @@ export default function ContactPage() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">Message</label>
+                      <label htmlFor="message" className="block text-pourpre-deep text-[11px] tracking-[0.1em] uppercase font-body font-medium mb-2">Message</label>
                       <textarea
+                        id="message"
                         required
                         rows={5}
                         value={form.message}
@@ -287,11 +290,13 @@ export default function ContactPage() {
                     <span className="text-pourpre-deep text-sm font-medium pr-4">{faq.q}</span>
                     <ChevronDown className={`w-4 h-4 text-gold/50 flex-shrink-0 transition-transform duration-300 ${openFaq === i ? "rotate-180" : ""}`} />
                   </button>
-                  {openFaq === i && (
-                    <div className="px-5 pb-5 -mt-1">
-                      <p className="text-stone text-[13px] sm:text-sm leading-relaxed">{faq.a}</p>
+                  <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${openFaq === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                    <div className="overflow-hidden">
+                      <div className="px-5 pb-5 -mt-1">
+                        <p className="text-stone text-[13px] sm:text-sm leading-relaxed">{faq.a}</p>
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               </ScrollReveal>
             ))}

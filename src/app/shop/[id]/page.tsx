@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { wines } from "@/lib/data/wines";
 import WineDetailPage from "./client-page";
+import { WineProductJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -36,5 +37,17 @@ export default async function Page({ params }: Props) {
   const wine = wines.find((w) => w.id === id);
   if (!wine) notFound();
 
-  return <WineDetailPage wine={wine} />;
+  return (
+    <>
+      <WineProductJsonLd wine={wine} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://dlwinery.com" },
+          { name: "Shop", url: "https://dlwinery.com/shop" },
+          { name: wine.name, url: `https://dlwinery.com/shop/${wine.id}` },
+        ]}
+      />
+      <WineDetailPage wine={wine} />
+    </>
+  );
 }

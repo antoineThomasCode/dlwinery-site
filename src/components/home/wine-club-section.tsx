@@ -96,7 +96,7 @@ export function WineClubSection() {
                     href="/wine-club"
                     data-track-event="cta_click"
                     data-track-category="wine_club"
-                    data-track-label="join_le_cercle"
+                    data-track-label="join_family_club"
                   >
                     Become a Member
                   </Link>
@@ -108,7 +108,7 @@ export function WineClubSection() {
                   className="btn-cta-secondary text-warm-white text-[13px] sm:text-sm px-8 sm:px-10 py-6 sm:py-5 rounded-none tracking-[0.12em] uppercase transition-all duration-500"
                 >
                   <Link href="/wine-club" className="inline-flex items-center gap-2">
-                    Learn More
+                    See What Members Get
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </Button>

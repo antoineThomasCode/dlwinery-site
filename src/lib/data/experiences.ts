@@ -9,7 +9,7 @@ export const experiences: Experience[] = [
     price: 15,
     memberPrice: 0,
     duration: "45 min",
-    description: "Explore our award-winning wines with a guided tasting. Learn about Finger Lakes terroir and French winemaking techniques from our knowledgeable staff. Includes a tasting of 5 wines with commentary on each vintage.",
+    description: "Five wines, one journey through the Finger Lakes. Our team guides you from vine to glass, sharing the techniques that span six generations. Includes a tasting of 5 wines with commentary on each vintage.",
     includes: ["5 wine tastings", "Tasting notes card", "10% off same-day purchases"],
     image: "/images/experience-tasting-1.webp",
     maxGuests: 8,

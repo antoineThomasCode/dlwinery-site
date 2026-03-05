@@ -18,12 +18,12 @@ export type BlogPost = {
   excerpt: string;
 };
 
-function estimateReadingTime(text: string): number {
+export function estimateReadingTime(text: string): number {
   const words = text.split(/\s+/).length;
   return Math.ceil(words / 230);
 }
 
-function extractExcerpt(content: string): string {
+export function extractExcerpt(content: string): string {
   // Remove markdown headings, images, links, frontmatter dashes
   const clean = content
     .replace(/^#{1,6}\s.*/gm, "")
@@ -79,8 +79,8 @@ export function getPostSlugs(): string[] {
 
 const PILLAR_META: Record<string, { label: string; color: string }> = {
   guide: { label: "Guide", color: "bg-sage/15 text-sage" },
-  education: { label: "Education", color: "bg-navy/10 text-navy" },
-  heritage: { label: "Heritage", color: "bg-bordeaux/10 text-bordeaux" },
+  education: { label: "Education", color: "bg-olive/10 text-olive" },
+  heritage: { label: "Heritage", color: "bg-pourpre-light/10 text-pourpre-light" },
   seasonal: { label: "Seasonal", color: "bg-gold/15 text-gold-dark" },
 };
 

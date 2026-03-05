@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import ShopPage from "./client-page";
+import { WineCollectionJsonLd } from "@/components/seo/json-ld";
+import { wines } from "@/lib/data/wines";
 
 export const metadata: Metadata = {
   title: "Shop Wines Online — Volume Discounts & Flat Rate Shipping",
@@ -13,5 +15,11 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ShopPage />;
+  const inStockWines = wines.filter((w) => w.inStock);
+  return (
+    <>
+      <WineCollectionJsonLd wines={inStockWines} />
+      <ShopPage />
+    </>
+  );
 }

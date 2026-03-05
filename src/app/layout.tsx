@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CursorGlow } from "@/components/shared/cursor-glow";
@@ -7,6 +8,26 @@ import { ScrollRestoration } from "@/components/shared/scroll-restoration";
 import { JsonLd } from "@/components/seo/json-ld";
 import { VinoshipperScript } from "@/components/vinoshipper/vinoshipper-script";
 import "./globals.css";
+
+/**
+ * next/font/local — auto-preloads font files and eliminates FOIT.
+ * The CSS @font-face in globals.css is kept for Vinoshipper widget
+ * compatibility (which references 'Diaspora' / 'Sweet Sans Pro' by name).
+ * next/font here is purely for the preload <link> tags.
+ */
+const diaspora = localFont({
+  src: "./fonts/Diaspora-Regular.woff",
+  display: "swap",
+  weight: "400",
+  variable: "--font-diaspora",
+});
+
+const sweetSansPro = localFont({
+  src: "./fonts/SweetSansPro-Regular.woff2",
+  display: "swap",
+  weight: "400",
+  variable: "--font-sweet-sans",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dlwinery.com"),
@@ -47,7 +68,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${diaspora.variable} ${sweetSansPro.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://vinoshipper.com" />
+        <link rel="dns-prefetch" href="https://vinoshipper.com" />
+      </head>
       <body className="bg-cream text-black-warm antialiased">
         <JsonLd />
         <SmoothScrollProvider>

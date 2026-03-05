@@ -19,7 +19,7 @@ const FAQ_ITEMS: FaqItem[] = [
     label: "Hours & Location",
     icon: <Clock size={14} />,
     answer:
-      "We're open daily from 11am to 5pm, year-round. Located on the west shore of Keuka Lake at 14 Winery Lane, Hammondsport, NY 14840.",
+      "We're open daily from 10am to 6pm, year-round. Located on the west shore of Keuka Lake at 9485 Route 76, Hammondsport, NY 14840.",
     link: { text: "Get Directions", href: "https://maps.google.com/?q=Domaine+LeSeurre+Winery+Hammondsport+NY", external: true },
   },
   {

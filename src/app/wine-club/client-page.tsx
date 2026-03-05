@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
@@ -18,7 +18,7 @@ const VINOSHIPPER_CLUB_URL =
   "https://vinoshipper.com/shop/domaine_leseurre_winery/join-our-club";
 
 const benefits = [
-  { icon: Wine, title: "Exclusive Sparkling Wines", detail: "Access to sparkling wines reserved for club members — limited production, unique cuvees." },
+  { icon: Wine, title: "Exclusive Sparkling Wines", detail: "Our sparkling wines are produced in extremely limited quantities — club members get first access to these rare Methode Champenoise cuvees." },
   { icon: Gift, title: "15% Off Every Bottle", detail: "Members enjoy 15% off all wine purchases. Save on every visit and every order." },
   { icon: Star, title: "Free Tastings + 3 Guests", detail: "Unlimited complimentary tastings for you and up to 3 guests on every visit." },
   { icon: Truck, title: "$18 Flat Rate Shipping", detail: "Club shipments delivered at a fixed $18 rate (6+ bottles), compared to $30+ standard shipping." },
@@ -36,7 +36,7 @@ const faqs = [
 ];
 
 const socialProofStats = [
-  { value: "860+", label: "Active Members", detail: "And growing every month" },
+  { value: "864", label: "Active Members", detail: "And growing every month" },
   { value: "6th Gen", label: "French Winemaking", detail: "Champagne family heritage" },
   { value: "15%", label: "Off Every Bottle", detail: "In-store and online" },
 ];
@@ -199,6 +199,66 @@ function ClubLeadForm() {
   );
 }
 
+function StickyMobileCTA() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const hero = document.querySelector("section:first-of-type");
+    const joinSection = document.getElementById("join");
+    if (!hero || !joinSection) return;
+
+    let heroPassed = false;
+    let joinVisible = false;
+
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        heroPassed = !entry.isIntersecting;
+        setShow(heroPassed && !joinVisible);
+      },
+      { threshold: 0 }
+    );
+
+    const joinObserver = new IntersectionObserver(
+      ([entry]) => {
+        joinVisible = entry.isIntersecting;
+        setShow(heroPassed && !joinVisible);
+      },
+      { threshold: 0 }
+    );
+
+    heroObserver.observe(hero);
+    joinObserver.observe(joinSection);
+
+    return () => {
+      heroObserver.disconnect();
+      joinObserver.disconnect();
+    };
+  }, []);
+
+  return (
+    <div
+      className={`fixed bottom-0 left-0 right-0 z-50 lg:hidden transition-transform duration-300 ${
+        show ? "translate-y-0" : "translate-y-full"
+      }`}
+    >
+      <div className="bg-pourpre-deep/95 backdrop-blur-sm border-t border-gold/15 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+        <div className="flex items-center justify-between gap-3 max-w-lg mx-auto">
+          <p className="text-warm-white text-[12px] sm:text-[13px] font-body leading-tight">
+            Join Free — <span className="text-gold font-medium">Save 15%</span> on Every Bottle
+          </p>
+          <a
+            href="#join"
+            className="btn-cta-primary flex-shrink-0 inline-flex items-center justify-center gap-1.5 rounded-none h-9 px-4 text-[10px] tracking-[0.12em] uppercase font-body font-medium"
+          >
+            <WineIcon className="w-3.5 h-3.5" />
+            Join
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function WineClubPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { sectionRef, isVisible } = useSectionBlobs();
@@ -213,6 +273,7 @@ export default function WineClubPage() {
           sizes="100vw"
           className="absolute inset-0"
           speed={0.08}
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-[rgba(38,50,27,0.7)]" />
         <div className="relative z-10 text-center px-6 max-w-2xl mx-auto">
@@ -226,7 +287,7 @@ export default function WineClubPage() {
             Exclusive wines. Private events. A taste of France, delivered to your door three times a year.
           </p>
           <p className="text-gold/80 text-[13px] sm:text-sm font-body mb-8">
-            Join 860+ members who love great wine
+            Join 864 members who love great wine
           </p>
           <div className="inline-flex items-center gap-3 p-3 bg-warm-white/10 backdrop-blur-sm border border-warm-white/10 mb-6">
             <span className="font-heading text-warm-white text-2xl font-semibold">$0</span>
@@ -244,6 +305,14 @@ export default function WineClubPage() {
           </div>
         </div>
       </section>
+
+      {/* Seasonal Shipment Banner */}
+      <div className="bg-pourpre-deep/95 text-warm-white">
+        <div className="max-w-[var(--max-width)] mx-auto px-6 py-3 flex items-center justify-center gap-2 text-[11px] sm:text-xs tracking-[0.06em] uppercase font-body">
+          <Calendar className="w-3.5 h-3.5 text-gold/60 flex-shrink-0" />
+          <span>Spring Shipment — Members receive their curated selection in March</span>
+        </div>
+      </div>
 
       {/* Benefits */}
       <section ref={sectionRef} className="py-[var(--section-gap)] bg-cream bg-parchment-texture relative overflow-hidden">
@@ -411,11 +480,13 @@ export default function WineClubPage() {
                     <span className="text-pourpre-deep text-sm font-medium pr-4">{faq.q}</span>
                     <ChevronDown className={`w-4 h-4 text-gold/50 flex-shrink-0 transition-transform duration-300 ${openFaq === i ? "rotate-180" : ""}`} />
                   </button>
-                  {openFaq === i && (
-                    <div className="px-5 pb-5 -mt-1">
-                      <p className="text-stone text-[13px] sm:text-sm leading-relaxed">{faq.a}</p>
+                  <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${openFaq === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                    <div className="overflow-hidden">
+                      <div className="px-5 pb-5 -mt-1">
+                        <p className="text-stone text-[13px] sm:text-sm leading-relaxed">{faq.a}</p>
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               </ScrollReveal>
             ))}
@@ -446,6 +517,9 @@ export default function WineClubPage() {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Sticky Mobile CTA */}
+      <StickyMobileCTA />
     </main>
   );
 }

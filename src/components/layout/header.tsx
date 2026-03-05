@@ -220,7 +220,7 @@ export function Header() {
                         key={link.href}
                         href={link.href}
                         onClick={() => setOpen(false)}
-                        className="flex items-center px-6 py-3.5 text-sm font-body font-medium tracking-[0.06em] uppercase text-pourpre-deep hover:bg-gold/5 hover:text-bordeaux transition-all border-l-2 border-transparent hover:border-gold"
+                        className="flex items-center px-6 py-3.5 text-sm font-body font-medium tracking-[0.06em] uppercase text-pourpre-deep hover:bg-gold/5 hover:text-pourpre-light transition-all border-l-2 border-transparent hover:border-gold"
                       >
                         {link.label}
                       </Link>
@@ -272,7 +272,7 @@ export function Header() {
                     window.Vinoshipper.cartOpen();
                   }
                 }}
-                className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-pourpre-deep/60 hover:text-bordeaux transition-colors cursor-pointer relative"
+                className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-pourpre-deep/60 hover:text-pourpre-light transition-colors cursor-pointer relative"
               >
                 <span className="relative">
                   <item.icon className="w-5 h-5" />
@@ -288,7 +288,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-pourpre-deep/60 hover:text-bordeaux transition-colors"
+                className="flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-pourpre-deep/60 hover:text-pourpre-light transition-colors"
               >
                 <item.icon className="w-5 h-5" />
                 <span className="text-[10px] font-medium tracking-wide">{item.label}</span>

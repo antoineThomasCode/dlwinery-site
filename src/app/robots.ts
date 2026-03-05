@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/member", "/api/"],
+        disallow: ["/member", "/api/", "/admin"],
       },
     ],
     sitemap: "https://dlwinery.com/sitemap.xml",

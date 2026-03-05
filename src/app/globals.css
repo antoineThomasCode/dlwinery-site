@@ -4,6 +4,9 @@
 
 /* ═══════════════════════════════════════════
    Custom Fonts — Diaspora + Sweet Sans Pro
+   Preloaded via next/font/local in layout.tsx.
+   @font-face kept here for Vinoshipper widget
+   compatibility (references fonts by family name).
    ═══════════════════════════════════════════ */
 
 @font-face {

@@ -63,49 +63,58 @@ export async function POST(request: NextRequest) {
       completedSignup: false,
     };
 
-    // Save lead locally
-    const leads = await readLeads();
-
-    // Check for existing lead by email — update if exists
-    const existingIndex = leads.findIndex(
-      (l) => l.email === lead.email
-    );
-    if (existingIndex >= 0) {
-      leads[existingIndex] = { ...leads[existingIndex], ...lead };
-    } else {
-      leads.push(lead);
+    // Push to Brevo (source of truth — must succeed)
+    const brevoKey = process.env.BREVO_API_KEY;
+    if (!brevoKey) {
+      console.error("BREVO_API_KEY not configured");
+      return NextResponse.json(
+        { error: "Service temporarily unavailable. Please try again later." },
+        { status: 503 }
+      );
     }
 
-    await writeLeads(leads);
+    const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
+      method: "POST",
+      headers: {
+        "api-key": brevoKey,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: lead.email,
+        attributes: {
+          FIRSTNAME: lead.firstName,
+          LASTNAME: lead.lastName,
+          SMS: lead.phone || "",
+          SUBSCRIPTION_SOURCE: "wine_club_lead",
+        },
+        updateEnabled: true,
+        ...(process.env.BREVO_CLUB_LEAD_LIST_ID
+          ? { listIds: [parseInt(process.env.BREVO_CLUB_LEAD_LIST_ID, 10)] }
+          : {}),
+      }),
+    });
 
-    // Optionally push to Brevo if configured
-    const brevoKey = process.env.BREVO_API_KEY;
-    if (brevoKey) {
-      try {
-        await fetch("https://api.brevo.com/v3/contacts", {
-          method: "POST",
-          headers: {
-            "api-key": brevoKey,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: lead.email,
-            attributes: {
-              FIRSTNAME: lead.firstName,
-              LASTNAME: lead.lastName,
-              SMS: lead.phone || "",
-              SUBSCRIPTION_SOURCE: "wine_club_lead",
-            },
-            updateEnabled: true,
-            ...(process.env.BREVO_CLUB_LEAD_LIST_ID
-              ? { listIds: [parseInt(process.env.BREVO_CLUB_LEAD_LIST_ID, 10)] }
-              : {}),
-          }),
-        });
-      } catch {
-        // Brevo push is best-effort — don't fail the request
-        console.error("Failed to push club lead to Brevo");
+    if (!brevoRes.ok) {
+      const brevoError = await brevoRes.text();
+      console.error("Brevo API error:", brevoRes.status, brevoError);
+      return NextResponse.json(
+        { error: "Could not complete signup. Please try again." },
+        { status: 502 }
+      );
+    }
+
+    // Save locally as backup (best-effort — not critical)
+    try {
+      const leads = await readLeads();
+      const existingIndex = leads.findIndex((l) => l.email === lead.email);
+      if (existingIndex >= 0) {
+        leads[existingIndex] = { ...leads[existingIndex], ...lead };
+      } else {
+        leads.push(lead);
       }
+      await writeLeads(leads);
+    } catch {
+      console.warn("Local backup write failed (non-critical)");
     }
 
     return NextResponse.json({

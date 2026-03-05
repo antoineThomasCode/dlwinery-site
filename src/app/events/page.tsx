@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import EventsPage from "./client-page";
+import { EventsListJsonLd } from "@/components/seo/json-ld";
+import { events } from "@/lib/data/events";
 
 export const metadata: Metadata = {
   title: "Events — Tastings, Festivals & Live Music at the Winery",
@@ -13,5 +15,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <EventsPage />;
+  return (
+    <>
+      <EventsListJsonLd events={events} />
+      <EventsPage />
+    </>
+  );
 }

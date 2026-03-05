@@ -77,11 +77,12 @@ export function Footer() {
       <div className="relative flex items-center justify-center py-0">
         <div className="flex-1 h-px bg-gold/25" />
         <div className="px-4">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/ink/fleur-de-lys.svg"
             alt=""
-            aria-hidden="true"
+            aria-hidden={true}
+            width={32}
+            height={32}
             className="w-8 h-8 opacity-30 brightness-200"
           />
         </div>
@@ -102,8 +103,7 @@ export function Footer() {
               className="h-10 w-auto mb-6 brightness-110"
             />
             <p className="text-sm leading-relaxed mb-4 text-warm-white/50">
-              Six generations of French winemaking tradition, one unforgettable
-              lakeside experience in the heart of the Finger Lakes.
+              Six generations of Champagne heritage, now rooted on the shores of Keuka Lake.
             </p>
             <div className="h-px bg-gold/15 mb-4" />
             <p className="text-gold/70 text-sm italic font-heading">

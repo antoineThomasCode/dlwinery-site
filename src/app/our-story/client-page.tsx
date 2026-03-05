@@ -67,6 +67,7 @@ export default function OurStoryPage() {
           sizes="100vw"
           className="absolute inset-0"
           speed={0.08}
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-[rgba(38,50,27,0.7)]" />
         <div className="relative z-10 text-center px-6">
@@ -77,7 +78,7 @@ export default function OurStoryPage() {
             <span className="shimmer-text-light">From Champagne to Keuka Lake</span>
           </h1>
           <p className="text-warm-white/60 text-sm sm:text-base max-w-lg mx-auto">
-            Six generations of French winemaking tradition, one unforgettable lakeside story.
+            Six generations. Twenty-three harvests. Two continents. One love story.
           </p>
         </div>
       </section>

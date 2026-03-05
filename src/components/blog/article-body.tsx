@@ -129,17 +129,17 @@ function renderInline(tokens: InlineToken[]): ReactNode[] {
   return tokens.map((token, i) => {
     switch (token.type) {
       case "bold":
-        return <strong key={i} className="font-semibold text-navy">{token.value}</strong>;
+        return <strong key={i} className="font-semibold text-olive">{token.value}</strong>;
       case "italic":
-        return <em key={i} className="font-heading italic text-navy/80">{token.value}</em>;
+        return <em key={i} className="font-heading italic text-olive/80">{token.value}</em>;
       case "link":
         return (
-          <Link key={i} href={token.href} className="text-bordeaux hover:text-bordeaux-deep underline decoration-bordeaux/30 underline-offset-2 hover:decoration-bordeaux/60 transition-colors">
+          <Link key={i} href={token.href} className="text-pourpre-light hover:text-pourpre underline decoration-pourpre-light/30 underline-offset-2 hover:decoration-pourpre-light/60 transition-colors">
             {token.text}
           </Link>
         );
       case "code":
-        return <code key={i} className="bg-gold/10 text-navy px-1.5 py-0.5 rounded text-sm">{token.value}</code>;
+        return <code key={i} className="bg-gold/10 text-olive px-1.5 py-0.5 rounded text-sm">{token.value}</code>;
       default:
         return <span key={i}>{token.value}</span>;
     }
@@ -164,9 +164,9 @@ export function ArticleBody({ content }: { content: string }) {
           case "heading": {
             const Tag = `h${token.level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
             const styles: Record<number, string> = {
-              2: "text-2xl sm:text-3xl font-heading font-semibold text-navy mt-12 mb-4 leading-tight",
-              3: "text-xl sm:text-2xl font-heading font-medium text-navy mt-8 mb-3 leading-tight",
-              4: "text-lg sm:text-xl font-heading font-medium text-navy/90 mt-6 mb-2",
+              2: "text-2xl sm:text-3xl font-heading font-semibold text-olive mt-12 mb-4 leading-tight",
+              3: "text-xl sm:text-2xl font-heading font-medium text-olive mt-8 mb-3 leading-tight",
+              4: "text-lg sm:text-xl font-heading font-medium text-olive/90 mt-6 mb-2",
             };
             return <Tag key={i} id={token.id} className={styles[token.level] ?? styles[3]}>{token.text}</Tag>;
           }

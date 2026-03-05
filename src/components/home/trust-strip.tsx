@@ -36,7 +36,7 @@ export function TrustStrip() {
                 <Award className="w-4 h-4 text-gold/60 flex-shrink-0" />
                 <div className="text-center md:text-left">
                   <p className="text-pourpre-deep text-[11px] sm:text-xs font-body font-medium tracking-[0.08em] uppercase leading-tight">
-                    Award-Winning
+                    Gold Medal
                   </p>
                   <p className="text-stone/50 text-[9px] sm:text-[10px] tracking-[0.06em] uppercase leading-tight">
                     Wines

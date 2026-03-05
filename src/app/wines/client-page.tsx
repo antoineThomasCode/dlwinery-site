@@ -57,6 +57,7 @@ export default function WinesPage() {
           sizes="100vw"
           className="absolute inset-0"
           speed={0.08}
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-[rgba(38,50,27,0.6)]" />
         <div className="relative z-10 text-center px-6">
@@ -67,7 +68,19 @@ export default function WinesPage() {
             <span className="shimmer-text-light">Our Wines</span>
           </h1>
           <p className="text-warm-white/60 text-sm sm:text-base max-w-md mx-auto">
-            French winemaking tradition, Finger Lakes terroir. Explore our collection.
+            Each bottle is a conversation between Champagne craft and Keuka Lake terroir.
+          </p>
+        </div>
+      </section>
+
+      {/* SEO intro */}
+      <section className="bg-cream border-b border-gold/8">
+        <div className="max-w-[var(--max-width)] mx-auto px-5 sm:px-6 py-8 sm:py-10">
+          <p className="text-stone/70 text-sm sm:text-[15px] leading-relaxed max-w-3xl">
+            Domaine LeSeurre brings six generations of French winemaking expertise to the Finger Lakes.
+            From m&eacute;thode champenoise sparkling wines to Burgundy-style Chardonnay and Loire-inspired
+            Cabernet Franc, each bottle reflects the unique terroir of Keuka Lake and the craft of a
+            family rooted in Champagne.
           </p>
         </div>
       </section>
@@ -192,9 +205,11 @@ export default function WinesPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <span className="font-heading text-pourpre-deep text-xl">${wine.price}</span>
-                        <span className="text-gold/70 text-[11px] ml-1.5">
-                          ${wine.memberPrice.toFixed(0)} member
-                        </span>
+                        {wine.memberPrice < wine.price && (
+                          <span className="block text-gold text-[11px] font-medium">
+                            Club: ${wine.memberPrice.toFixed(2)} <span className="text-gold/50">(save ${(wine.price - wine.memberPrice).toFixed(0)})</span>
+                          </span>
+                        )}
                       </div>
                       <VinoshipperAddToCart productId={wine.id} />
                     </div>

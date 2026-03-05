@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import ExperiencesPageWrapper from "./client-page";
+import { ExperiencesJsonLd } from "@/components/seo/json-ld";
+import { experiences } from "@/lib/data/experiences";
 
 export const metadata: Metadata = {
   title: "Tasting Experiences — Book a Wine Tasting",
@@ -13,5 +15,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ExperiencesPageWrapper />;
+  return (
+    <>
+      <ExperiencesJsonLd experiences={experiences} />
+      <ExperiencesPageWrapper />
+    </>
+  );
 }

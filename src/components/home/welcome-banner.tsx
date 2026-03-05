@@ -1,9 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { SectionBlobs } from "@/components/ui/section-blobs";
 import { useSectionBlobs } from "@/hooks/use-section-blobs";
-import { ChatConcierge } from "@/components/home/chat-concierge";
+
+const ChatConcierge = dynamic(
+  () => import("@/components/home/chat-concierge").then((m) => m.ChatConcierge),
+  { ssr: false }
+);
 
 export function WelcomeBanner() {
   const { sectionRef, isVisible } = useSectionBlobs();
@@ -36,9 +41,7 @@ export function WelcomeBanner() {
             Bienvenue
           </p>
           <p className="text-pourpre-deep/60 text-[13px] sm:text-sm md:text-base leading-relaxed max-w-lg mx-auto">
-            Nestled on the west shore of Keuka Lake, Domaine LeSeurre brings the
-            art of French winemaking to the heart of the Finger Lakes. Come for the
-            wine, stay for the view.
+            C&eacute;line and S&eacute;bastien LeSeurre invite you to their corner of Keuka Lake — where six generations of Champagne tradition meet New World terroir. Come for the wine, stay for the view.
           </p>
           <ChatConcierge welcomeSectionRef={sectionRef} />
         </div>

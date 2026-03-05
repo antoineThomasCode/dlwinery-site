@@ -4,7 +4,7 @@ import { WineIcon } from "@/components/ui/wine-icon";
 
 export function BlogCta() {
   return (
-    <section className="bg-navy-deep py-14 sm:py-16">
+    <section className="bg-olive-deep py-14 sm:py-16">
       <div className="max-w-[720px] mx-auto px-5 sm:px-6 text-center">
         <p className="text-gold text-[10px] tracking-[0.3em] uppercase font-body font-medium mb-3">
           Experience It Yourself
@@ -19,7 +19,7 @@ export function BlogCta() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button
             asChild
-            className="bg-bordeaux hover:bg-bordeaux-deep text-warm-white rounded-sm text-[12px] tracking-[0.1em] uppercase font-medium px-8 h-11 shadow-md hover:shadow-lg transition-all"
+            className="bg-pourpre-light hover:bg-pourpre text-warm-white rounded-sm text-[12px] tracking-[0.1em] uppercase font-medium px-8 h-11 shadow-md hover:shadow-lg transition-all"
           >
             <Link href="/experiences" className="inline-flex items-center gap-2"><WineIcon className="w-4 h-4" /> Book a Tasting</Link>
           </Button>

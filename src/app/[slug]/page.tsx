@@ -7,6 +7,7 @@ import { getAllPosts, getPostBySlug, getPostSlugs, getPillarMeta } from "@/lib/b
 import { ArticleBody } from "@/components/blog/article-body";
 import { BlogCta } from "@/components/blog/blog-cta";
 import { RelatedPosts } from "@/components/blog/related-posts";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 
 // Known static pages — these slugs should NOT be caught by [slug]
 const STATIC_PAGES = new Set([
@@ -81,34 +82,27 @@ export default async function ArticlePage({ params }: PageProps) {
   return (
     <>
       {/* Article JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: post.title,
-            description: post.metaDescription,
-            datePublished: post.date,
-            author: {
-              "@type": "Person",
-              name: post.author,
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "Domaine LeSeurre Winery",
-              url: "https://dlwinery.com",
-            },
-            keywords: post.keywords.join(", "),
-          }),
-        }}
+      <ArticleJsonLd
+        title={post.title}
+        description={post.metaDescription}
+        date={post.date}
+        author={post.author}
+        keywords={post.keywords}
+        url={`https://dlwinery.com/${post.slug}`}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://dlwinery.com" },
+          { name: "Blog", url: "https://dlwinery.com/blog" },
+          { name: post.title, url: `https://dlwinery.com/${post.slug}` },
+        ]}
       />
 
       {/* Hero */}
       <section className="relative h-[45vh] sm:h-[50vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <Image src={heroImage} alt="" fill className="object-cover" sizes="100vw" priority />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/40 to-navy-deep/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-olive-deep/90 via-olive-deep/40 to-olive-deep/20" />
         </div>
         <div className="relative max-w-[720px] mx-auto w-full px-5 sm:px-6 pb-8 sm:pb-12">
           <Link

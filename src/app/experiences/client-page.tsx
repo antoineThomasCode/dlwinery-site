@@ -48,6 +48,7 @@ function ExperiencesPage() {
           sizes="100vw"
           className="absolute inset-0"
           speed={0.08}
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-[rgba(38,50,27,0.6)]" />
         <div className="relative z-10 text-center px-6">

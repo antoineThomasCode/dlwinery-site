@@ -76,10 +76,10 @@ export function ExperiencesSection() {
               <FrenchText>Dégustation</FrenchText>
             </p>
             <LineMaskReveal className="font-heading text-[1.75rem] sm:text-4xl md:text-[3.25rem] text-pourpre-deep font-light mb-4 sm:mb-5 leading-tight">
-              <LineMaskLine><span className="shimmer-text">Your Tasting Awaits</span></LineMaskLine>
+              <LineMaskLine><span className="shimmer-text">Taste France on Keuka Lake</span></LineMaskLine>
             </LineMaskReveal>
             <p className="text-stone text-[13px] sm:text-sm md:text-base max-w-lg mx-auto leading-relaxed">
-              Choose your experience and let us take care of the rest.
+              From a glass on the terrace to an immersive food pairing — every visit tells a story.
             </p>
             <SectionDivider className="mt-5 sm:mt-6" />
           </div>

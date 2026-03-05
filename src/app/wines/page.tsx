@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import WinesPage from "./client-page";
+import { WineCollectionJsonLd } from "@/components/seo/json-ld";
+import { wines } from "@/lib/data/wines";
 
 export const metadata: Metadata = {
   title: "Our Wines — French-Inspired Wines from Keuka Lake",
@@ -13,5 +15,11 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <WinesPage />;
+  const actualWines = wines.filter((w) => w.type !== "gift-card");
+  return (
+    <>
+      <WineCollectionJsonLd wines={actualWines} />
+      <WinesPage />
+    </>
+  );
 }
